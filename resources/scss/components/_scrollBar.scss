@@ -1,0 +1,35 @@
+@use "../utils"  as *;
+
+::-webkit-scrollbar-track
+{
+	
+	border-radius: 1px;
+	background-color: $white-color;
+}
+
+::-webkit-scrollbar
+{
+	width: 18px;
+	
+}
+
+::-webkit-scrollbar-thumb
+{
+	border-radius: 1px;
+}
+::-webkit-scrollbar-thumb:hover
+{
+	background-color: $info-color;
+}
+
+
+::-webkit-scrollbar {
+	width: 6px;
+	border-radius: 10px;
+   }
+   
+   ::-webkit-scrollbar-thumb {
+	background: var(--scrollbar-bg);
+	border-radius: 10px;
+   }
+   

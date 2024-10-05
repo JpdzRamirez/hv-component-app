@@ -1,0 +1,83 @@
+@use "../utils" as *;
+
+.wrapper {
+
+    .left-side {
+
+        @media screen and (max-width: 945px) {
+            display: none;
+        }
+    }
+
+    .main-container {
+        .main-header {
+            .header-menu {
+                @media screen and (max-width: 1055px) {
+                    margin: auto;
+                }
+
+            }
+
+            .menu-link-main {
+                @media screen and (max-width: 1055px) {
+                    display: none;
+                }
+            }
+        }
+
+        .content-wrapper {
+            @media screen and (max-width: 510px) {
+                padding: 20px;
+            }
+
+            &-header {
+                @media screen and (max-width: 415px) {
+                    padding: 20px;
+                }
+
+                .content-wrapper-img {
+                    @media screen and (max-width: 570px) {
+                        width: 110px;
+                    }
+                }
+            }
+
+            .content-section {
+
+                .products {
+                    @media screen and (max-width: 480px) {
+                        width: 120px;
+                    }
+                }
+
+                .status {
+                    @media screen and (max-width: 700px) {
+                        display: none;
+                    }
+
+                    &-button {
+                        @media screen and (max-width: 390px) {
+                            padding: 6px 14px;
+                        }
+                    }
+                }
+
+                @media screen and (max-width: 415px) {
+                    .adobe-product .menu {
+                        display: none;
+                    }
+                }
+
+            }
+
+        }
+
+    }
+}
+
+.pop-up {
+
+    @media screen and (max-width: 570px) {
+        width: 100%;
+       }
+}

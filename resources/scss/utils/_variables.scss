@@ -1,0 +1,30 @@
+
+// Color Variables
+
+$body-text-color: #575962;
+$white-color: #ffffff;
+$black-color: #191919;
+$transparent-bg : transparent;
+$default-color : #282a3c;
+$primary-color : #177dff;
+$secondary-color : #716aca;
+$info-color : #36a3f7;
+$success-color : #35cd3a;
+$warning-color : #ffa534;
+$danger-color : #f3545d;
+
+.light-mode {
+    --theme-bg-color: rgb(255 255 255 / 31%);
+   --theme-color: #3c3a3a;
+   --inactive-color: #333333;
+    --button-inactive: #3c3a3a;
+   --search-bg: rgb(255 255 255 / 31%);
+   --dropdown-bg: #f7f7f7;
+   --overlay-bg: rgb(255 255 255 / 30%);
+   --dropdown-hover: rgb(236 236 236);
+   --border-color: rgb(255 255 255 / 35%);
+   --popup-bg: rgb(255 255 255);
+   --hover-menu-bg: rgba(255 255 255 / 35%);
+   --scrollbar-bg: rgb(255 253 253 / 57%);
+   --content-title-color: --theme-color;
+  }
