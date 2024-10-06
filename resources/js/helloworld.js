@@ -9,7 +9,12 @@ dropdowns.forEach((dropdown) => {
     });
 });
 
-const toggleButton = document.querySelector('.dark-light');
+const toggleButton = $('.dark-light');
+
+       
+const time = document.getElementById("time");
+const day = document.getElementById("day");
+const midday = document.getElementById("midday");
 
 // Document ready
 $(function () {
@@ -40,6 +45,45 @@ $(function () {
          $(".content-wrapper").removeClass("overlay");
         }
        });
+
+      let clock = setInterval(
+        function calcTime() {
+          let date_now = new Date();
+          let hr = date_now.getHours();
+          let min = date_now.getMinutes();
+          let sec = date_now.getSeconds();
+          let middayValue = "AM";
+
+          let days = [
+            "Domingo",
+            "Lunes",
+            "Martes",
+            "Miércoles",
+            "Jueves",
+            "Viernes",
+            "Sábado"
+          ];
+
+          day.textContent = days[date_now.getDay()];
+
+          middayValue = hr >= 12 ? "PM" : "AM";
+
+          if (hr == 0) {
+            hr = 12;
+          } else if (hr > 12) {
+            hr -= 12;
+          }
+
+          hr = hr < 10 ? "0" + hr : hr;
+          min = min < 10 ? "0" + min : min;
+          sec = sec < 10 ? "0" + sec : sec;
+
+          time.textContent = hr + ":" + min + ":" + sec;
+          midday.textContent = middayValue;
+        },
+
+        1000
+      );
    });
    // END DOCUMENT READY
    //Events
@@ -51,8 +95,19 @@ $(function () {
     });
 
         
-    toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('light-mode');
+    toggleButton.on('click', function() {
+        $('body').toggleClass('light-mode');
+    
+        // Alterna entre las variables de color
+        if ($('body').hasClass('light-mode')) {
+            console.log("cambio a blanco");
+            document.documentElement.style.setProperty('--text-default-color', '#333333');
+            document.documentElement.style.setProperty('--bg-default-color', '#ffff');
+        } else {
+            console.log("cambio a negro");
+            document.documentElement.style.setProperty('--text-default-color', '#ffff');
+            document.documentElement.style.setProperty('--bg-default-color', '#333333');
+        }
     });
    
    $(document).click(function (e) {
