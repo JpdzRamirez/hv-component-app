@@ -7,7 +7,7 @@
     width: 100%;
     height: 100%;
 
-    video {
+    img {
         width: 100%;
         height: 100%;
         object-fit: cover;
@@ -16,7 +16,10 @@
 
 .dark-light {
     position: fixed;
-    bottom: 50px;
+    width: 2em;
+    height: 2em;
+    display: inline-flex;
+    bottom: 80px;
     right: 30px;
     background-color: var(--dropdown-bg);
     box-shadow: -1px 3px 8px -1px rgba(0, 0, 0, 0.2);
@@ -25,19 +28,17 @@
     z-index: 3;
     cursor: pointer;
 
-    svg {
+    i {
         width: 24px;
         flex-shrink: 0;
-        fill: #ffce45;
-        stroke: #ffce45;
+        color: var(--ligth-theme-icon);
         transition: 0.5s;
     }
 }
 
 .light-mode {
-    .dark-light svg {
-        fill: transparent;
-        stroke: var(--theme-color);
+    .dark-light i {
+        color: var(--dark-theme-icon);
     }
 
     .profile-img {
@@ -65,8 +66,6 @@ body.light-mode .video-bg:before {
     top: 0;
     width: 100%;
     height: 100vh;
-    background: linear-gradient(180deg, rgba(255, 255, 255, 0.72) 0%, rgb(255 255 255 / 45%) 100%);
-    backdrop-filter: saturate(3);
 }
 
 .app {

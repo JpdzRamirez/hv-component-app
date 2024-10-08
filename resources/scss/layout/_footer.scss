@@ -146,7 +146,7 @@ footer{
         justify-content: center;
         flex-direction: row;
         align-items: center;
-        
+        cursor: pointer;
         transition: 0.2s ease-in;
         &:hover{
             background-color:var(--bg-default-color);
@@ -213,10 +213,10 @@ footer{
     color:$success-color;
   }
   .trash{
-  color:$body-text-color;
+  color:$gray-text-color;
   }
   .settings{
-    color:$body-text-color;
+    color:$white-color;
   }
 // clock section
 .taskBarFooter{
@@ -227,30 +227,92 @@ footer{
         position: relative;
         display: flex;
         flex-direction: row;
-        
+        align-items: center;
         height: fit-content;
         .otherIcons{
             display: flex;
             flex-direction: row;
-            gap: 1em;
+            align-items: center;
+            gap: 0.5em;
             width: auto;
-            a i{
-              color: var(--text-default-color);
-            }
-            .battery{
-                display: flex;
-                flex-direction: row;
-                gap: 0.5em;
-                align-items: center;
-                width: 5em;
-                img{
-                    width: 1.5em;
+            cursor: pointer;
+            a{
+              width: 1.2em;
+              height: 3em;
+              position: relative;
+              display: flex;
+              flex-direction: column;
+              justify-content: center;
+              align-items: center;
+              &:hover{
+                background-color:var(--bg-default-color);
+                i{
+                    color: var(--text-default-color);
                 }
+              }  
+              i{
+                color: var(--text-default-color);
+              }
             }
+            
+            .battery {
+              position: relative;
+              width: 25px;
+              border: 3px solid var(--text-default-color);
+              height: 15px;
+              border-radius: 3.5px;
+              background-color: transparent;
+            }
+            
+            .battery:before {
+              content: "";
+              position: absolute;
+              height: 9.5px;
+              top:0;
+              left:0;
+              background-color: $success-color;
+              border-radius: 1px;
+              animation: full 10s linear infinite;
+            }
+            
+            .battery:after {
+              content: "";
+              position: absolute;
+              right: -7px;
+              top: 1px;
+              width: 4px;
+              height: 6px;
+              background-color: var(--text-default-color);
+            }
+            
+
+        }
+        .battery-toast{
+          position: absolute;
+           top: -9em;
+           background-color: var(--bg-default-colorTransparent);
+           color: var(--text-default-color);
+           border-radius: 1em;
+           transition: 0.3s ease-in-out;
+        }
+        .battery-toast::after{
+          content: "";
+          position: absolute;
+          width: 0;
+          height: 0;
+          left: 8em;
+          border-left: 10px solid transparent;
+          border-right: 10px solid transparent;
+          border-top: 20px solid var(--bg-default-colorTransparent);         
+        }
+        .battery-toast-animation{
+          -webkit-animation: tilt-in-fwd-br 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+	        animation: tilt-in-fwd-br 0.6s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
         }
         .clock {
             display: flex;
             flex-direction: column;
+            font-family: sans-serif;
             align-items: center;
             height: auto;
             width: 8em;     

@@ -29,3 +29,17 @@
         }
     }
 }
+
+footer{
+    .taskBarFooter{
+        @media screen and (max-width: 870px) {
+            justify-content: center;
+            .windows-container{
+                display: none;
+            }
+            .clock-container{
+                display: none;
+            }
+        }
+    }
+}
