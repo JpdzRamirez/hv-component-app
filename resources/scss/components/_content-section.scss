@@ -225,4 +225,39 @@
      }
     }
    }
+   .form-card{
+        display: flex;
+        flex-direction: column;
+        width: calc(100% - 20px);
+        font-size: 16px;
+        background-color: var(--content-bg);
+        border-radius: 14px;
+        border: 1px solid var(--theme-bg-color);
+        padding: 20px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        &:hover {
+        transform: scale(1.02);
+        background-color: var(--theme-bg-color);
+        }
+        &-buttons {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 16px;
+        }
+        @media screen and (max-width: 1110px) {
+        &:last-child {
+         margin-top: 20px;
+         margin-left: 0px;
+        }
+       }
+       @media screen and (max-width: 565px) {
+        width: calc(100% - 20px);
+        margin-top: 20px;
+        & + .app-card {
+         margin-left: 0;
+        }
+       }
+   }
 }

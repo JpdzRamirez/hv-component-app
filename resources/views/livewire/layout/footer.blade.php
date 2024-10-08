@@ -3,22 +3,22 @@
         <div class="windows-container">
           <a><i class="fa-solid fa-square-list"></i></a>
           <div class="windows-tab">
-            <a><i class="fa-light fa-window-flip win-tab"></i><img src="/assets/img/wallpaper.jpg" class="win-img"/></a>
+            <a id="max"><i class="fa-light fa-window-flip win-tab"></i><img src="/assets/img/wallpaper.jpg" class="win-img"/></a>
             <a><i class="fa-light fa-window-flip win-tab"></i></a>
             <a><i class="fa-light fa-window-flip win-tab"></i></a>
           </div>
           <a><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
         </div>
         <div class="gadgets">
-          <a href="#" target="_blank"><i class="fa-brands fa-square-whatsapp gadget whatsapp"></i></a>
-          <a href="#" target="_blank"><i class="fa-brands fa-github gadget github"></i></a>   
-          <a href="#" target="_blank"><i class="fa-sharp-duotone fa-solid fa-envelopes-bulk gadget mail"></i></a>  
-          <a href="#" target="_blank"><i class="fa-brands fa-linkedin gadget linkedin"></i></a>
-          <a href="#" target="_blank"><i class="fa-solid fa-rectangle-terminal gadget terminal"></i></a>
-          <a href="#" target="_blank"><i class="fa-brands fa-chrome gadget chrome"></i></a>
-          <a href="#" target="_blank"><i class="fa-brands fa-google-drive gadget drive"></i></a>
-          <a href="#" target="_blank"><i class="fa-sharp fa-solid fa-trash gadget trash"></i></a>
-          <a href="#" target="_blank"><i class="fa-sharp fa-solid fa-gear gadget settings"></i></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/whatsapp.svg" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/github.svg" class="gadget"/></a>   
+          <a href="#" target="_blank"><img src="assets/img/svg/gmail.svg" class="gadget"/></a>  
+          <a href="#" target="_blank"><img src="assets/img/svg/linkedin.svg" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/terminal.png" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/google-chrome.svg" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/google-Drive.svg" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/trash.svg" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="assets/img/svg/settings.svg" class="gadget"/></a>
         </div>
         <div class="clock-container">
           <div class="otherIcons">
