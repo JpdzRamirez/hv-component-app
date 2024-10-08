@@ -1,10 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HelloWorld;
+use App\Livewire\Layout\Body;
 
 
 Route::middleware(['CaptureSessionData'])
     ->group(function () {
-        Route::get('/', [HelloWorld::class, 'index']);
+        Route::get('/', Body::class);
     });
