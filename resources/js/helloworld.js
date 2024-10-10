@@ -1,4 +1,7 @@
 import $ from 'jquery';
+window.$ = window.jQuery = $;
+
+
 
 const dropdowns = document.querySelectorAll(".dropdown");
 dropdowns.forEach((dropdown) => {
@@ -13,7 +16,7 @@ dropdowns.forEach((dropdown) => {
 //CONSTANTES
 const appWindow = $("#app");
 const toggleButton = $('.dark-light');
-const toggleProfile=$("#profileToggle");
+const toggleProfile = $("#profileToggle");
 
 const time = document.getElementById("time");
 const day = document.getElementById("day");
@@ -22,7 +25,6 @@ const midday = document.getElementById("midday");
 //ALTERNANCIA DE TAMAÑO
 let isResize = false;
 let isMinimized = false;
-
 
 // Document ready
 $(function () {
@@ -48,6 +50,12 @@ $(function () {
     $(".content-wrapper").addClass("overlay");
     e.stopPropagation();
   });
+  
+  $('.select-selected').click(function() {
+    $('.select-items').toggle();
+});
+
+
   $(document).on("click", function (e) {
     if ($(e.target).is(".dropdown") === false) {
       $(".content-wrapper").removeClass("overlay");
@@ -104,10 +112,11 @@ $(window).on('load', function () {
     overflow: 'visible'
   });
 });
+
 // END DOCUMENT READY
 //Events
 
-toggleProfile.on('click', function(){
+toggleProfile.on('click', function () {
   $("#menuProfile").toggleClass("active")
 })
 

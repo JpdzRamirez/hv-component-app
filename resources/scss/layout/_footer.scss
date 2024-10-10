@@ -318,7 +318,7 @@ footer{
             width: 1em;
             position: absolute;
             background: -o-linear-gradient(315deg, #ff5b84, #eb3461);
-            background: linear-gradient(135deg, #ff5b84, #eb3461);
+            background: $elements-style-color;
             border-radius: 50%;
             right: 0;
             z-index: -1;
