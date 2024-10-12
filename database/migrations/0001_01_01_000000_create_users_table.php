@@ -34,6 +34,8 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->decimal('lat', 10, 8)->index(); 
+            $table->decimal('lng', 11, 8)->index();
         });
     }
 
