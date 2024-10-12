@@ -17,7 +17,12 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('card',15)->unique();
             $table->string('email')->unique();
-            $table->string('phone', 15)->unique();
+            $table->string('phone', 15);
+            $table->longText('photo_base64')->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('state', 50)->nullable();
+            $table->string('city', 50)->nullable();
+            $table->unsignedBigInteger('socialmedia_id')->nullable();            
             $table->timestamps();
         });
 

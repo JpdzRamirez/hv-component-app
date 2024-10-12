@@ -34,7 +34,7 @@
                                           </h5>
                                           <div class="line"></div>
                                           <div class="col-sm-8">
-                                            <h6 class="mb-0">{{__('forms.register.label-full-name')}}</h6>
+                                            <label class="mb-0 label-required">{{__('forms.register.label-full-name')}}</lab>
                                         </div>
                                           <div class="row mb-3">
                                             <div class="col-sm-9 text-secondary">
@@ -68,77 +68,72 @@
                                             <form>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">First Name</h6>
+                                                        <label for="firstName" class="mb-0 label-required">{{ __('forms.register.label-first-name') }}</label>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="John Doe">
+                                                        <input type="text" class="form-control" id="firstName" name="firstName" placeholder="{{ __('forms.register.label-first-name') }}"  value="">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Last Name</h6>
+                                                        <label for="lastName" class="mb-0 label-required">{{ __('forms.register.label-last-name') }}</label>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="John Doe">
+                                                        <input type="text" class="form-control" id="lastName" name="lastName" placeholder="{{ __('forms.register.label-last-name') }}" value="">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Email</h6>
+                                                        <label class="mb-0 label-required">{{ __('forms.register.label-identification') }}</label>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="john@example.com">
+                                                        <input type="number" class="form-control"  name="identification" placeholder="C.C/T.I" value="">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Confirm Email</h6>
+                                                        <label for="email" class="mb-0 label-required">{{ __('forms.register.label-email') }}</label>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="john@example.com">
+                                                        <input type="email" id="email" class="form-control" name="email" placeholder="user@mail.com" value="">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Phone</h6>
+                                                        <label for="email_confirm" class="mb-0 label-required">{{ __('forms.register.label-email-confirm') }}</label>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="(239) 816-9029">
-                                                    </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-md-4">
-                                                        <label for="inputState" class="form-label">State</label>
-                                                        <livewire:components.location-selector/>
-                                                    </div>
-                                                    <div class="col-md-4">
-                                                        <label for="inputCity" class="form-label">City</label>
-                                                        <input type="text" class="form-control" id="inputCity">
-                                                      </div>
-                                                      <div class="col-md-4">
-                                                        <label for="inputZip" class="form-label">Zip</label>
-                                                        <input type="text" class="form-control" id="inputZip">
-                                                      </div>
-                                                </div>
-                                                <div class="row mb-3">
-                                                    <div class="col-sm-3">
-                                                        <h6 class="mb-0">Municipio</h6>
-                                                    </div>
-                                                    <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                                                        <input type="email" id="email_confirm" class="form-control" name="email_confirm" placeholder="user@mail.com" value="">
                                                     </div>
                                                 </div>
                                                 <div class="row mb-3">
                                                     <div class="col-sm-3">
-                                                        <h6 class="mb-0">Departamento</h6>
+                                                        <label for="phone" class="mb-0 label-required">{{ __('forms.register.label-phone') }}</label>
                                                     </div>
                                                     <div class="col-sm-9 text-secondary">
-                                                        <input type="text" class="form-control" value="Bay Area, San Francisco, CA">
+                                                        <input type="text" id="phone"class="form-control" name="phone" value="(239) 816-9029">
+                                                    </div>
+                                                </div>
+                                                    <livewire:components.location-selector/>
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <label for="address" class="mb-0">{{ __('forms.register.label-address') }}</label>
+                                                    </div>
+                                                    <div class="col-sm-9 text-secondary">
+                                                        <input type="text" id="address" class="form-control" name="address" value="Bay Area, San Francisco, CA">
+                                                    </div>
+                                                </div>
+                                                <div class="row mb-3">
+                                                    <div class="col-sm-3">
+                                                        <label for="address_complement" class="mb-0">{{ __('forms.register.label-address-complement') }}</label>
+                                                    </div>
+                                                    <div class="col-sm-9 text-secondary">
+                                                        <input type="text" id="address_complement" class="form-control" name="address_complement" placeholder="{{ __('forms.register.label-address-complement-placeholder') }}" value="">
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="form-card-buttons">
-                                                        <button type="submit" class="content-button status-button">Sign in</button>
+                                                        <button type="submit" class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
                                                     </div>
                                                 </div>
                                           </form>

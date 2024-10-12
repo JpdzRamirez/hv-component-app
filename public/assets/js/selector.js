@@ -1,9 +1,9 @@
 let optionSelected = '';
-let inputModel = document.getElementById('selectedModel');
+// let inputModel = document.getElementById('selectedModel');
 const loadingSpinner = document.getElementById('spinner');
 class DynamicSelect {
 
-    constructor(element, options = {}, selection  = null) {
+    constructor(element, options = {}, selection  = null, idSelector) {
         let defaults = {
             placeholder: 'Select an option',
             columns: 1,
@@ -41,13 +41,13 @@ class DynamicSelect {
                 item.selected = true; // Marcar como seleccionado
             }
         });
-        this.element = this._template();
+        this.element = this._template(idSelector);
         this.selectElement.replaceWith(this.element);
         this._updateSelected();
         this._eventHandlers();
     }
 
-    _template() {
+    _template(idSelector) {
         let optionsHTML = '';
         for (let i = 0; i < this.data.length; i++) {
             let optionWidth = 100; /// this.columns
@@ -68,7 +68,7 @@ class DynamicSelect {
         }
         let template = `
             <div class="dynamic-select ${this.name}"${this.selectElement.id ? ' id="' + this.selectElement.id + '"' : ''} style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}">
-                <input id="selectHidden" type="hidden" name="${this.name}" value="${this.selectedValue}">
+                <input id="${idSelector}" type="hidden" name="${this.name}" value="${this.selectedValue}">
                 <div class="dynamic-select-header" style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}"><span class="dynamic-select-header-placeholder">${this.placeholder}</span></div>
                 <div class="dynamic-select-options" style="${this.options.dropdownWidth ? 'width:' + this.options.dropdownWidth + ';' : ''}${this.options.dropdownHeight ? 'height:' + this.options.dropdownHeight + ';' : ''}">${optionsHTML}</div>
             </div>
@@ -90,8 +90,11 @@ class DynamicSelect {
                 this.element.querySelector('.dynamic-select-header').classList.remove('dynamic-select-header-active');
                 this.options.onChange(option.getAttribute('data-value'), option.querySelector('.dynamic-select-option-text') ? option.querySelector('.dynamic-select-option-text').innerHTML : '', option);
                 optionSelected = option.getAttribute('data-value');
-                Livewire.dispatch('countrySelected', { country: optionSelected });
-                loadingSpinner.classList.remove('hidden');
+                let idSelected=  this.element.querySelector('input').id;
+                if(idSelected!="selectedCity"){
+                    Livewire.dispatch('selectorCharger', { optionSelected: optionSelected, idSelector: idSelected });
+                    loadingSpinner.classList.remove('hidden');
+                }                              
             };
 
         });

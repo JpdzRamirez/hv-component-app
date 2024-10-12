@@ -13,6 +13,7 @@ class Presentation extends Authenticatable
 
     protected $table = 'presentation';
 
+    protected $with = ['socialmedia'];
     /**
      * The attributes that are mass assignable.
      *
@@ -27,6 +28,10 @@ class Presentation extends Authenticatable
     public function experiences()
     {
         return $this->hasMany(Experience::class, 'presentation_id');
+    }
+    public function socialmedia()
+    {
+        return $this->hasOne(SocialMedia::class, 'presentation_id');
     }
 
 }
