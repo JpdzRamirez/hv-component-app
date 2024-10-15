@@ -21,3 +21,32 @@
   font-family: Ubuntu-Italic;
   src: url('./fonts/Ubuntu-Italic.ttf')format('truetype');
 }
+
+/* Efecto de typing sin cursor */
+.text-typing {
+  font-family: monospace;
+  white-space: pre-wrap; /* Respeta los saltos de línea y espaciado */
+  letter-spacing: .15em;
+}
+
+/* Efecto de typing con cursor parpadeante */
+.text-typing-with-cursor {
+  font-family: monospace;
+  white-space: pre-wrap; /* Respeta los saltos de línea y espaciado */
+  letter-spacing: .15em;
+}
+
+/* Cursor parpadeante como un span */
+.cursor {
+  font-weight: bold;
+  animation: blink 1s step-start infinite;
+  opacity: 1;
+  border-right: .15em solid #EC6F2E;
+}
+
+/* Animación de parpadeo del cursor */
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
+}

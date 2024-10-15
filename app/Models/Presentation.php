@@ -13,7 +13,7 @@ class Presentation extends Authenticatable
 
     protected $table = 'presentation';
 
-    protected $with = ['socialmedia'];
+    protected $with = ['experiences','socialmedia'];
     /**
      * The attributes that are mass assignable.
      *

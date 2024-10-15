@@ -134,7 +134,7 @@ toggleButton.on('click', function () {
     $("#dark-light-icon").removeClass("fa-solid fa-moon-cloud");
     $("#dark-light-icon").addClass("fa-solid fa-sun");
     document.documentElement.style.setProperty('--text-default-color', '#ffff');
-    document.documentElement.style.setProperty('--bg-default-color', '#333333');
+    document.documentElement.style.setProperty('--bg-default-color', '#515151');
     document.documentElement.style.setProperty('--bg-default-colorTransparent', '#343a40');
   }
 });

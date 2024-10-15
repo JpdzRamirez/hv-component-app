@@ -5,7 +5,7 @@ return [
     'profile.edit' => 'Formulario de actualización de datos.',
     'register.model-full-name'=>'Tu Nombre:',
     'register.label-full-name'=>'Ingrese aquí una descripción suya✍',
-    'register.label-photo'=>'Foto de Perfil:',    
+    'register.label-photo'=>'Foto',    
     'register.label-first-name'=>'Nombres:',
     'register.label-last-name'=>'Apellidos:',
     'register.label-identification'=>'Identificación:',

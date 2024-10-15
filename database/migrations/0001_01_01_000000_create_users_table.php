@@ -21,8 +21,7 @@ return new class extends Migration
             $table->longText('photo_base64')->nullable();
             $table->string('country', 50)->nullable();
             $table->string('state', 50)->nullable();
-            $table->string('city', 50)->nullable();
-            $table->unsignedBigInteger('socialmedia_id')->nullable();            
+            $table->string('city', 50)->nullable();         
             $table->timestamps();
         });
 
