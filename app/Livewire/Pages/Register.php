@@ -11,14 +11,16 @@ class Register extends Component
     public $photo='';
 
     //Variables Formulario principal
-    public $first_name='';
-    public $last_name='';
+    public $firstName='';
+    public $lastName='';
     public $card='';
     public $email='';
     public $phone='';
     public $country='';
     public $state='';
     public $city='';
+    public $address='';
+    public $addressComplement='';
 
     // Variables Social Media
 
@@ -31,11 +33,17 @@ class Register extends Component
     
     public function mount($fullName=null,$description = '')
     {   
-        $this->fullName = $fullName;
+        $this->fullName =$fullName ?? __('forms.register.model-full-name');
         $this->description = $description;
     }
-    public function render()
+    public function updated($propertyName)
     {
+        if (in_array($propertyName, ['firstName', 'lastName'])) {
+            $this->fullName = trim("{$this->firstName} {$this->lastName}");
+        }
+    }
+    public function render()
+    {   
         return view('livewire.pages.register')->layout('layouts.base');
     }
 }

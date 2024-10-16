@@ -28,32 +28,29 @@
                                                 </div>
                                                 <div class="col-12 col-md-10 col-lg-8 align-content-center">
                                                     <div class="card-body">
-                                                        <h5 class="card-title">
-                                                            @if ($fullName)
-                                                                {{ $fullnName }}
-                                                            @else
-                                                                {{ __('forms.register.model-full-name') }}
-                                                            @endif
+                                                        <h5 class="card-title" wire:model="fullName">
+                                                            {{$fullName}}
                                                         </h5>
                                                         <div class="line"></div>
                                                         <div class="col-sm-12">
-                                                            <label
+                                                            <label for="input_description" 
                                                                 class="mb-0 label-required">{{ __('forms.register.label-full-name') }}
                                                             </label>
                                                         </div>
                                                         <div x-data="{ typing: false, description: '', fullText: @entangle('description'), index: 0 }" 
                                                         x-init="
+                                                            ////  La funcion entangle nos permite por medio de apine comunicarnos con la variable
                                                            $watch('fullText', (newText) => {
                                                                description = '';
                                                                index = 0;
                                                                typeText(newText);
                                                            });
-                                                   
+                                                            ////  Velocidad del efecto de escritura (100ms)
                                                            function typeText(text) {
                                                                if (index < text.length) {
                                                                    description += text[index];
                                                                    index++;
-                                                                   setTimeout(() => typeText(text), 100); // Velocidad del efecto de escritura (100ms)
+                                                                   setTimeout(() => typeText(text), 100); 
                                                                }
                                                            }
                                                        ">
@@ -61,17 +58,18 @@
                                                        <!-- Textarea con eventos focus/blur -->
                                                        <div class="row mb-3">
                                                            <div class="col text-secondary">
-                                                               <textarea class="form-control" aria-label="With textarea" 
+                                                               <textarea class="form-control" id="input_description" name="input_description"
+                                                                         aria-label="With textarea" 
                                                                          x-on:focus="typing = true" 
                                                                          x-on:blur="typing = false" 
                                                                          wire:model.debounce.500ms="description"></textarea>
                                                            </div>
                                                        </div>
                                                    
-                                                       <!-- Párrafo con el texto que se muestra y cursor parpadeante si typing es true -->
+                                                       {{--Párrafo con el texto que se muestra y cursor si typing es true--}}
                                                        <p :class="typing ? 'text-typing-with-cursor' : 'text-typing'" 
                                                           x-html="description + (typing ? '<span class=\'cursor\'></span>' : '')"></p>
-                                                   </div>
+                                                        </div>
                                                         <i class="fas fa-disease slowfloat3s"></i>
                                                     </div>
                                                 </div>
@@ -102,7 +100,7 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" class="form-control" id="firstName"
-                                                    name="firstName"
+                                                    name="firstName"  wire:model.live.debounce.500ms="firstName" 
                                                     placeholder="{{ __('forms.register.label-first-name') }}"
                                                     value="">
                                             </div>
@@ -114,7 +112,7 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" class="form-control" id="lastName"
-                                                    name="lastName"
+                                                    name="lastName" wire:model.live.debounce.500ms="lastName"
                                                     placeholder="{{ __('forms.register.label-last-name') }}"
                                                     value="">
                                             </div>
@@ -125,7 +123,8 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-identification') }}</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="number" class="form-control" name="identification"
+                                                <input type="number" class="form-control" 
+                                                name="identification" wire:model="card"
                                                     placeholder="C.C/T.I" value="">
                                             </div>
                                         </div>
@@ -135,7 +134,8 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-email') }}</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="email" id="email" class="form-control" name="email"
+                                                <input type="email" id="email" class="form-control" 
+                                                name="email" wire:model="email"
                                                     placeholder="user@mail.com" value="">
                                             </div>
                                         </div>
@@ -146,7 +146,8 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="email" id="email_confirm" class="form-control"
-                                                    name="email_confirm" placeholder="user@mail.com" value="">
+                                                    name="email_confirm" wire:model="email"
+                                                    placeholder="user@mail.com" value="">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -155,11 +156,12 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-phone') }}</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" id="phone"class="form-control" name="phone"
+                                                <input type="text" id="phone"class="form-control" 
+                                                name="phone" wire:model="phone"
                                                     value="(239) 816-9029">
                                             </div>
                                         </div>
-                                        <livewire:components.location-selector />
+                                        <livewire:components.location-selector/>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="address"
@@ -167,7 +169,8 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address" class="form-control"
-                                                    name="address" value="Bay Area, San Francisco, CA">
+                                                    name="address" wire:model="address"
+                                                    value="Bay Area, San Francisco, CA">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -177,7 +180,7 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address_complement" class="form-control"
-                                                    name="address_complement"
+                                                    name="address_complement" wire:model="addressComplement"
                                                     placeholder="{{ __('forms.register.label-address-complement-placeholder') }}"
                                                     value="">
                                             </div>
@@ -187,6 +190,7 @@
                                                 <button type="submit"
                                                     class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
                                             </div>
+                                            <span wire:loading>Saving...</span> 
                                         </div>
                                     </form>
                                 </div>

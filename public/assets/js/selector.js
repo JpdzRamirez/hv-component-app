@@ -1,5 +1,4 @@
 let optionSelected = '';
-// let inputModel = document.getElementById('selectedModel');
 const loadingSpinner = document.getElementById('spinner');
 class DynamicSelect {
 
@@ -94,7 +93,15 @@ class DynamicSelect {
                 if(idSelected!="selectedCity"){
                     Livewire.dispatch('selectorCharger', { optionSelected: optionSelected, idSelector: idSelected });
                     loadingSpinner.classList.remove('hidden');
-                }                              
+                }else{
+                    let geoLocation = {
+                        country: previousSelectedCountry,
+                        state: previousSelectedState,
+                        city: optionSelected
+                    };
+                    console.log(geoLocation)
+                    Livewire.dispatch('syncLocation', { location: geoLocation});
+                }                           
             };
 
         });
