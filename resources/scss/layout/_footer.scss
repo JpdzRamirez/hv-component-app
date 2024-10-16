@@ -15,23 +15,16 @@ footer{
     height: 3.2em;
     padding: 0px 10px;
     bottom: -1em;
-
     border-top: 1.5px solid #333;
-    background-color: #333;
     box-shadow: 0 0 10px 1px rgba(0, 0, 0, 0.25);
-  
     backdrop-filter: blur(15px);
-    background-color: rgba(255, 255, 255, 0.06);
-    
-    
+    background-color: var(--scrollbar-bg);   
     .gadgets{
-
       display: flex;
       flex-direction: row;
       align-items: center;
       width: 20em;
       gap:10px;
-
       a{
         width: 2rem;
         text-decoration: none;
@@ -74,7 +67,7 @@ footer{
         color: var(--text-default-color);
         background-color: var(--bg-default-color);;
         bottom: 8em;
-        left: 25%;
+        left: 35%;
         transform: translateX(-50%);
         display: flex;
         justify-content: center;
@@ -325,7 +318,7 @@ footer{
             width: 1em;
             position: absolute;
             background: -o-linear-gradient(315deg, #ff5b84, #eb3461);
-            background: linear-gradient(135deg, #ff5b84, #eb3461);
+            background: $elements-style-color;
             border-radius: 50%;
             right: 0;
             z-index: -1;
@@ -361,7 +354,7 @@ footer{
 }
 
 .builded{
-  background-color: #333;
+  background-color: var(--bg-default-color);
   position: relative;
   text-align: center;
   display: block;

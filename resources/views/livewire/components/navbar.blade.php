@@ -1,4 +1,4 @@
-<div>
+<div style="overflow: auto;">
     <div class="left-side">
         <div class="side-wrapper">
             <div class="side-title">Apps</div>

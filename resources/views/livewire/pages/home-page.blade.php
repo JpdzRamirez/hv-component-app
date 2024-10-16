@@ -1,11 +1,11 @@
 <div>
-    <div class="app">
+    <div id="app" class="app">
         <header>
-            @livewire('components.header')
+            <livewire:components.header/>
         </header>
-    
-                <div class="wrapper">
-                    @livewire('components.navbar')
+                <div class="wrapper">         
+                    
+                    <livewire:components.navbar />
                     <div class="main-container">
                         <div class="main-header">
                             <a class="menu-link-main" href="#">All Apps</a>
@@ -13,7 +13,6 @@
                                 <a class="main-header-link is-active" href="#">Desktop</a>
                                 <a class="main-header-link" href="#">Mobile</a>
                                 <a class="main-header-link" href="#">Web</a>
-    
                             </div>
                         </div>
                         <div class="content-wrapper">

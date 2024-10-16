@@ -17,7 +17,11 @@ return new class extends Migration
             $table->string('lastname');
             $table->string('card',15)->unique();
             $table->string('email')->unique();
-            $table->string('phone', 15)->unique();
+            $table->string('phone', 15);
+            $table->longText('photo_base64')->nullable();
+            $table->string('country', 50)->nullable();
+            $table->string('state', 50)->nullable();
+            $table->string('city', 50)->nullable();         
             $table->timestamps();
         });
 
@@ -29,6 +33,8 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
+            $table->decimal('lat', 10, 8)->index(); 
+            $table->decimal('lng', 11, 8)->index();
         });
     }
 

@@ -5,6 +5,7 @@ return [
     'home' => 'Inicio',
     'owner' => 'JPDZSoftware',
     'header-menu.apps'=>'Aplicaciones',
+    'header-menu.register'=>'Perfil',
     'header-menu.work'=>'Experiencia Laboral',
     'header-menu.studys'=>'Estudios',
     'header-menu.contact'=>'Contacto',

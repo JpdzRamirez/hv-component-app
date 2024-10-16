@@ -1,3 +1,4 @@
+@use "variables" as *;
 
 /*   Typography    */
 
@@ -20,4 +21,29 @@
 @font-face {
   font-family: Ubuntu-Italic;
   src: url('./fonts/Ubuntu-Italic.ttf')format('truetype');
+}
+
+/* Efecto de typing sin cursor */
+.text-typing {
+  white-space: pre-wrap; /* Respeta los saltos de línea y espaciado */
+}
+
+/* Efecto de typing con cursor parpadeante */
+.text-typing-with-cursor {
+  white-space: pre-wrap; /* Respeta los saltos de línea y espaciado */
+}
+
+/* Cursor parpadeante como un span */
+.cursor {
+  font-weight: bold;
+  animation: blink 1s step-start infinite;
+  opacity: 1;
+  border-right: .15em solid $warning-color;
+}
+
+/* Animación de parpadeo del cursor */
+@keyframes blink {
+  50% {
+      opacity: 0;
+  }
 }

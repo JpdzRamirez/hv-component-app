@@ -14,17 +14,18 @@
     @vite(['resources/css/app.min.css', 'resources/js/app.js'])
     @livewireStyles
     <!-- Styles -->
-    <style>
-
-    </style>
+    @stack('templateStyles')
 </head>
 
 <body>
     {{-- TOOLS SECTION--}}
     <section>
-         <div id="preloader" class="spinner">            
+         <div id="preloader" class="preloader">            
             <div id="status"><span>Loading</span></div>
             <div id="status"><span>Loading</span></div>
+          </div>
+          <div id="spinner" class="spinner hidden">Loading
+            <span></span>
           </div>
         <div class="video-bg">
             <img src="{{asset('assets/img/bg-1.jpg')}}" loading="lazy" alt="Wallpaper">

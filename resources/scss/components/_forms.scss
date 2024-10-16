@@ -1,3 +1,32 @@
 @use "../utils" as *;
 
 /*     Form     */
+
+
+
+
+
+
+
+
+
+
+
+
+// SELECT
+.form-select{
+    .img-flag {
+        width: 16px;
+        height: 12px;
+        margin-right: 5px;
+    }
+    .country-list {
+        margin-top: 20px;
+        border: 1px solid #ccc;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    h3 {
+        margin-bottom: 10px;
+    }
+}

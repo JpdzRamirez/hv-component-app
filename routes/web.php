@@ -1,10 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Livewire\Layout\Body;
+use App\Livewire\Pages\HomePage;
+use App\Livewire\Pages\Register;
 
 
 Route::middleware(['CaptureSessionData'])
     ->group(function () {
-        Route::get('/', Body::class);
+        Route::get('/', HomePage::class)->name('home');
+
+        Route::get('/register', Register::class)->name('profile.create');
     });
