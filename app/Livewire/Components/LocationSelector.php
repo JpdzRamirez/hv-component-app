@@ -3,7 +3,11 @@
 namespace App\Livewire\Components;
 
 use Livewire\Component;
-use App\Services\LocationService;
+use App\Contracts\CountryServiceInterface;
+use App\Contracts\StateServiceInterface;
+use App\Contracts\CityServiceInterface;
+
+use Illuminate\Support\Facades\App;
 
 class LocationSelector extends Component
 {
@@ -17,24 +21,22 @@ class LocationSelector extends Component
     public $selectedState = null;
     public $selectedCity = null;
 
-    protected $locationService;
+    protected CountryServiceInterface $countryService;
+    protected StateServiceInterface $stateService;
+    protected CityServiceInterface $cityService;
 
     protected $listeners = ['selectorCharger']; // Agrega el listener aquí
 
-    public function __construct($customId="selectorComponent")
-    {   
+    public function mount(CountryServiceInterface $countryService, $customId = "selectorComponent")
+    {
+        $this->countryService = $countryService;
         $this->customId = $customId;
-        $this->locationService = new LocationService();
-    }
-
-    public function mount()
-    {   
         $this->fetchCountries();
     }
 
     public function fetchCountries()
     {
-        $this->countries = $this->locationService->fetchCountries();
+        $this->countries = $this->countryService->fetchCountries();
     }
 
     public function selectorCharger(string $optionSelected, string $idSelector)
@@ -47,27 +49,27 @@ class LocationSelector extends Component
 
             case "selectedState":
                 $this->selectedState = $optionSelected;
-                $this->fetchCities($optionSelected);
+                $this->fetchCities(null,$optionSelected);
                 break;
         }
     }
 
     public function fetchStates($countryName)
     {
-        $locationService = new LocationService();
-        $this->states = $locationService->fetchStates($countryName)['geonames'];
+        $this->stateService = App::make(StateServiceInterface::class);
+        $this->states = $this->stateService->fetchStates($countryName)['geonames'];
         $this->cities = []; // Resetear ciudades al cambiar de país
         $this->selectedState = null; // Resetear estado seleccionado
     }
 
     public function fetchCities($stateName)
     {
-        $locationService = new LocationService();
-        $countryId = $locationService->getCountryId($this->selectedCountry)['countryID'];
-        $stateId = $locationService->getStateId($stateName, $countryId);
+        $this->cityService = App::make(CityServiceInterface::class);
+        $countryId = $this->cityService->getCountryId($this->selectedCountry)['countryID'];
+        $stateId = $this->cityService->getStateId($stateName, $countryId);
 
         if ($stateId) {
-            $this->cities = $locationService->fetchCities($stateId)['geonames'];
+            $this->cities = $this->cityService->fetchCities($stateId)['geonames'];
         }
     }
 

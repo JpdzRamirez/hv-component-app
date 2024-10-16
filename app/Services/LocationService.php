@@ -2,7 +2,11 @@
 
 namespace App\Services;
 
-class LocationService
+use App\Contracts\CountryServiceInterface;
+use App\Contracts\StateServiceInterface;
+use App\Contracts\CityServiceInterface;
+
+class LocationService implements CountryServiceInterface, StateServiceInterface, CityServiceInterface
 {
 
     /**
