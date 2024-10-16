@@ -26,7 +26,7 @@
                                                         <input id="input-file" name="input-file" type="file" accept=".jpg,.jpeg,.png" />
                                                       </div>                                           
                                                 </div>
-                                                <div class="col-12 col-md-10 col-lg-8 ps-5">
+                                                <div class="col-12 col-md-10 col-lg-8 align-content-center">
                                                     <div class="card-body">
                                                         <h5 class="card-title">
                                                             @if ($fullName)
@@ -36,10 +36,10 @@
                                                             @endif
                                                         </h5>
                                                         <div class="line"></div>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-12">
                                                             <label
                                                                 class="mb-0 label-required">{{ __('forms.register.label-full-name') }}
-                                                                </lab>
+                                                            </label>
                                                         </div>
                                                         <div x-data="{ typing: false, description: '', fullText: @entangle('description'), index: 0 }" 
                                                         x-init="
@@ -60,7 +60,7 @@
                                                    
                                                        <!-- Textarea con eventos focus/blur -->
                                                        <div class="row mb-3">
-                                                           <div class="col-sm-9 text-secondary">
+                                                           <div class="col text-secondary">
                                                                <textarea class="form-control" aria-label="With textarea" 
                                                                          x-on:focus="typing = true" 
                                                                          x-on:blur="typing = false" 

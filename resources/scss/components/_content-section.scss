@@ -322,10 +322,15 @@
         flex-direction: column;
         align-items: center;
         margin-left: 1em;
+        ~div{
+            padding: 2em;
+        }
     }
+
     .row-photo{
         flex-direction:column;
         align-items: center;
+        justify-content: center;
     }
     @media(max-width:800px) {
         .card-pic {
@@ -353,7 +358,6 @@
             border-radius: 50%;
             position: absolute;
             margin: 30px auto 20px  auto;
-            left: 1em;
             right: 0;
         
         }
@@ -375,13 +379,13 @@
         font-family: "FontAwesome";
         font-weight: 900;
         content: "\f004";
-        color: $elements-style-color;
+        color: var(--text-default-color);
     }
 
     .line {
         width: 100%;
         height: 4px;
-        background-color: $elements-style-color;
+        background-color: var(--text-default-color);
         opacity: 0.7;
         margin-bottom: 10px;
     }
