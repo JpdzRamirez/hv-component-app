@@ -36,7 +36,7 @@
     &:before {
         content: "";
         position: absolute;
-        background-color: #3a6df0;
+        background-color: $primary-color;
         width: 6px;
         height: 6px;
         border-radius: 50%;
@@ -172,7 +172,7 @@
     cursor: pointer;
     &-number {
         position: absolute;
-        background-color: #3a6df0;
+        background-color: $primary-color;
         width: 16px;
         height: 16px;
         border-radius: 50%;

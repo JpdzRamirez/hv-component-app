@@ -69,7 +69,12 @@ class DynamicSelect {
             <div class="dynamic-select ${this.name}"${this.selectElement.id ? ' id="' + this.selectElement.id + '"' : ''} style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}">
                 <input id="${idSelector}" type="hidden" name="${this.name}" value="${this.selectedValue}">
                 <div class="dynamic-select-header" style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}"><span class="dynamic-select-header-placeholder">${this.placeholder}</span></div>
-                <div class="dynamic-select-options" style="${this.options.dropdownWidth ? 'width:' + this.options.dropdownWidth + ';' : ''}${this.options.dropdownHeight ? 'height:' + this.options.dropdownHeight + ';' : ''}">${optionsHTML}</div>
+                <div class="dynamic-select-options">
+                    <div class="dynamic-select-wrapper">
+                        <input type="text" class="dynamic-select-search" placeholder="Search...">
+                    </div>
+                    ${optionsHTML}
+                </div>
             </div>
         `;
         let element = document.createElement('div');
@@ -78,6 +83,23 @@ class DynamicSelect {
     }
 
     _eventHandlers() {
+            // Seleccionar todas las opciones del selector
+            const options = this.element.querySelectorAll('.dynamic-select-option');
+            const searchInput = this.element.querySelector('.dynamic-select-search');
+
+            // Evento para filtrar opciones según el texto ingresado
+            searchInput.addEventListener('input', (event) => {
+                const searchValue = event.target.value.toLowerCase();
+                
+                options.forEach(option => {
+                    const optionText = option.querySelector('.dynamic-select-option-text')?.textContent.toLowerCase() || '';
+                    if (optionText.includes(searchValue)) {
+                        option.style.display = ''; // Mostrar si coincide
+                    } else {
+                        option.style.display = 'none'; // Ocultar si no coincide
+                    }
+                });
+            });
         this.element.querySelectorAll('.dynamic-select-option').forEach(option => {
             option.onclick = () => {
                 this.element.querySelectorAll('.dynamic-select-selected').forEach(selected => selected.classList.remove('dynamic-select-selected'));
@@ -88,19 +110,17 @@ class DynamicSelect {
                 this.data.filter(data => data.value == option.getAttribute('data-value'))[0].selected = true;
                 this.element.querySelector('.dynamic-select-header').classList.remove('dynamic-select-header-active');
                 this.options.onChange(option.getAttribute('data-value'), option.querySelector('.dynamic-select-option-text') ? option.querySelector('.dynamic-select-option-text').innerHTML : '', option);
-                optionSelected = option.getAttribute('data-value');
-                let idSelected=  this.element.querySelector('input').id;
-                if(idSelected!="selectedCity"){
-                    Livewire.dispatch('selectorCharger', { optionSelected: optionSelected, idSelector: idSelected });
+                //Casos de eventos para cada tipo de selectores
+                if(this.element.querySelector('input').id!="selectedCity"){
+                    Livewire.dispatch('selectorCharger', { optionSelected: option.getAttribute('data-value'), idSelector: this.element.querySelector('input').id });
                     loadingSpinner.classList.remove('hidden');
                 }else{
                     let geoLocation = {
                         country: previousSelectedCountry,
                         state: previousSelectedState,
-                        city: optionSelected
+                        city: option.getAttribute('data-value')
                     };
-                    console.log(geoLocation)
-                    Livewire.dispatch('syncLocation', { location: geoLocation});
+                    Livewire.dispatch('syncLocation', { geoLocation: geoLocation});
                 }                           
             };
 

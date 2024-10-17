@@ -7,6 +7,8 @@ use App\Contracts\CountryServiceInterface;
 use App\Contracts\StateServiceInterface;
 use App\Contracts\CityServiceInterface;
 
+use App\Services\GeoLocationHandler;
+
 use Illuminate\Support\Facades\App;
 
 class LocationSelector extends Component
@@ -24,8 +26,9 @@ class LocationSelector extends Component
     protected CountryServiceInterface $countryService;
     protected StateServiceInterface $stateService;
     protected CityServiceInterface $cityService;
+    protected GeoLocationHandler $geoLocationHandler;
 
-    protected $listeners = ['selectorCharger']; // Agrega el listener aquí
+    protected $listeners = ['selectorCharger','syncLocation']; 
 
     public function mount(CountryServiceInterface $countryService, $customId = "selectorComponent")
     {
@@ -49,7 +52,7 @@ class LocationSelector extends Component
 
             case "selectedState":
                 $this->selectedState = $optionSelected;
-                $this->fetchCities(null,$optionSelected);
+                $this->fetchCities($optionSelected);
                 break;
         }
     }
@@ -60,6 +63,7 @@ class LocationSelector extends Component
         $this->states = $this->stateService->fetchStates($countryName)['geonames'];
         $this->cities = []; // Resetear ciudades al cambiar de país
         $this->selectedState = null; // Resetear estado seleccionado
+        $this->selectedCity = null; 
     }
 
     public function fetchCities($stateName)
@@ -70,16 +74,16 @@ class LocationSelector extends Component
 
         if ($stateId) {
             $this->cities = $this->cityService->fetchCities($stateId)['geonames'];
+            $this->selectedCity = null; 
         }
     }
 
-    public function syncLocation($location)
-    {
-        $this->dispatch('bindingLocation', [
-            'country' => $location['country'],
-            'state' => $location['state'],
-            'city' => $location['city']
-        ]);
+    public function syncLocation($geoLocation)
+    {   
+        $this->geoLocationHandler = App::make(GeoLocationHandler::class);
+        $data = $this->geoLocationHandler->syncLocation($geoLocation);
+        $this->selectedCity=$data['city'];
+        $this->dispatch('bindingLocation', $data);
     }
 
     public function render()

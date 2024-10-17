@@ -17,15 +17,23 @@
 @push('templateScripts')
 <script src="{{ asset('assets/js/selector.js') }}"></script>
 <script>
+  // Variables constantes
   let initialized = false;
   const componentElement = document.getElementById("selectorComponent");
   const wireId = componentElement.getAttribute('wire:id');
 
+  //Variables del controlador
   let countriesData = @json($countries);
   let selectedCountry = @json($selectedCountry);
   let selectedState = @json($selectedState);
+  let selectedCity = @json($selectedCity);
+
+  // Inicializar seletores
   let previousSelectedCountry = selectedCountry;
   let previousSelectedState = selectedState;
+  let previousSelectedCity = selectedCity;
+
+  // Funciones para cargar el select personalizado
   function initializeCountrySelect(selectedCountry,selectorCountry) {
     new DynamicSelect('#country', {
         columns: 3,
@@ -71,7 +79,9 @@
         }),
     }, selectedCity,selectorCity);
   }
+  //***************************************
 
+  //Consumo de API para listar paises
   document.addEventListener('livewire:initialized', () => {
         initializeCountrySelect(selectedCountry,"selectedCountry");
     })
@@ -79,19 +89,28 @@
   let isUpdating = false;
   // También escucha el evento livewire:updated
   Livewire.hook('morph.updated', ({component})=> {
+    //Si el componente es el selector de países
     if(component.id==wireId){      
         let livewireComponent = Livewire.find(wireId);
         if (isUpdating) return;  // Si ya está actualizando, salir
+
         isUpdating = true;
-        loadingSpinner.classList.add('hidden');        
+        loadingSpinner.classList.add('hidden');     
+
         let newSelectedCountry = livewireComponent.get('selectedCountry');
         let newSelectedState = livewireComponent.get('selectedState');
+        let newSelectedCity = livewireComponent.get('selectedCity');
+
         let statesData = livewireComponent.get('states');
         let citiesData = livewireComponent.get('cities');
         // Solo ejecutar si los valores han cambiado
-        if (newSelectedCountry !== previousSelectedCountry || newSelectedState !== previousSelectedState) {
+        if (newSelectedCountry !== previousSelectedCountry || 
+          newSelectedState !== previousSelectedState || 
+          newSelectedCity !== previousSelectedCity) {
+
             previousSelectedCountry = newSelectedCountry;
             previousSelectedState = newSelectedState;
+            previousSelectedCity = newSelectedCity;
 
             setTimeout(() => {
                 // Volver a inicializar los selects con los datos actualizados
@@ -100,7 +119,7 @@
                   initializeStateSelect(newSelectedState, "selectedState", statesData);
                 }
                 if(citiesData.length > 0){
-                  initializeCitySelect(null, "selectedCity", citiesData);
+                  initializeCitySelect(newSelectedCity, "selectedCity", citiesData);
                 }           
                 isUpdating = false;  // Reiniciar flag una vez completada la actualización
             }, 500);
