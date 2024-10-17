@@ -1,4 +1,3 @@
-let optionSelected = '';
 const loadingSpinner = document.getElementById('spinner');
 class DynamicSelect {
 

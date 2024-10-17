@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\App;
 
 class LocationSelector extends Component
 {
-    public $customId;
+    public $customLocationId;
 
     public $countries = [];
     public $states = [];
@@ -30,10 +30,10 @@ class LocationSelector extends Component
 
     protected $listeners = ['selectorCharger','syncLocation']; 
 
-    public function mount(CountryServiceInterface $countryService, $customId = "selectorComponent")
+    public function mount(CountryServiceInterface $countryService, $customLocationId = "locationComponent")
     {
         $this->countryService = $countryService;
-        $this->customId = $customId;
+        $this->customLocationId = $customLocationId;
         $this->fetchCountries();
     }
 
@@ -89,7 +89,7 @@ class LocationSelector extends Component
     public function render()
     {
         return view('livewire.components.location-selector',[
-            'customId'=>$this->customId,
+            'customLocationId'=>$this->customLocationId,
         ]);
     }
 }

@@ -1,4 +1,4 @@
-<div id="{{ $customId }}" wire:id="{{ $customId }}">
+<div id="{{ $customLocationId }}" wire:id="{{ $customLocationId }}">
   <div class="row mb-3">
     <div class="col-md-4">
       <label for="country" class="form-label">{{__('forms.register.label-country')}}</label>
@@ -15,12 +15,12 @@
   </div>
 </div>
 @push('templateScripts')
-<script src="{{ asset('assets/js/selector.js') }}"></script>
+<script src="{{ asset('assets/js/selectorLocation.js') }}"></script>
 <script>
   // Variables constantes
   let initialized = false;
-  const componentElement = document.getElementById("selectorComponent");
-  const wireId = componentElement.getAttribute('wire:id');
+  const locationComponent = document.getElementById("locationComponent");
+  const wireLoctaionId = locationComponent.getAttribute('wire:id');
 
   //Variables del controlador
   let countriesData = @json($countries);
@@ -86,23 +86,23 @@
         initializeCountrySelect(selectedCountry,"selectedCountry");
     })
 
-  let isUpdating = false;
+  let isLocationUpdating = false;
   // También escucha el evento livewire:updated
   Livewire.hook('morph.updated', ({component})=> {
     //Si el componente es el selector de países
-    if(component.id==wireId){      
-        let livewireComponent = Livewire.find(wireId);
-        if (isUpdating) return;  // Si ya está actualizando, salir
+    if(component.id==wireLoctaionId){      
+        let livewireLocationComponent = Livewire.find(wireLoctaionId);
+        if (isLocationUpdating) return;  // Si ya está actualizando, salir
 
-        isUpdating = true;
+        isLocationUpdating = true;
         loadingSpinner.classList.add('hidden');     
 
-        let newSelectedCountry = livewireComponent.get('selectedCountry');
-        let newSelectedState = livewireComponent.get('selectedState');
-        let newSelectedCity = livewireComponent.get('selectedCity');
+        let newSelectedCountry = livewireLocationComponent.get('selectedCountry');
+        let newSelectedState = livewireLocationComponent.get('selectedState');
+        let newSelectedCity = livewireLocationComponent.get('selectedCity');
 
-        let statesData = livewireComponent.get('states');
-        let citiesData = livewireComponent.get('cities');
+        let statesData = livewireLocationComponent.get('states');
+        let citiesData = livewireLocationComponent.get('cities');
         // Solo ejecutar si los valores han cambiado
         if (newSelectedCountry !== previousSelectedCountry || 
           newSelectedState !== previousSelectedState || 
@@ -121,10 +121,10 @@
                 if(citiesData.length > 0){
                   initializeCitySelect(newSelectedCity, "selectedCity", citiesData);
                 }           
-                isUpdating = false;  // Reiniciar flag una vez completada la actualización
+                isLocationUpdating = false;  // Reiniciar flag una vez completada la actualización
             }, 500);
         } else {
-            isUpdating = false;  // Reiniciar flag si no hay cambios
+          isLocationUpdating = false;  // Reiniciar flag si no hay cambios
         } 
     }
 })

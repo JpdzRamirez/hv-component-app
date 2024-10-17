@@ -96,7 +96,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="firstName"
-                                                    class="mb-0 label-required">{{ __('forms.register.label-first-name') }}</label>
+                                                    class="mb-0 label-required">{{ __('forms.register.label-first-name') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" class="form-control" id="firstName"
@@ -108,7 +108,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="lastName"
-                                                    class="mb-0 label-required">{{ __('forms.register.label-last-name') }}</label>
+                                                    class="mb-0 label-required">{{ __('forms.register.label-last-name') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" class="form-control" id="lastName"
@@ -120,7 +120,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label
-                                                    class="mb-0 label-required">{{ __('forms.register.label-identification') }}</label>
+                                                    class="mb-0 label-required">{{ __('forms.register.label-identification') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="number" class="form-control" 
@@ -131,7 +131,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="email"
-                                                    class="mb-0 label-required">{{ __('forms.register.label-email') }}</label>
+                                                    class="mb-0 label-required">{{ __('forms.register.label-email') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="email" id="email" class="form-control" 
@@ -142,7 +142,7 @@
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="email_confirm"
-                                                    class="mb-0 label-required">{{ __('forms.register.label-email-confirm') }}</label>
+                                                    class="mb-0 label-required">{{ __('forms.register.label-email-confirm') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="email" id="email_confirm" class="form-control"
@@ -150,33 +150,34 @@
                                                     placeholder="user@mail.com" value="">
                                             </div>
                                         </div>
-                                        <div class="row mb-3">
+                                        {{-- <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="phone"
-                                                    class="mb-0 label-required">{{ __('forms.register.label-phone') }}</label>
+                                                    class="mb-0 label-required">{{ __('forms.register.label-phone') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="phone"class="form-control" 
                                                 name="phone" wire:model="phone"
-                                                    value="(239) 816-9029">
+                                                value="" placeholder="">
                                             </div>
-                                        </div>
+                                        </div> --}}
                                         <livewire:components.location-selector/>
+                                        <livewire:components.phone-selector/>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="address"
-                                                    class="mb-0">{{ __('forms.register.label-address') }}</label>
+                                                    class="mb-0">{{ __('forms.register.label-address') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address" class="form-control"
                                                     name="address" wire:model="address"
-                                                    value="Bay Area, San Francisco, CA">
+                                                    value="" placeholder="">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="address_complement"
-                                                    class="mb-0">{{ __('forms.register.label-address-complement') }}</label>
+                                                    class="mb-0">{{ __('forms.register.label-address-complement') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address_complement" class="form-control"
