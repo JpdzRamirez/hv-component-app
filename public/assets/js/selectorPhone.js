@@ -36,13 +36,13 @@ class phoneSelector {
         // Marcar la opción como seleccionada si coincide con `selection`
         this.options.data.forEach(item => {
             if (item.value === selection) {
-                item.selected = true; // Marcar como seleccionado
+                item.selected = true; // Premarcar selección luego de rederización
             }
         });
         this.element = this._template(idSelector,spanLang);
         this.selectElement.replaceWith(this.element);
         this._updateSelected();
-        this._eventHandlers();
+        this._eventHandlers(selection);
     }
 
     _template(idSelector,spanLang) {
@@ -81,7 +81,7 @@ class phoneSelector {
         return element;
     }
 
-    _eventHandlers() {
+    _eventHandlers(selection) {
         // Seleccionar todas las opciones del selector
         const options = this.element.querySelectorAll('.dynamic-select-option');
         const searchInput = this.element.querySelector('.dynamic-select-search');
@@ -118,7 +118,14 @@ class phoneSelector {
                 this.options.onChange(option.getAttribute('data-value'), option.querySelector('.dynamic-select-option-text') ? option.querySelector('.dynamic-select-option-text').innerHTML : '', option);
                 //Casos de eventos para cada tipo de selectores
                 if(this.element.querySelector('input').id=='selectedPhone'){
-                    Livewire.dispatch('selectorPhoneCharger', { optionSelected: option.getAttribute('data-value')});
+                    //si ya hay una seleccion, limpiamos conservando el valor del telefono                                      
+                    if (selection){
+                        let numeroCompleto=phoneInput.value.split(" ");
+                        phoneInput.value =  option.getAttribute('data-value') + " "+ numeroCompleto[1];
+                    }else{
+                        phoneInput.value=option.getAttribute('data-value')+" "+phoneInput.value;
+                    }
+                    Livewire.dispatch('selectorPhoneRootCharger', { optionSelected: option.getAttribute('data-value')});
                     loadingSpinner.classList.remove('hidden');
                 }                        
             };

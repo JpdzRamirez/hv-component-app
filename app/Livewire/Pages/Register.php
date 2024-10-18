@@ -35,6 +35,7 @@ class Register extends Component
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
         'bindingPhoneRoot' => 'updatePhoneRoot',
+        'bindingPhoneNumber' =>'updatePhone',
     ];
     
     public function mount($fullName=null,$description = '')
@@ -57,6 +58,10 @@ class Register extends Component
     public function updatePhoneRoot($data)
     {
         $this->phoneRoot = $data;     
+    }
+    public function updatePhone($data)
+    {
+        $this->phone = $data;     
     }
     public function render()
     {   

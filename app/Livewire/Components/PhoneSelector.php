@@ -8,17 +8,24 @@ class PhoneSelector extends Component
 {   
     public $customPhoneId;
 
-    public $selectedPhone = null;
+    public $selectedPhoneIndicator = null;
+    public $phoneNumber=null;
 
-    protected $listeners=['selectorPhoneCharger'];
+    protected $listeners=['selectorPhoneRootCharger','inputPhoneCharger'];
+
     public function mount($customPhoneId = "phoneComponent")
     {
         $this->customPhoneId = $customPhoneId;
     }
-    public function selectorPhoneCharger(string $optionSelected)
+    public function selectorPhoneRootCharger(string $optionSelected)
     {
-        $this->selectedPhone = $optionSelected;
+        $this->selectedPhoneIndicator = $optionSelected;
         $this->dispatch('bindingPhoneRoot', $optionSelected);
+    }
+    public function inputPhoneCharger(string $numberInput)
+    {
+        $this->phoneNumber = $numberInput;
+        $this->dispatch('bindingPhoneNumber', $numberInput);
     }
     public function render()
     {

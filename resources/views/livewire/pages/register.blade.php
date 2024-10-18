@@ -50,7 +50,7 @@
                                                                if (index < text.length) {
                                                                    description += text[index];
                                                                    index++;
-                                                                   setTimeout(() => typeText(text), 100); 
+                                                                   setTimeout(() => typeText(text), 50); 
                                                                }
                                                            }
                                                        ">
@@ -150,17 +150,6 @@
                                                     placeholder="user@mail.com" value="">
                                             </div>
                                         </div>
-                                        {{-- <div class="row mb-3">
-                                            <div class="col-sm-3">
-                                                <label for="phone"
-                                                    class="mb-0 label-required">{{ __('forms.register.label-phone') }}:</label>
-                                            </div>
-                                            <div class="col-sm-9 text-secondary">
-                                                <input type="text" id="phone"class="form-control" 
-                                                name="phone" wire:model="phone"
-                                                value="" placeholder="">
-                                            </div>
-                                        </div> --}}
                                         <livewire:components.location-selector/>
                                         <livewire:components.phone-selector/>
                                         <div class="row mb-3">
@@ -171,7 +160,7 @@
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address" class="form-control"
                                                     name="address" wire:model="address"
-                                                    value="" placeholder="">
+                                                    value="" placeholder="{{ __('forms.register.label-address-placeholder') }}">
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -182,7 +171,7 @@
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address_complement" class="form-control"
                                                     name="address_complement" wire:model="addressComplement"
-                                                    placeholder="{{ __('forms.register.label-address-complement-placeholder') }}"
+                                                    placeholder="{{ __('forms.register.label-address-complement-placeholder')}}"
                                                     value="">
                                             </div>
                                         </div>
