@@ -18,5 +18,10 @@ return [
     'register.label-address'=>'Dirección',
     'register.label-address-complement'=>'Dirección Complementaria',
     'register.label-address-complement-placeholder'=>'Torre / Conjunto / Piso',
+    'register.select-country'=>'Seleccione el País',
+    'register.select-state'=>'Seleccione el estado',
+    'register.select-city'=>'Seleccione la ciudad',
+    'register.select-phone'=>'Seleccione el indicativo',
+    'register.select-PlaceHolder'=>'Buscar...',
     'register.button-submit'=>'Registrar',
 ];

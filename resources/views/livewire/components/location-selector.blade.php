@@ -21,6 +21,7 @@
   let initialized = false;
   const locationComponent = document.getElementById("locationComponent");
   const wireLoctaionId = locationComponent.getAttribute('wire:id');
+  const spanLanguage = "{{ __('forms.register.select-PlaceHolder')}}";
 
   //Variables del controlador
   let countriesData = @json($countries);
@@ -34,12 +35,12 @@
   let previousSelectedCity = selectedCity;
 
   // Funciones para cargar el select personalizado
-  function initializeCountrySelect(selectedCountry,selectorCountry) {
+  function initializeCountrySelect(selectedCountry,selectorCountry,spanLang) {
     new DynamicSelect('#country', {
         columns: 3,
         width: '100%',
         dropdownWidth: '100%',
-        placeholder: '--Select a Country--',
+        placeholder: "--{{ __('forms.register.select-country')}}--",
         data: countriesData.map(function(country) {
             return {
                 value: country.name.common,
@@ -49,41 +50,41 @@
                 text: country.name.common,
             };
         }),
-    }, selectedCountry,selectorCountry);
+    }, selectedCountry,selectorCountry,spanLang);
   }
-  function initializeStateSelect(selectedState,selectorState,statesData) {
+  function initializeStateSelect(selectedState,selectorState,statesData,spanLang) {
     new DynamicSelect('#state', {
         columns: 3,
         width: '100%',
         dropdownWidth: '100%',
-        placeholder: '--Select a State--',
+        placeholder: "--{{ __('forms.register.select-state')}}--",
         data: statesData.map(function(state) {
             return {
                 value: state.name,
                 text: state.name,
             };
         }),
-    }, selectedState,selectorState);
+    }, selectedState,selectorState,spanLang);
   }
-  function initializeCitySelect(selectedCity,selectorCity,citiesData) {
+  function initializeCitySelect(selectedCity,selectorCity,citiesData,spanLang) {
     new DynamicSelect('#city', {
         columns: 3,
         width: '100%',
         dropdownWidth: '100%',
-        placeholder: '--Select a City--',
+        placeholder: "--{{ __('forms.register.select-city')}}--",
         data: citiesData.map(function(city) {
             return {
                 value: city.name,
                 text: city.name,
             };
         }),
-    }, selectedCity,selectorCity);
+    }, selectedCity,selectorCity,spanLang);
   }
   //***************************************
 
   //Consumo de API para listar paises
   document.addEventListener('livewire:initialized', () => {
-        initializeCountrySelect(selectedCountry,"selectedCountry");
+        initializeCountrySelect(selectedCountry,"selectedCountry",spanLanguage);
     })
 
   let isLocationUpdating = false;
@@ -114,12 +115,12 @@
 
             setTimeout(() => {
                 // Volver a inicializar los selects con los datos actualizados
-                initializeCountrySelect(newSelectedCountry, "selectedCountry");
+                initializeCountrySelect(newSelectedCountry, "selectedCountry",spanLanguage);
                 if(statesData.length > 0){
-                  initializeStateSelect(newSelectedState, "selectedState", statesData);
+                  initializeStateSelect(newSelectedState, "selectedState", statesData,spanLanguage);
                 }
                 if(citiesData.length > 0){
-                  initializeCitySelect(newSelectedCity, "selectedCity", citiesData);
+                  initializeCitySelect(newSelectedCity, "selectedCity", citiesData,spanLanguage);
                 }           
                 isLocationUpdating = false;  // Reiniciar flag una vez completada la actualización
             }, 500);

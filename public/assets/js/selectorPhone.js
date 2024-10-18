@@ -1,7 +1,7 @@
 let optionSelected = '';
 class phoneSelector {
 
-    constructor(element, options = {}, selection  = null, idSelector) {
+    constructor(element, options = {}, selection  = null, idSelector, spanLang) {
         let defaults = {
             placeholder: 'Select an option',
             columns: 1,
@@ -39,13 +39,13 @@ class phoneSelector {
                 item.selected = true; // Marcar como seleccionado
             }
         });
-        this.element = this._template(idSelector);
+        this.element = this._template(idSelector,spanLang);
         this.selectElement.replaceWith(this.element);
         this._updateSelected();
         this._eventHandlers();
     }
 
-    _template(idSelector) {
+    _template(idSelector,spanLang) {
         let optionsHTML = '';
         for (let i = 0; i < this.data.length; i++) {
             let optionWidth = 100; /// this.columns
@@ -70,7 +70,7 @@ class phoneSelector {
                 <div class="dynamic-select-header" style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}"><span class="dynamic-select-header-placeholder">${this.placeholder}</span></div>
                 <div class="dynamic-select-options">
                     <div class="dynamic-select-wrapper">
-                        <input type="text" class="dynamic-select-search" placeholder="Search...">
+                        <input type="text" class="dynamic-select-search" placeholder="${spanLang}">
                     </div>
                     ${optionsHTML}
                 </div>
@@ -82,23 +82,30 @@ class phoneSelector {
     }
 
     _eventHandlers() {
-            // Seleccionar todas las opciones del selector
-            const options = this.element.querySelectorAll('.dynamic-select-option');
-            const searchInput = this.element.querySelector('.dynamic-select-search');
+        // Seleccionar todas las opciones del selector
+        const options = this.element.querySelectorAll('.dynamic-select-option');
+        const searchInput = this.element.querySelector('.dynamic-select-search');
 
-            // Evento para filtrar opciones según el texto ingresado
-            searchInput.addEventListener('input', (event) => {
-                const searchValue = event.target.value.toLowerCase();
-                
-                options.forEach(option => {
-                    const optionText = option.querySelector('.dynamic-select-option-text')?.textContent.toLowerCase() || '';
-                    if (optionText.includes(searchValue)) {
-                        option.style.display = ''; // Mostrar si coincide
-                    } else {
-                        option.style.display = 'none'; // Ocultar si no coincide
-                    }
-                });
+        // Evento para filtrar opciones según el texto ingresado
+        searchInput.addEventListener('input', (event) => {
+            const searchValue = event.target.value.toLowerCase();
+
+            options.forEach(option => {
+                const optionText = option.querySelector('.dynamic-select-option-text')?.textContent.toLowerCase() || '';
+                const countryData = this.data.find(data => data.value === option.getAttribute('data-value'));
+
+                // Incluir el nombre del país (si existe) y el indicativo en la búsqueda
+                const countryName = countryData ? countryData.name?.toLowerCase() : ''; // Nombre del país
+                const countryCode = countryData ? countryData.value?.toLowerCase() : ''; // Indicativo
+
+                // Mostrar la opción si el valor buscado coincide con el nombre del país o el indicativo
+                if (optionText.includes(searchValue) || countryName.includes(searchValue) || countryCode.includes(searchValue)) {
+                    option.style.display = ''; // Mostrar si coincide
+                } else {
+                    option.style.display = 'none'; // Ocultar si no coincide
+                }
             });
+        });
         this.element.querySelectorAll('.dynamic-select-option').forEach(option => {
             option.onclick = () => {
                 this.element.querySelectorAll('.dynamic-select-selected').forEach(selected => selected.classList.remove('dynamic-select-selected'));

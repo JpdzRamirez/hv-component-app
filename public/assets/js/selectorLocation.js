@@ -1,7 +1,7 @@
 const loadingSpinner = document.getElementById('spinner');
 class DynamicSelect {
 
-    constructor(element, options = {}, selection  = null, idSelector) {
+    constructor(element, options = {}, selection  = null, idSelector,spanLang) {
         let defaults = {
             placeholder: 'Select an option',
             columns: 1,
@@ -39,13 +39,13 @@ class DynamicSelect {
                 item.selected = true; // Marcar como seleccionado
             }
         });
-        this.element = this._template(idSelector);
+        this.element = this._template(idSelector,spanLang);
         this.selectElement.replaceWith(this.element);
         this._updateSelected();
         this._eventHandlers();
     }
 
-    _template(idSelector) {
+    _template(idSelector,spanLang) {
         let optionsHTML = '';
         for (let i = 0; i < this.data.length; i++) {
             let optionWidth = 100; /// this.columns
@@ -70,7 +70,7 @@ class DynamicSelect {
                 <div class="dynamic-select-header" style="${this.width ? 'width:' + this.width + ';' : ''}${this.height ? 'height:' + this.height + ';' : ''}"><span class="dynamic-select-header-placeholder">${this.placeholder}</span></div>
                 <div class="dynamic-select-options">
                     <div class="dynamic-select-wrapper">
-                        <input type="text" class="dynamic-select-search" placeholder="Search...">
+                        <input type="text" class="dynamic-select-search" placeholder="${spanLang}">
                     </div>
                     ${optionsHTML}
                 </div>
