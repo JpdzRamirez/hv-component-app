@@ -1,16 +1,16 @@
 <div id="{{ $customLocationId }}" wire:id="{{ $customLocationId }}">
   <div class="row mb-3">
     <div class="col-md-4">
-      <label for="country" class="form-label">{{__('forms.register.label-country')}}</label>
-      <select class="form-select" id="country" name="country"></select>
+      <label for="selectedCountry" class="form-label">{{__('forms.register.label-country')}}</label>
+      <select class="form-select" id="selectedCountry" name="country"></select>
     </div>
     <div class="col-md-4">
-      <label for="state" class="form-label">{{__('forms.register.label-state')}}</label>
-      <select class="form-select" id="state" name="state"></select>
+      <label for="selectedState" class="form-label">{{__('forms.register.label-state')}}</label>
+      <select class="form-select" id="selectedState" name="state"></select>
     </div>
     <div class="col-md-4">
-      <label for="city" class="form-label">{{__('forms.register.label-city')}}</label>
-      <select class="form-select" id="city" name="city"></select>
+      <label for="selectedCity" class="form-label">{{__('forms.register.label-city')}}</label>
+      <select class="form-select" id="selectedCity" name="city"></select>
     </div>
   </div>
 </div>
@@ -36,7 +36,7 @@
 
   // Funciones para cargar el select personalizado
   function initializeCountrySelect(selectedCountry,selectorCountry,spanLang) {
-    new DynamicSelect('#country', {
+    new DynamicSelect('#selectedCountry', {
         columns: 3,
         width: '100%',
         dropdownWidth: '100%',
@@ -53,7 +53,7 @@
     }, selectedCountry,selectorCountry,spanLang);
   }
   function initializeStateSelect(selectedState,selectorState,statesData,spanLang) {
-    new DynamicSelect('#state', {
+    new DynamicSelect('#selectedState', {
         columns: 3,
         width: '100%',
         dropdownWidth: '100%',
@@ -67,7 +67,7 @@
     }, selectedState,selectorState,spanLang);
   }
   function initializeCitySelect(selectedCity,selectorCity,citiesData,spanLang) {
-    new DynamicSelect('#city', {
+    new DynamicSelect('#selectedCity', {
         columns: 3,
         width: '100%',
         dropdownWidth: '100%',

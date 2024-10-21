@@ -3,22 +3,27 @@
 namespace App\Livewire\Components;
 
 use Livewire\Component;
-
-//Models
-use App\Models\Presentation;
+use App\Repositories\PresentationRepository;
 
 class Header extends Component
 {   
-    private $presentation;
-    public function mount()
-    {   
-        $presentation=Presentation::find(1);;
-        if($presentation){
-            $this->presentation = $presentation;
-        }
+    protected  PresentationRepository $presentationRepository;
+   
+    //Inyeccion de dependencias
+    public function mount(PresentationRepository $presentationRepository)
+    {
+        $this->presentationRepository = $presentationRepository;
     }
+
     public function render()
     {
-        return view('livewire.components.header');
+        $presentation=$this->presentationRepository->find(1);
+        if (is_null($presentation)) {
+            // Si es null retornar un mensaje o un valor por defecto.
+            $presentation = 'No presentation found'; 
+        }
+        return view('livewire.components.header',[
+            'presentation'=>$presentation,
+        ]);
     }
 }

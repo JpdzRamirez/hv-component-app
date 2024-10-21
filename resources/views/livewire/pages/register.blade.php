@@ -1,7 +1,7 @@
 <div>
     <div id="app" class="app">
         <header>
-            <livewire:components.header />
+            <livewire:components.header/>
         </header>
         <div class="wrapper">
             <div class="main-container">
@@ -20,10 +20,15 @@
                                                             src="https://dl.dropbox.com/s/u3j25jx9tkaruap/Webp.net-resizeimage.jpg?raw=1">
                                                     </div>
                                                     <div class='file file--upload'>
-                                                        <label for='input-file'>
+                                                        <label for="photo">
                                                             <i class="fa-solid fa-camera-retro"></i>{{ __('forms.register.label-photo') }}
                                                         </label>
-                                                        <input id="input-file" name="input-file" type="file" accept=".jpg,.jpeg,.png" />
+                                                        <input id="photo" wire:model="photo" name="photo" type="file" accept=".jpg,.jpeg,.png" />
+                                                        @error('photo')
+                                                        <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                        </div>
+                                                        @enderror
                                                       </div>                                           
                                                 </div>
                                                 <div class="col-12 col-md-10 col-lg-8 align-content-center">
@@ -33,7 +38,7 @@
                                                         </h5>
                                                         <div class="line"></div>
                                                         <div class="col-sm-12">
-                                                            <label for="input_description" 
+                                                            <label for="description" 
                                                                 class="mb-0 label-required">{{ __('forms.register.label-full-name') }}
                                                             </label>
                                                         </div>
@@ -58,14 +63,18 @@
                                                        <!-- Textarea con eventos focus/blur -->
                                                        <div class="row mb-3">
                                                            <div class="col text-secondary">
-                                                               <textarea class="form-control" id="input_description" name="input_description"
+                                                               <textarea class="form-control" id="description" name="description"
                                                                          aria-label="With textarea" 
                                                                          x-on:focus="typing = true" 
                                                                          x-on:blur="typing = false" 
                                                                          wire:model.debounce.500ms="description"></textarea>
+                                                                @error('description')
+                                                                <div class="invalid-feedback">
+                                                                    {{ $message }}
+                                                                </div>
+                                                                @enderror
                                                            </div>
                                                        </div>
-                                                   
                                                        {{--Párrafo con el texto que se muestra y cursor si typing es true--}}
                                                        <p :class="typing ? 'text-typing-with-cursor' : 'text-typing'" 
                                                           x-html="description + (typing ? '<span class=\'cursor\'></span>' : '')"></p>
@@ -74,7 +83,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </form>
                                     </div>
                                 </div>
                             </div>
@@ -87,12 +95,10 @@
                             @elseif (Route::currentRouteName() == 'profile.edit')
                                 {{ __('forms.profile.edit') }}
                             @endif
-
                         </div>
                         <div class="apps-card">
                             <div class="form-card">
                                 <div class="card-body">
-                                    <form>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="firstName"
@@ -103,6 +109,11 @@
                                                     name="firstName"  wire:model.live.debounce.500ms="firstName" 
                                                     placeholder="{{ __('forms.register.label-first-name') }}"
                                                     value="">
+                                                @error('firstName')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -115,6 +126,11 @@
                                                     name="lastName" wire:model.live.debounce.500ms="lastName"
                                                     placeholder="{{ __('forms.register.label-last-name') }}"
                                                     value="">
+                                                @error('lastName')
+                                                <div class="invalid-feedback">
+                                                            {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -123,9 +139,14 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-identification') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="number" class="form-control" 
+                                                <input type="text" class="form-control" 
                                                 name="identification" wire:model="card"
-                                                    placeholder="C.C/T.I" value="">
+                                                placeholder="C.C/T.I" pattern="[0-9]*" inputmode="numeric">
+                                                @error('card')
+                                                <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -137,6 +158,11 @@
                                                 <input type="email" id="email" class="form-control" 
                                                 name="email" wire:model="email"
                                                     placeholder="user@mail.com" value="">
+                                                @error('email')
+                                                <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -146,8 +172,13 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="email" id="email_confirm" class="form-control"
-                                                    name="email_confirm" wire:model="email"
+                                                    name="email_confirm" wire:model="email_confirm"
                                                     placeholder="user@mail.com" value="">
+                                                @error('email_confirm')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <livewire:components.location-selector/>
@@ -161,6 +192,11 @@
                                                 <input type="text" id="address" class="form-control"
                                                     name="address" wire:model="address"
                                                     value="" placeholder="{{ __('forms.register.label-address-placeholder') }}">
+                                                @error('address')
+                                                <div class="invalid-feedback">
+                                                    {{ $message }}
+                                                </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row mb-3">
@@ -170,9 +206,14 @@
                                             </div>
                                             <div class="col-sm-9 text-secondary">
                                                 <input type="text" id="address_complement" class="form-control"
-                                                    name="address_complement" wire:model="addressComplement"
+                                                    name="address_complement" wire:model="address_complement"
                                                     placeholder="{{ __('forms.register.label-address-complement-placeholder')}}"
                                                     value="">
+                                                @error('address_complement')
+                                                    <div class="invalid-feedback">
+                                                        {{ $message }}
+                                                    </div>
+                                                @enderror
                                             </div>
                                         </div>
                                         <div class="row">

@@ -88,6 +88,11 @@ return [
     |
     */
     'custom' => [
+        'description' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+        ],
         'name' => [
             'required' => 'El campo :attribute es obligatorio.',
             'string'=>'El campo :attribute solo admite caracteres',
@@ -99,6 +104,61 @@ return [
             'string'=>'El campo :attribute solo admite caracteres.',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
+        ],
+        'card' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string'=>'El campo :attribute solo admite caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
+            'regex' => 'El campo :attribute solo admite numeros.',
+        ],
+        'email' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'email' => 'El formato del :attribute es inválido.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'unique' => 'Este :attribute ya está en uso.',
+        ],
+        'email_confirm' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'same' => 'Los correos electrónicos no coinciden.',
+        ],
+        'country' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros ni espacios.',
+        ],
+        'state' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros ni espacios.',
+        ],
+        'city' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros ni espacios.',
+        ],
+        'address' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+        ],
+        'address_complement' => [
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+        ],
+        'phoneRoot' => [
+            'string'=>'El campo :attribute solo admite caracteres.',
+            'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',           
+        ],
+        'phone' => [
+            'string'=>'El campo :attribute solo admite caracteres.',
+            'regex' => 'El campo :attribute solo admite numeros.',
+            'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',           
         ],
         'password' => [
             'required' => 'El campo :attribute es obligatorio.',
@@ -118,13 +178,7 @@ return [
             'accepted' => 'Debes aceptar los términos y condiciones.',
             'required' => 'Es obligatorio aceptar los términos y condiciones.',
         ],
-        'email' => [
-            'required' => 'El campo :attribute es obligatorio.',
-            'string' => 'El :attribute debe ser una cadena de texto.',
-            'email' => 'El formato del :attribute es inválido.',
-            'max' => 'El :attribute no debe exceder :max caracteres.',
-            'unique' => 'Este :attribute ya está en uso.',
-        ],
+
     ],
     /*
     |--------------------------------------------------------------------------
