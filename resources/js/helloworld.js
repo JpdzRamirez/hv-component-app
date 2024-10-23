@@ -216,7 +216,10 @@ $(".pop-up .close").click(function () {
   $(".pop-up").removeClass("visible");
 });
 $(".status-button:not(.open)").on("click", function (e) {
-  $(".overlay-app").addClass("is-active");
+  if ($(this).attr("type") != "submit") {
+    // Si es tipo submit, agrega la clase
+    $(".overlay-app").addClass("is-active");
+}
 });
 $(".pop-up .close").click(function () {
   $(".overlay-app").removeClass("is-active");

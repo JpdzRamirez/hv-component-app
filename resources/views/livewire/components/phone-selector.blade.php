@@ -1,10 +1,10 @@
 <div id="{{ $customPhoneId }}" wire:id="{{ $customPhoneId }}">
     <div class="row mb-3">
         <div class="col-sm-3">
-            <label for="phone" class="form-label label-required">{{ __('forms.register.label-phone') }}:</label>
+            <label for="phone" id="labelPhone" class="form-label label-required">{{ __('forms.register.label-phone') }}:</label>
         </div>
         <div class="col-sm-9 text-secondary">
-            <div class="input-group">
+            <div class="input-group" id="inputGroupPhone">
                 <select class="input-group-text form-select" id="phoneSelector"></select>
                 <input type="tel" value="" class="form-control" id="phone" placeholder="(+57) 317 7163494"
                     pattern="[+0-9\s]+">
@@ -44,7 +44,10 @@
         }
         //Consumo de API para listar telefono internacional
         document.addEventListener('livewire:initialized', () => {
-            initializePhoneSelect(selectedPhoneIndicator, 'selectedPhone', countriesData, spanLanguage);
+            setTimeout(() => {
+                // Volver a inicializar el select con los datos
+                initializePhoneSelect(selectedPhoneIndicator, 'selectedPhone', countriesData, spanLanguage);
+            }, 500);            
         });
         let isPhoneUpdating = false;
         // También escucha el evento livewire:updated
@@ -60,7 +63,6 @@
                 loadingSpinner.classList.add('hidden');
 
                 let newSelectedPhoneIndicator = livewirePhoneComponent.get('selectedPhoneIndicator');
-
                 //solo se ejecuta en caso de un dispatch number
                 if (numberDispatched) {
                     // Volver a inicializar el select con los datos
@@ -92,14 +94,12 @@
 
             let numeroCompleto = phoneInput.value.split(" ");
             if (numeroCompleto.length > 1) {
-                Livewire.dispatch('inputPhoneCharger', numeroCompleto[1]); // Usa el segundo elemento
-            } else {
-                Livewire.dispatch('inputPhoneCharger', numeroCompleto); // Usa el primer elemento
-            }
-            setTimeout(() => {
-                // Volver a inicializar el select
                 numberDispatched = true;
-            }, 500);
+                Livewire.dispatch('inputPhoneCharger', { numberInput: numeroCompleto[1] }); // Usa el segundo elemento
+            } else {
+                numberDispatched = true;
+                Livewire.dispatch('inputPhoneCharger', { numberInput: numeroCompleto.toString() }); // Usa el primer elemento
+            }
         });
     </script>
 @endpush

@@ -88,18 +88,24 @@ return [
     |
     */
     'custom' => [
+        'photo' => [
+            'nullable' => 'El campo de la foto es opcional.',
+            'image' => 'El archivo debe ser una imagen válida.',
+            'mimes' => 'La imagen debe ser de tipo: jpg, jpeg, png.',
+            'max' => 'La imagen no debe superar los 2 MB.',
+        ],
         'description' => [
             'required' => 'El campo :attribute es obligatorio.',
             'string' => 'El :attribute debe ser una cadena de texto.',
             'max' => 'El :attribute no debe exceder :max caracteres.',
         ],
-        'name' => [
+        'firstName' => [
             'required' => 'El campo :attribute es obligatorio.',
             'string'=>'El campo :attribute solo admite caracteres',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
         ],
-        'lastname' => [
+        'lastName' => [
             'required' => 'El campo :attribute es obligatorio.',
             'string'=>'El campo :attribute solo admite caracteres.',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
@@ -199,6 +205,7 @@ return [
         'password'              => 'contraseña',
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
+        'state'                 => 'Departamento',
         'country'               => 'país',
         'address'               => 'dirección',
         'phone'                 => 'teléfono',

@@ -118,7 +118,7 @@ class phoneSelector {
                 this.options.onChange(option.getAttribute('data-value'), option.querySelector('.dynamic-select-option-text') ? option.querySelector('.dynamic-select-option-text').innerHTML : '', option);
                 //Casos de eventos para cada tipo de selectores
                 if(this.element.querySelector('input').id=='selectedPhone'){
-                    //si ya hay una seleccion, limpiamos conservando el valor del telefono                                      
+                    //si ya hay una seleccion, limpiamos conservando el valor del telefono                                     
                     if (selection){
                         let numeroCompleto=phoneInput.value.split(" ");
                         phoneInput.value =  option.getAttribute('data-value') + " "+ numeroCompleto[1];

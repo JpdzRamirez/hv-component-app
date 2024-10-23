@@ -17,6 +17,7 @@ class PhoneSelector extends Component
     {
         $this->customPhoneId = $customPhoneId;
     }
+
     public function selectorPhoneRootCharger(string $optionSelected)
     {
         $this->selectedPhoneIndicator = $optionSelected;

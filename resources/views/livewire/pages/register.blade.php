@@ -11,7 +11,7 @@
                             <div class="col-8">
                                 <div class="jelly-card">
                                     <div class="card py-3 ">
-                                        <form>
+                                        <form wire:submit.prevent="store">
                                             <div class="row row-photo">
                                                 <div
                                                     class="col-10 col-md-10 col-lg-3 jelly-bloc">
@@ -23,7 +23,7 @@
                                                         <label for="photo">
                                                             <i class="fa-solid fa-camera-retro"></i>{{ __('forms.register.label-photo') }}
                                                         </label>
-                                                        <input id="photo" wire:model="photo" name="photo" type="file" accept=".jpg,.jpeg,.png" />
+                                                        <input id="photo" class="form-control @error('photo') is-invalid @enderror" wire:model="photo" name="photo" type="file" accept=".jpg,.jpeg,.png" />
                                                         @error('photo')
                                                         <div class="invalid-feedback">
                                                             {{ $message }}
@@ -63,7 +63,8 @@
                                                        <!-- Textarea con eventos focus/blur -->
                                                        <div class="row mb-3">
                                                            <div class="col text-secondary">
-                                                               <textarea class="form-control" id="description" name="description"
+                                                               <textarea class="form-control @error('description') is-invalid @enderror" 
+                                                                        id="description" name="description"
                                                                          aria-label="With textarea" 
                                                                          x-on:focus="typing = true" 
                                                                          x-on:blur="typing = false" 
@@ -79,7 +80,7 @@
                                                        <p :class="typing ? 'text-typing-with-cursor' : 'text-typing'" 
                                                           x-html="description + (typing ? '<span class=\'cursor\'></span>' : '')"></p>
                                                         </div>
-                                                        <i class="fas fa-disease slowfloat3s"></i>
+                                                        <i class="fa-solid fa-cabinet-filing slowfloat3s"></i>
                                                     </div>
                                                 </div>
                                             </div>
@@ -88,6 +89,15 @@
                             </div>
                         </div>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="content-section">
                         <div class="content-section-title">
                             @if (Route::currentRouteName() == 'profile.create')
@@ -105,7 +115,7 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-first-name') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" id="firstName"
+                                                <input type="text" class="form-control @error('firstName') is-invalid @enderror" id="firstName"
                                                     name="firstName"  wire:model.live.debounce.500ms="firstName" 
                                                     placeholder="{{ __('forms.register.label-first-name') }}"
                                                     value="">
@@ -122,7 +132,7 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-last-name') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" id="lastName"
+                                                <input type="text" class="form-control @error('lastName') is-invalid @enderror" id="lastName"
                                                     name="lastName" wire:model.live.debounce.500ms="lastName"
                                                     placeholder="{{ __('forms.register.label-last-name') }}"
                                                     value="">
@@ -139,7 +149,7 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-identification') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control" 
+                                                <input type="text" class="form-control @error('card') is-invalid @enderror" 
                                                 name="identification" wire:model="card"
                                                 placeholder="C.C/T.I" pattern="[0-9]*" inputmode="numeric">
                                                 @error('card')
@@ -155,7 +165,7 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-email') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="email" id="email" class="form-control" 
+                                                <input type="email" id="email" class="form-control @error('email') is-invalid @enderror" 
                                                 name="email" wire:model="email"
                                                     placeholder="user@mail.com" value="">
                                                 @error('email')
@@ -171,7 +181,7 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-email-confirm') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="email" id="email_confirm" class="form-control"
+                                                <input type="email" id="email_confirm" class="form-control @error('email_confirm') is-invalid @enderror"
                                                     name="email_confirm" wire:model="email_confirm"
                                                     placeholder="user@mail.com" value="">
                                                 @error('email_confirm')
@@ -189,7 +199,7 @@
                                                     class="mb-0">{{ __('forms.register.label-address') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" id="address" class="form-control"
+                                                <input type="text" id="address" class="form-control @error('address') is-invalid @enderror"
                                                     name="address" wire:model="address"
                                                     value="" placeholder="{{ __('forms.register.label-address-placeholder') }}">
                                                 @error('address')
@@ -205,7 +215,7 @@
                                                     class="mb-0">{{ __('forms.register.label-address-complement') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" id="address_complement" class="form-control"
+                                                <input type="text" id="address_complement" class="form-control @error('address_complement') is-invalid @enderror"
                                                     name="address_complement" wire:model="address_complement"
                                                     placeholder="{{ __('forms.register.label-address-complement-placeholder')}}"
                                                     value="">
@@ -301,4 +311,57 @@
         <div class="overlay-app"></div>
     </div>
 </div>
+@push('templateScripts')
+<script>
+        document.addEventListener('receiveErrors', function(event) {
+                // Obtén los errores del evento
+                const errors = event.detail[0]; // Accedemos al primer (y único) objeto del arreglo
 
+                // Limpiar cualquier error anterior
+                clearErrors();
+
+                // Iterar sobre los errores y asignar las clases y mensajes de error apropiados
+                for (const field in errors) {
+                    if (errors.hasOwnProperty(field)) {
+                        const errorMessages = errors[field]; // Array de mensajes de error                        
+                        // Actualizamos dinámicamente cada input con errores
+                        addErrorToField(field, errorMessages);
+                    }
+                }
+        });
+        // Función para agregar error a un campo específico
+        function addErrorToField(field, errorMessages) {
+            // Convertir el nombre del campo a su ID en el DOM
+            const labelId = `label${capitalizeFirstLetter(field)}`;
+            const inputId = `${field}`;
+            // Agregar la clase 'is-invalid' al label y al input
+            if(labelId!="labelPhone"){
+                document.getElementById(labelId).classList.add('is-invalid');     
+            }else if(labelId=="labelPhone"){
+                document.getElementById("phone").classList.add('is-invalid');   
+            }
+            // Insertar el feedback debajo del input group
+            let inputGroup = document.getElementById(`inputGroup${capitalizeFirstLetter(field)}`);
+            let feedbackDiv = document.createElement('div');
+            feedbackDiv.classList.add('invalid-feedback');
+            feedbackDiv.innerText = errorMessages.join(', '); // Mostrar los errores concatenados
+            inputGroup.appendChild(feedbackDiv);
+        }
+        // Función para limpiar los errores anteriores
+        function clearErrors() {
+            const invalidElements = document.querySelectorAll('.is-invalid');
+            invalidElements.forEach(element => {
+                element.classList.remove('is-invalid');
+            });
+
+            // Remover todos los divs de feedback
+            const feedbackDivs = document.querySelectorAll('.invalid-feedback');
+            feedbackDivs.forEach(feedbackDiv => feedbackDiv.remove());
+        }
+
+        // Función auxiliar para capitalizar la primera letra de un campo
+        function capitalizeFirstLetter(string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+</script>
+@endpush

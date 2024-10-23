@@ -1,15 +1,15 @@
 <div id="{{ $customLocationId }}" wire:id="{{ $customLocationId }}">
   <div class="row mb-3">
-    <div class="col-md-4">
-      <label for="selectedCountry" class="form-label">{{__('forms.register.label-country')}}</label>
+    <div class="col-md-4" id="inputGroupCountry">
+      <label for="selectedCountry" id="labelCountry" class="form-label ">{{__('forms.register.label-country')}}</label>
       <select class="form-select" id="selectedCountry" name="country"></select>
     </div>
-    <div class="col-md-4">
-      <label for="selectedState" class="form-label">{{__('forms.register.label-state')}}</label>
+    <div class="col-md-4" id="inputGroupState">
+      <label for="selectedState" id="labelState" class="form-label ">{{__('forms.register.label-state')}}</label>
       <select class="form-select" id="selectedState" name="state"></select>
     </div>
-    <div class="col-md-4">
-      <label for="selectedCity" class="form-label">{{__('forms.register.label-city')}}</label>
+    <div class="col-md-4" id="inputGroupCity">
+      <label for="selectedCity" id="labelCity" class="form-label ">{{__('forms.register.label-city')}}</label>
       <select class="form-select" id="selectedCity" name="city"></select>
     </div>
   </div>

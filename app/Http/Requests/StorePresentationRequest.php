@@ -23,20 +23,20 @@ class StorePresentationRequest extends FormRequest
     {   
         //Reglas de validación para cración de un perfil Presentation
         return [
-            'photo' => ['nullable|image|mimes:jpg,jpeg,png|max:2048'], // formato imagen y que no supere los 2 mb
-            'description'=>['required|string|max:500'],
-            'name' => ['required|string|max:255|regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'lastname' => ['required|string|max:255|regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'card' => ['required|string|regex:/^[0-9]+$/|max:20'],
-            'email' => ['required|string|email|max:255|unique:presentation'], // Email único          
-            'email_confirm' => ['required', 'same:email'],
-            'country'=>['required|string|max:255|regex:/^[\pL\s]+$/u'],//solo letras
-            'state'=>['required|string|max:255|regex:/^[\pL\s]+$/u'], // solo letras
-            'city'=>['required|string|max:255|regex:/^[\pL\s]+$/u'],// solo letras
-            'address'=>['required|string|max:500'],
-            'address_complement'=>['nullable|string|max:500'],
-            'phoneRoot'=>['nullable|string|min:10|max:50'], // indicativo              
-            'phone' => ['nullable|string|regex:/^[0-9]+$/|min:10|max:50'], //Solo numeros de teléfonos                        
+            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'], // Formato imagen y que no supere los 2 MB
+            'description' => ['required', 'string', 'max:500'],
+            'firstName' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
+            'lastName' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
+            'card' => ['required', 'string', 'regex:/^[0-9]+$/', 'max:20'], // Solo números
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:presentation'], // Email único
+            'email_confirm' => ['required', 'email', 'same:email'],
+            'country' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Solo letras
+            'state' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Solo letras
+            'city' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Solo letras
+            'address' => ['required', 'string', 'max:500'],
+            'address_complement' => ['nullable', 'string', 'max:500'],
+            'phoneRoot' => ['required', 'string', 'min:10', 'max:50'], // Indicativo
+            'phone' => ['required', 'string', 'regex:/^[0-9]+$/', 'min:10', 'max:50'], // Solo números de teléfonos                       
         ];
     }
 }
