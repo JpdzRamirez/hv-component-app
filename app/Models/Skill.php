@@ -5,13 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Experience extends Model
+class Skill extends Model
 {
     use HasFactory;
 
-    protected $table = 'experiences';
+    protected $table = 'skills';
 
-    //Se relaciona la tabla por patron
     public function presentation()
     {
         return $this->belongsTo(Presentation::class, 'presentation_id');

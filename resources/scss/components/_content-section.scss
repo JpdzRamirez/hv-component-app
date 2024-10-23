@@ -57,6 +57,13 @@
             margin-right: 16px;
             flex-shrink: 0;
         }
+        img {
+            width: 28px;
+            border-radius: 6px;
+            margin-right: 16px;
+            flex-shrink: 0;
+            filter: drop-shadow(2px 4px 6px black);
+        }
     }
 }
 
@@ -78,14 +85,17 @@
         &-circle {
             width: 6px;
             height: 6px;
-            background-color: #396df0;
+            background-color: $warning-color;
             position: absolute;
             border-radius: 50%;
             top: 4px;
             left: -20px;
 
             &.green {
-                background-color: #3bf083;
+                background-color: $success-color;
+            }
+            &.red {
+                background-color: $danger-color;
             }
         }
 
@@ -108,7 +118,7 @@
     }
 
     .content-button:not(.open):hover {
-        background: #1e59f1;
+        background: $primary-color;
     }
 
     .menu {
@@ -135,7 +145,6 @@
         ul {
             position: absolute;
             background: var(--dropdown-bg);
-            height: 110px;
             width: 120px;
             right: 0;
             top: 20px;
@@ -410,7 +419,7 @@
     }
 
     .slowfloat2s {
-        animation: shake-vertical 15s ease-in-out infinite forwards;
+        animation: shake-vertical 15s ease-in-out forwards;
     }
 
     .slowfloat3s {

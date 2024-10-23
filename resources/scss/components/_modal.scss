@@ -5,6 +5,7 @@
     padding: 30px 40px;
     top: 50%;
     left: 50%;
+    color: var(--text-default-color);
     transform: (translate(-50%, -50%));
     overflow-y: auto;
     box-shadow: 0px 6px 30px rgba(0, 0, 0, 0.4);
@@ -30,6 +31,9 @@
         display: flex;
         justify-content: space-between;
         align-items: center;
+        svg{
+            cursor: pointer;
+        }
     }
 
     &__subtitle {
@@ -45,11 +49,18 @@
     }
 }
 
+.content-button-wrapper{
 
-.content-button-wrapper .content-button.status-button.open.close {
-    width: auto;
+    .content-button.status-button.open.close {
+        width: auto;
+
+    }
+    button{
+        &:hover{
+            background-color: $primary-color;
+        }
+    }
 }
-
 
 .content-section .close {
     margin-right: 0;

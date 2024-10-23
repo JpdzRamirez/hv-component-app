@@ -39,7 +39,7 @@
                         <i class="fa-sharp fa-solid fa-user-pen"></i><a href="#">{{__('auth.profile-edit')}}</a>
                       </li>
                       <li>
-                        <i class="fa-solid fa-calendar-lines-pen"></i><a target="_blank" href="{{route('profile.create')}}">{{__('auth.profile-create')}}</a>
+                        <i class="fa-solid fa-calendar-lines-pen"></i><a target="_blank" href="{{route('profile.crud')}}">{{__('auth.profile-create')}}</a>
                       </li>
                     </ul>
                   </div>

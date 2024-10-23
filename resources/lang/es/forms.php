@@ -25,4 +25,11 @@ return [
     'register.select-phone'=>'Indicativo',
     'register.select-PlaceHolder'=>'Buscar...',
     'register.button-submit'=>'Registrar',
+    'profile.social-media'=>'Redes Sociales',
+    'profile.social-media.subtext'=>'Agrega tu URL:',
+    'profile.social-media.add'=>'Añadir',
+
+    'profile.experience'=>'Experiencia Laboral',
+
+    'profile.skills'=>'Habilidades',
 ];
