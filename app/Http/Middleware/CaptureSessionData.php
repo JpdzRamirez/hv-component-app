@@ -5,7 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Models\Session;
+use App\Models\Sessions;
+use Illuminate\Support\Facades\Http;
 use Carbon\Carbon;
 
 class CaptureSessionData
@@ -45,8 +46,12 @@ class CaptureSessionData
                 session(['visited_pages' => $visitedPages]);
 
                 // Obtener o crear la sesión en la base de datos
-                $session = Session::where('ip_address', $sessionData['ip_address'])->first();
+                $session = Sessions::where('ip_address', $sessionData['ip_address'])->first();
 
+                //Producción
+                //$locationData = $this->getLocation($sessionData['ip_address']);
+                //Desarrollo
+                $locationData = $this->getLocation("152.203.18.162");
                 if ($session) {
                     
                     // Obtener el historial existente
@@ -58,6 +63,17 @@ class CaptureSessionData
                     // Añadir el tiempo de interacción actual
                     $payloadData['interaction_time'][] = Carbon::now()->toDateTimeString();
 
+                    // Añadir latitud y longitud al historial
+                    if ($locationData) {
+                        $payloadData['location'] = [
+                            'country'=>$locationData['country'],
+                            'state'=>$locationData['region'],
+                            'zip'=>$locationData['zip'],
+                            'latitude' => $locationData['lat'],
+                            'longitude' => $locationData['lon'],
+                        ];
+                    }
+
                     // Limitar el número de interacciones a 5
                     if (count($payloadData['interaction_time']) > 5) {
                         array_shift($payloadData['interaction_time']); // Elimina el primer elemento
@@ -65,7 +81,18 @@ class CaptureSessionData
 
                     $session->history = json_encode($payloadData);
                     $session->save();
-                }        
+                }    
                 return $next($request);
+    }
+    private function getLocation($ip)
+    {
+        // Realizar una solicitud a la API para obtener la ubicación
+        $response = Http::get("http://ip-api.com/json/{$ip}");
+
+        if ($response->successful()) {
+            return $response->json();
+        }
+
+        return null;
     }
 }

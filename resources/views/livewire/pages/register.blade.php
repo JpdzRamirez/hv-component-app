@@ -12,6 +12,7 @@
                                 <div class="jelly-card">
                                     <div class="card py-3 ">
                                         <form wire:submit.prevent="store">
+                                            @csrf
                                             <div class="row row-photo">
                                                 <div
                                                     class="col-10 col-md-10 col-lg-3 jelly-bloc">
@@ -311,7 +312,7 @@
         <div class="overlay-app"></div>
     </div>
 </div>
-@push('templateScripts')
+{{-- @push('templateScripts')
 <script>
         document.addEventListener('receiveErrors', function(event) {
                 // Obtén los errores del evento
@@ -363,5 +364,5 @@
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
-</script>
-@endpush
+</script> 
+@endpush--}}

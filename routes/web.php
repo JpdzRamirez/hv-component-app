@@ -7,7 +7,7 @@ use App\Livewire\Pages\Register;
 
 Route::middleware(['CaptureSessionData'])
     ->group(function () {
-        Route::get('/', HomePage::class)->name('home');
-
         Route::get('/register', Register::class)->name('profile.create');
+        Route::get('/', HomePage::class)->name('home');
     });
+

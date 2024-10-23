@@ -13,7 +13,6 @@ class Register extends Component
 {
     use WithFileUploads;
 
-    private Presentation $presentation;
     public $fullName;
     public $description;
     public $photo;
