@@ -6,7 +6,7 @@
         <div class="col-sm-9 text-secondary">
             <div class="input-group" id="inputGroupPhone">
                 <select class="input-group-text form-select" id="phoneSelector"></select>
-                <input type="tel" value="" class="form-control" id="phone" placeholder="(+57) 317 7163494"
+                <input type="tel" value="" class="form-control" wire:model="phoneNumber" id="phone" placeholder="(+57) 317 7163494"
                     pattern="[+0-9\s]+">
             </div>
         </div>

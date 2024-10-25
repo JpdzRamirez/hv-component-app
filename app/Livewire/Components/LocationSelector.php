@@ -19,9 +19,12 @@ class LocationSelector extends Component
     public $states = [];
     public $cities = [];
 
-    public $selectedCountry = null;
-    public $selectedState = null;
-    public $selectedCity = null;
+    public $initState; // variable recibida desde el padre
+    public $initCity;  // variable recibida desde el padre
+
+    public $selectedCountry;
+    public $selectedState;
+    public $selectedCity;
 
     protected CountryServiceInterface $countryService;
     protected StateServiceInterface $stateService;
@@ -35,6 +38,12 @@ class LocationSelector extends Component
         $this->countryService = $countryService;
         $this->customLocationId = $customLocationId;
         $this->fetchCountries();
+        if($this->initState){
+            $this->fetchStates($this->selectedCountry);
+        }
+        if($this->initCity){
+            $this->fetchCities($this->initState);
+        }
     }
 
     public function fetchCountries()

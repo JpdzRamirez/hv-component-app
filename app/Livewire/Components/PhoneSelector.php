@@ -8,8 +8,8 @@ class PhoneSelector extends Component
 {   
     public $customPhoneId;
 
-    public $selectedPhoneIndicator = null;
-    public $phoneNumber=null;
+    public $selectedPhoneIndicator;
+    public $phoneNumber;
 
     protected $listeners=['selectorPhoneRootCharger','inputPhoneCharger'];
 

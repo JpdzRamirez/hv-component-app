@@ -13,15 +13,18 @@ return new class extends Migration
     {
         Schema::create('presentation', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname');
             $table->string('lastname');
             $table->string('card',15)->unique();
             $table->string('email')->unique();
+            $table->string('phone_root', 15);
             $table->string('phone', 15);
-            $table->longText('photo_base64')->nullable();
+            $table->longText('photo')->nullable();
             $table->string('country', 50)->nullable();
             $table->string('state', 50)->nullable();
-            $table->string('city', 50)->nullable();         
+            $table->string('city', 50)->nullable();
+            $table->text('address')->nullable();
+            $table->text('address_complement')->nullable();               
             $table->timestamps();
         });
         Schema::create('sessions', function (Blueprint $table) {

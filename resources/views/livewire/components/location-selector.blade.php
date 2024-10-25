@@ -25,6 +25,12 @@
 
   //Variables del controlador
   let countriesData = @json($countries);
+  let statesData = @json($states);
+  let citiesData = @json($cities);
+
+  const initState= @json($initState);
+  const initCity= @json($initCity);
+
   let selectedCountry = @json($selectedCountry);
   let selectedState = @json($selectedState);
   let selectedCity = @json($selectedCity);
@@ -85,6 +91,12 @@
   //Consumo de API para listar paises
   document.addEventListener('livewire:initialized', () => {
         initializeCountrySelect(selectedCountry,"selectedCountry",spanLanguage);
+        if(initState){
+            initializeStateSelect(initState, "selectedState", statesData,spanLanguage);          
+        }
+        if(initCity){
+          initializeCitySelect(initCity, "selectedCity", citiesData,spanLanguage);
+        }
     })
 
   let isLocationUpdating = false;
@@ -102,8 +114,8 @@
         let newSelectedState = livewireLocationComponent.get('selectedState');
         let newSelectedCity = livewireLocationComponent.get('selectedCity');
 
-        let statesData = livewireLocationComponent.get('states');
-        let citiesData = livewireLocationComponent.get('cities');
+        statesData = livewireLocationComponent.get('states');
+        citiesData = livewireLocationComponent.get('cities');
         // Solo ejecutar si los valores han cambiado
         if (newSelectedCountry !== previousSelectedCountry || 
           newSelectedState !== previousSelectedState || 

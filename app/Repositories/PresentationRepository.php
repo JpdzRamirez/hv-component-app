@@ -3,13 +3,9 @@
 namespace App\Repositories;
 
 use App\Models\Presentation;
-
-class PresentationRepository
+class PresentationRepository 
 {
     protected $model;
-
-    public string $firstName='';
-    public string $lastName='';
 
     public function __construct(Presentation $model)
     {
@@ -18,7 +14,7 @@ class PresentationRepository
 
     public function find($id)
     {
-        return $this->model->find($id);
+        return $this->model->findOrFail($id);
     }
 
     public function create(array $data)

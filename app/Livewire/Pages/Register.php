@@ -9,22 +9,23 @@ use App\Models\Presentation;
 use App\Http\Requests\StorePresentationRequest;
 use App\Repositories\PresentationRepository;
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 class Register extends Component
 {
     use WithFileUploads;
 
-    public $fullName;
+    public $fullname;
     public $description;
-    public $photo;
-    public $errorTemp;
+    public $photo;    
     //Variables Formulario principal
-    public $firstName;
-    public $lastName;
+    public $firstname;
+    public $lastname;
     public $card;
     public $email;
     public $email_confirm;
     public $phone;
-    public $phoneRoot;
+    public $phone_root;
     public $country;
     public $state;
     public $city;
@@ -69,17 +70,40 @@ class Register extends Component
     }
     // ****************************************************
     // COMPONENT LIFE, hydrate y dhydrate
-    public function mount(PresentationRepository $presentationRepository, $fullName = null, $description = null)
-    {
+    public function mount(PresentationRepository $presentationRepository, $fullname = null, $description = null,$presentationID=null)
+    {   
+        //Inicializar repositorio
         $this->presentationRepository = $presentationRepository;
-        $this->fullName = $fullName ?? __('forms.register.model-full-name');
+        if ($presentationID) {
+            try{
+                $presentation = $this->presentationRepository->find($presentationID);
+                
+                if ($presentation) {
+                    // Convertir a array antes de asignar
+                    foreach ($presentation->getAttributes() as $key => $value) {
+                        if (property_exists($this, $key)) {
+                            $this->{$key} = $value;
+                        }
+                    }
+                }
+            }catch (ModelNotFoundException $e) {
+                // Manejo si no se encuentra la presentación
+                $presentation = null; // O redirigir a otra página, por ejemplo
+                session()->flash('error', 'Presentación no encontrada.');
+                return redirect()->route('profile.crud');
+            }
+            
+    
+
+        }
+        $this->fullname = $fullname ?? __('forms.register.model-full-name');
         $this->description = $description;
     }
     //Event live listener
     public function updated($propertyName)
     {
-        if (in_array($propertyName, ['firstName', 'lastName'])) {
-            $this->fullName = trim("{$this->firstName} {$this->lastName}");
+        if (in_array($propertyName, ['firstname', 'lastname'])) {
+            $this->fullname = trim("{$this->firstname} {$this->lastname}");
         }
     }
     public function socialMediaSubmitted($data)
@@ -105,7 +129,7 @@ class Register extends Component
     }
     public function updatePhoneRoot($data)
     {
-        $this->phoneRoot = $data;
+        $this->phone_root = $data;
     }
     public function updatePhone($data)
     {

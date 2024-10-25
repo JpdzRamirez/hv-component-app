@@ -34,8 +34,8 @@
                                                 </div>
                                                 <div class="col-12 col-md-10 col-lg-8 align-content-center">
                                                     <div class="card-body">
-                                                        <h5 class="card-title" wire:model="fullName">
-                                                            {{$fullName}}
+                                                        <h5 class="card-title" wire:model="fullname">
+                                                            {{$fullname}}
                                                         </h5>
                                                         <div class="line"></div>
                                                         <div class="col-sm-12">
@@ -116,11 +116,11 @@
                                                     class="mb-0 label-required">{{ __('forms.register.label-first-name') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control @error('firstName') is-invalid @enderror" id="firstName"
-                                                    name="firstName"  wire:model.live.debounce.500ms="firstName" 
+                                                <input type="text" class="form-control @error('firstname') is-invalid @enderror" id="firstname"
+                                                    name="firstname"  wire:model.live.debounce.500ms="firstname" 
                                                     placeholder="{{ __('forms.register.label-first-name') }}"
                                                     value="">
-                                                @error('firstName')
+                                                @error('firstname')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
                                                 </div>
@@ -129,15 +129,15 @@
                                         </div>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
-                                                <label for="lastName"
+                                                <label for="lastname"
                                                     class="mb-0 label-required">{{ __('forms.register.label-last-name') }}:</label>
                                             </div>
                                             <div class="col-sm-9 text-secondary">
-                                                <input type="text" class="form-control @error('lastName') is-invalid @enderror" id="lastName"
-                                                    name="lastName" wire:model.live.debounce.500ms="lastName"
+                                                <input type="text" class="form-control @error('lastname') is-invalid @enderror" id="lastname"
+                                                    name="lastname" wire:model.live.debounce.500ms="lastname"
                                                     placeholder="{{ __('forms.register.label-last-name') }}"
                                                     value="">
-                                                @error('lastName')
+                                                @error('lastname')
                                                 <div class="invalid-feedback">
                                                             {{ $message }}
                                                 </div>
@@ -192,8 +192,8 @@
                                                 @enderror
                                             </div>
                                         </div>
-                                        <livewire:components.location-selector/>
-                                        <livewire:components.phone-selector/>
+                                        <livewire:components.location-selector :selectedCountry="$country" :initState="$state" :initCity="$city" />
+                                        <livewire:components.phone-selector :selectedPhoneIndicator="$phone_root" :phoneNumber="$phone"/>
                                         <div class="row mb-3">
                                             <div class="col-sm-3">
                                                 <label for="address"

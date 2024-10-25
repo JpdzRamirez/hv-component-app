@@ -25,8 +25,8 @@ class StorePresentationRequest extends FormRequest
         return [
             'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'], // Formato imagen y que no supere los 2 MB
             'description' => ['required', 'string', 'max:500'],
-            'firstName' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
-            'lastName' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
+            'firstname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
+            'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Letras y espacios
             'card' => ['required', 'string', 'regex:/^[0-9]+$/', 'max:20'], // Solo números
             'email' => ['required', 'string', 'email', 'max:255', 'unique:presentation'], // Email único
             'email_confirm' => ['required', 'email', 'same:email'],
@@ -35,7 +35,7 @@ class StorePresentationRequest extends FormRequest
             'city' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'], // Solo letras
             'address' => ['required', 'string', 'max:500'],
             'address_complement' => ['nullable', 'string', 'max:500'],
-            'phoneRoot' => ['required', 'string', 'min:10', 'max:50'], // Indicativo
+            'phone_root' => ['required', 'string', 'min:10', 'max:50'], // Indicativo
             'phone' => ['required', 'string', 'regex:/^[0-9]+$/', 'min:10', 'max:50'], // Solo números de teléfonos                       
         ];
     }

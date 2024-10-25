@@ -10,6 +10,6 @@ Route::middleware(['CaptureSessionData'])
        
         Route::get('/', HomePage::class)->name('home');
 
-        Route::get('/register/{presentation?}', Register::class)->name('profile.crud');
+        Route::get('/register/{presentationID?}', Register::class)->name('profile.crud');
     });
 
