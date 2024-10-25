@@ -230,7 +230,7 @@
                                         <div class="row">
                                             <div class="form-card-buttons">
                                                 <button type="submit"
-                                                    class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
+                                                    class="content-button">{{ __('forms.register.button-submit') }}</button>
                                             </div>
                                             <span wire:loading>Saving...</span> 
                                         </div>
@@ -253,7 +253,13 @@
                                     Sin Añadir
                                 </span>
                                 <div class="button-wrapper">
-                                    <button class="content-button status-button open">{{ __('forms.profile.social-media.add') }}</button>
+                                    <button type="button"
+                                    data-toggle="modalSocialMedia" 
+                                    data-target="#modalSocialMedia"
+                                    data-form-title="Añadir Linkedin"
+                                    data-form-socialprompt="linkedin"
+                                    data-form-body="Ingrese por favor la URL de su perfil de linkedin"
+                                    class="content-button status-button">{{ __('forms.profile.social-media.add') }}</button>
                                     <div class="menu">
                                         <button class="dropdown">
                                             <ul>
@@ -371,7 +377,7 @@
                             </div>
                         </div>
                         <div class="apps-card">
-                            <div class="app-card">
+                            <div class="app-card minimized">
                                 <span>
                                 <img class="w-25" src="{{asset('assets/img/svg/linkedin.svg')}}" alt="Linkedin">
                                     Linkedin
@@ -379,7 +385,7 @@
                                 <div class="app-card__subtext">Edit, master and create fully proffesional videos
                                 </div>
                                 <div class="app-card-buttons">
-                                    <button class="content-button status-button">Update</button>
+                                    <button type="button" class="content-button status-button">Update</button>
                                     <div class="menu"></div>
                                 </div>
                             </div>
@@ -388,20 +394,24 @@
                     {{--Skills Media Form--}}
                     <div class="content-section">
                         <div class="content-section-title d-flex flex-row align-items-center">
-                            {{ __('forms.profile.skills') }}
+                            {{ __('forms.profile.skills') }} 
                         </div>
                         <div class="apps-card">
-                            <div class="app-card">
-                                <span>
-                                <img class="w-25" src="{{asset('assets/img/svg/linkedin.svg')}}" alt="Linkedin">
-                                    Linkedin
-                                </span>
-                                <div class="app-card__subtext">
-                                    {{ __('forms.profile.social-media.subtext') }}
-                                </div>
-                                <div class="app-card-buttons">
-                                    <input type="text" class="form-control" aria-label="Sizing example input">
-                                </div>
+                            <div class="app-card maximized">
+                                <div class="tag-cointainer">
+                                    <div class="title">
+                                      <i class="fa-sharp fa-solid fa-trophy"></i>
+                                      <h2>{{ __('forms.profile.skills.subtitle') }}</h2>
+                                    </div>
+                                    <div class="content">
+                                      <p>{{ __('forms.profile.skills.content') }}</p>
+                                      <ul><input type="text" class="form-control" spellcheck="false"></ul>
+                                    </div>
+                                    <div class="details">
+                                      <p><span>10</span> {{ __('forms.profile.skills.tagCounter') }}</p>
+                                      <button>{{ __('forms.profile.skills.tagButton') }}</button>
+                                    </div>
+                                  </div>
                             </div>
                         </div>
                     </div>
@@ -412,30 +422,54 @@
     </div>
 </div>
 @push('templateModal')
-    <div class="pop-up">
-        <div class="pop-up__title">Update This App
-            <svg class="close" width="24" height="24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round" class="feather feather-x-circle">
-                <circle cx="12" cy="12" r="10" />
-                <path d="M15 9l-6 6M9 9l6 6" />
-            </svg>
+        {{--MODAL SOCIAL MEDIA FORM--}}
+        <div id="modalSocialMedia" tabindex="-1" role="dialog" 
+        aria-labelledby="modalSocialMediaLabel" class="pop-up">
+            <div class="pop-up__title">
+                <h4 id="modalSocialMediaTitle"></h4>
+                <svg class="close" width="24" height="24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" class="feather feather-x-circle">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M15 9l-6 6M9 9l6 6" />
+                </svg>
+            </div>
+            <div class="pop-up__subtitle"> 
+                <h6 id="modalSocialMediaBody"></h6>            
+                <em>{{ __('forms.profile.social-media-modal.em') }}</em>
+                <a target="__blanck" href="https://github.com/JpdzRamirez">
+                    {{ __('forms.profile.social-media-modal.a') }}<i style="color:#F04A63" class="fa-solid fa-circle-heart"></i>
+                </a>
+            </div>
+            <form>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="temrs" class="checkbox">
+                    <label for="temrs">{{ __('forms.profile.social-media-modal.terms') }}</label>
+                </div>
+                <div class="checkbox-wrapper">
+                    <input type="checkbox" id="marketing" class="checkbox">
+                    <label for="marketing">{{ __('forms.profile.social-media-modal.marketing') }}</label>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-sm-3">
+                        <label for="URL"
+                            class="mb-0 label-required">{{ __('forms.profile.social-media-modal.URL') }}:</label>
+                    </div>
+                    <div class="col-sm-9 text-secondary">
+                        <input type="text" class="form-control" id="URL"
+                            name="URL"
+                            placeholder="www.linkedin.com/in/jeremy-iván-pedraza-hernández"
+                            value="">
+                        <input type="text" hidden id="socialPromptInput"
+                            name="socialPromptInput" value="">
+                    </div>
+                </div>
+                <div class="content-button-wrapper">
+                    <button type="button" id="submitModalSocial" class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
+                    <button type="button" class="content-button status-button open close">{{ __('forms.register.button-cancel') }}</button>
+                </div>
+            </form>
         </div>
-        <div class="pop-up__subtitle">Adjust your selections for advanced options
-            as desired before continuing. <a href="#">Learn more</a></div>
-        <div class="checkbox-wrapper">
-            <input type="checkbox" id="check1" class="checkbox">
-            <label for="check1">Import previous settings and preferences</label>
-        </div>
-        <div class="checkbox-wrapper">
-            <input type="checkbox" id="check2" class="checkbox">
-            <label for="check2">Remove old versions</label>
-        </div>
-        <div class="content-button-wrapper">
-            <button class="content-button status-button">Continue</button>
-            <button class="content-button status-button open close">Cancel</button>
-        </div>
-    </div>
 @endpush
 @push('templateScripts')
 <script>
@@ -489,5 +523,39 @@
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
+
+        $('button[data-toggle="modalSocialMedia"]').on("click", function() {
+				// Obtener datos del botón
+				let modalsocialPrompt = $(this).data('form-socialprompt');
+				let modalTitle = $(this).data('form-title');
+                let modalBody = $(this).data('form-body');
+				// Actualizar el contenido del modal                
+				$('#modalSocialMedia #modalSocialMediaTitle').text(modalTitle);
+                $('#modalSocialMedia #modalSocialMediaBody').text(modalBody);
+				$('#modalSocialMedia #socialPromptInput').val(modalsocialPrompt);
+		});
+
+        $('#submitModalSocial').on('click', function(event) {
+            setTimeout(() => {                
+                let form = $(this).closest(".pop-up").find("form");
+                if(form)form.trigger('reset'); 
+                $(".pop-up").removeClass("visible");
+            }, 600);
+        event.preventDefault(); // Evitar la recarga de la página
+        // Obtener los valores de los inputs
+        let url = $('#URL').val();
+        let socialPrompt = $('#socialPromptInput').val();
+        let terms = $('#temrs').is(':checked') ? 1 : 0;
+        let marketing = $('#marketing').is(':checked') ? 1 : 0;
+        let data={
+            url: url,
+            socialPrompt: socialPrompt,
+            terms: terms,
+            marketing: marketing
+        }        
+        // Despachar evento Livewire con los valores
+        Livewire.dispatch('socialMediaSubmitted',{data:data});    
+    });
+
 </script> 
 @endpush

@@ -193,12 +193,17 @@
         align-items: center;
         flex-wrap: wrap;
         width: calc(100% + 20px);
+        .maximized{
+            width: calc(100% - 20px);
+        }
+        .minimized{
+            width: calc(33.3% - 20px);
+        }
     }
 
     .app-card {
         display: flex;
         flex-direction: column;
-        width: calc(33.3% - 20px);
         font-size: 16px;
         background-color: var(--content-bg);
         border-radius: 14px;
@@ -261,7 +266,9 @@
                 margin-left: 0;
             }
         }
+
     }
+
 
     .form-card {
         display: flex;

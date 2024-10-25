@@ -8,6 +8,9 @@ class PresentationRepository
 {
     protected $model;
 
+    public string $firstName='';
+    public string $lastName='';
+
     public function __construct(Presentation $model)
     {
         $this->model = $model;
