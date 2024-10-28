@@ -1,7 +1,7 @@
 <x-layouts.base>
     <div id="app" class="app" style="max-width: 40em; max-height:25em;">
         <header>
-            <livewire:components.header :exception="$message" />
+            <livewire:components.header :exception="$message ?? ''" />
         </header>
         <div class="wrapper">
             <div class="main-container">
@@ -9,7 +9,7 @@
                     <div class="content-profile-header" style="margin:0;">
                         <div class="row justify-content-center">
                             <div class="col-8">
-                                <div class="jelly-card">
+                                <div class="jelly-card cetered">
                                     <div class="container">
                                         <lottie-player src="{{ asset('assets/lottie/notFound.json') }}"
                                             background="transparent" speed="1" style="width: 12em;"
@@ -21,7 +21,7 @@
                                     @if(isset($message))
                                     <p><u>{{ __('exceptions.error') }}</u> <i class="fa-solid fa-caret-right"></i> {{ $message }}</p> <!-- Mostrar el mensaje de error aquí -->
                                     @else
-                                        <p>{{ __('exceptions.default') }}</p>
+                                        <p style="text-align: center">{{ __('exceptions.default') }}</p>
                                     @endif
                                 </div>
                             </div>

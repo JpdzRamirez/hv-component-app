@@ -17,7 +17,7 @@ class Register extends Component
 
     public $fullname;
     public $description;
-    public $photo;    
+    public $photo;
     //Variables Formulario principal
     public $firstname;
     public $lastname;
@@ -33,15 +33,8 @@ class Register extends Component
     public $address_complement;
 
     // Variables Social Media
-    public $terms;
-    public $marketing;
-    public $linkedin;
-    public $facebook;
-    public $github;
-    public $outlook;
-    public $youtube;
-    public $twitter;
-    public $instagram;
+    public $socials = ['linkedin', 'facebook', 'github', 'office365', 'youtube', 'twitter', 'instagram'];
+    public $socialMediaData = [];
 
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
@@ -62,6 +55,18 @@ class Register extends Component
         }
         return $validatedData;
     }
+    private function loadSocialMediaData($socialMedia)
+    {
+        foreach ($this->socials as $social) {
+            if (property_exists($socialMedia, $social)) {
+                $this->socialMediaData[$social]['url'] = $socialMedia->{$social};
+                $terms = json_decode($socialMedia->{$social . '_terms'}, true);
+                $this->socialMediaData[$social]['terms'] = $terms['terms'] ?? 0;
+                $this->socialMediaData[$social]['marketing'] = $terms['marketing'] ?? 0;
+            }
+        }
+    }
+    
     //*********************** */
     // Rules
     protected function rules()
@@ -70,14 +75,15 @@ class Register extends Component
     }
     // ****************************************************
     // COMPONENT LIFE, hydrate y dhydrate
-    public function mount(PresentationRepository $presentationRepository, $fullname = null, $description = null,$presentationID=null)
-    {   
+    public function mount(PresentationRepository $presentationRepository, $fullname = null, $description = null, $presentationID = null)
+    {
         //Inicializar repositorio
         $this->presentationRepository = $presentationRepository;
+
         if ($presentationID) {
-            try{
+            try {
                 $presentation = $this->presentationRepository->find($presentationID);
-                
+
                 if ($presentation) {
                     // Convertir a array antes de asignar
                     foreach ($presentation->getAttributes() as $key => $value) {
@@ -85,10 +91,24 @@ class Register extends Component
                             $this->{$key} = $value;
                         }
                     }
+                    // Inicializa las redes sociales si existen
+                    if ($presentation->socialmedia) {
+                        $this->loadSocialMediaData($presentation->socialmedia);
+                    }
                 }
-            }catch (ModelNotFoundException $e) {
+            } catch (ModelNotFoundException $e) {
                 // Manejo si no se encuentra la presentación
-                throw new ModelNotFoundException(" ID Busqueda: $presentationID"." ".__('exceptions.not_found'));
+                throw new ModelNotFoundException(" ID Busqueda: $presentationID" . " " . __('exceptions.not_found'));
+            }
+        } else {
+            //Inicializar redes sociales por defecto
+            foreach ($this->socials as $social) {
+                $this->socialMediaData[$social] = [
+                    'url' => '',
+                    'status' => '',
+                    'terms' => 0,
+                    'marketing' => 0,
+                ];
             }
         }
         $this->fullname = $fullname ?? __('forms.register.model-full-name');
@@ -103,15 +123,12 @@ class Register extends Component
     }
     public function socialMediaSubmitted($data)
     {
-        // Asignar los valores recibidos desde el dispatch        
-        $this->terms = $data['terms'];
-        $this->marketing = $data['marketing'];
-        // Lista de redes sociales válidas
-        $socialPlatforms = ['linkedin', 'twitter', 'youtube', 'outlook', 'github', 'facebook', 'instagram'];
-
         // Si el valor de 'socialPrompt' es válido, asignarlo a la propiedad correspondiente
-        if (in_array($data['socialPrompt'], $socialPlatforms)) {
-            $this->{$data['socialPrompt']} = $data['url'];
+        if (in_array($data['socialPrompt'], $this->socials)) {
+            $this->socialMediaData[$data['socialPrompt']]['url'] = $data['url'];
+            $this->socialMediaData[$data['socialPrompt']]['status'] = 'edited';
+            $this->socialMediaData[$data['socialPrompt']]['terms'] = $data['terms'];
+            $this->socialMediaData[$data['socialPrompt']]['marketing'] = $data['marketing'];
         }
     }
     //************************ */
@@ -144,6 +161,15 @@ class Register extends Component
             // Usar el repositorio para crear la presentación
             $this->presentationRepository->create($validatedData);
 
+            // Preparar los datos de redes sociales
+            $socialMediaData = [];
+            foreach ($this->socials as $social) {
+                $socialMediaData[$social] = $this->socialMediaData[$social]['url'] ?? '';
+                $socialMediaData[$social . '_terms'] = json_encode([
+                    'terms' => $this->socialMediaData[$social]['terms'] ?? 0,
+                    'marketing' => $this->socialMediaData[$social]['marketing'] ?? 0,
+                ]);
+            }
             // Redireccionar o mostrar mensaje de éxito
             session()->flash('success', 'Presentación creada exitosamente');
         } catch (\Illuminate\Validation\ValidationException $exception) {
@@ -170,6 +196,6 @@ class Register extends Component
                 'cityError' => $this->getErrorBag()->get('city'),
                 'phoneError' => $this->getErrorBag()->get('phone'),
             ]
-        )->layout('layouts.base');
+        )->layout('components.layouts.base');
     }
 }

@@ -15,7 +15,7 @@
   </div>
 </div>
 @push('templateScripts')
-<script src="{{ asset('assets/js/selectorLocation.js') }}"></script>
+<script src="{{ asset('assets/js/components/locationSelector/selectorLocation.js') }}"></script>
 <script>
   // Variables constantes
   let initialized = false;

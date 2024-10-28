@@ -40,6 +40,7 @@ $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
     --text-default-color: #ffffff;
     --bg-default-color: #515151;
     --bg-default-colorTransparent: #343a40;
+    --code-default-color: #ffa534;
 }
 
 .light-mode {
@@ -56,4 +57,6 @@ $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
     --hover-menu-bg: rgba(255 255 255 / 35%);
     --scrollbar-bg: rgb(255 253 253 / 57%);
     --content-title-color: --theme-color;
+    --code-default-color: #f3545d;
+
 }

@@ -13,7 +13,7 @@
     </div>
 </div>
 @push('templateScripts')
-    <script src="{{ asset('assets/js/selectorPhone.js') }}"></script>
+    <script src="{{ asset('assets/js/components/phoneSelector/selectorPhone.js') }}"></script>
     <script>
         const phoneComponent = document.getElementById("phoneComponent");
         const wirePhoneId = phoneComponent.getAttribute('wire:id');
