@@ -88,13 +88,8 @@ class Register extends Component
                 }
             }catch (ModelNotFoundException $e) {
                 // Manejo si no se encuentra la presentación
-                $presentation = null; // O redirigir a otra página, por ejemplo
-                session()->flash('error', 'Presentación no encontrada.');
-                return redirect()->route('profile.crud');
+                throw new ModelNotFoundException(" ID Busqueda: $presentationID"." ".__('exceptions.not_found'));
             }
-            
-    
-
         }
         $this->fullname = $fullname ?? __('forms.register.model-full-name');
         $this->description = $description;

@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\Presentation;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 class PresentationRepository 
 {
     protected $model;

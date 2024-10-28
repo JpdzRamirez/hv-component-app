@@ -7,6 +7,8 @@ use App\Repositories\PresentationRepository;
 
 class Header extends Component
 {   
+    public $exception;
+
     protected  PresentationRepository $presentationRepository;
    
     //Inyeccion de dependencias
