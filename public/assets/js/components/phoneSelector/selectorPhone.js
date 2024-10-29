@@ -42,7 +42,7 @@ class phoneSelector {
         this.element = this._template(idSelector,spanLang);
         this.selectElement.replaceWith(this.element);
         this._updateSelected();
-        this._eventHandlers(selection);
+        this._eventHandlers();
     }
 
     _template(idSelector,spanLang) {
@@ -81,7 +81,7 @@ class phoneSelector {
         return element;
     }
 
-    _eventHandlers(selection) {
+    _eventHandlers() {
         // Seleccionar todas las opciones del selector
         const options = this.element.querySelectorAll('.dynamic-select-option');
         const searchInput = this.element.querySelector('.dynamic-select-search');
@@ -118,13 +118,7 @@ class phoneSelector {
                 this.options.onChange(option.getAttribute('data-value'), option.querySelector('.dynamic-select-option-text') ? option.querySelector('.dynamic-select-option-text').innerHTML : '', option);
                 //Casos de eventos para cada tipo de selectores
                 if(this.element.querySelector('input').id=='selectedPhone'){
-                    //si ya hay una seleccion, limpiamos conservando el valor del telefono                                     
-                    if (selection){
-                        let numeroCompleto=phoneInput.value.split(" ");
-                        phoneInput.value =  option.getAttribute('data-value') + " "+ numeroCompleto[1];
-                    }else{
-                        phoneInput.value=option.getAttribute('data-value')+" "+phoneInput.value;
-                    }
+                    //si ya hay una seleccion, en el phone root
                     Livewire.dispatch('selectorPhoneRootCharger', { optionSelected: option.getAttribute('data-value')});
                     loadingSpinner.classList.remove('hidden');
                 }                        

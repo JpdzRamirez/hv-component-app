@@ -14,10 +14,15 @@
                                         <form wire:submit.prevent="store">
                                             @csrf
                                             <div class="row row-photo">
-                                                <div class="col-10 col-md-10 col-lg-3 jelly-bloc">
+                                                <div class="col-12 col-sm-10 col-md-8 col-lg-4 jelly-bloc">
                                                     <div class="card-img card-pic slowfloat2s">
-                                                        <img
-                                                            src="https://dl.dropbox.com/s/u3j25jx9tkaruap/Webp.net-resizeimage.jpg?raw=1">
+                                                        @if ($photo instanceof \Livewire\TemporaryUploadedFile)
+                                                            <img id="profile-photo" src="{{ $photo->temporaryUrl() }}" />
+                                                        @elseif ($photo)
+                                                            <img id="profile-photo" src="{{ $photo }}" />
+                                                        @else
+                                                            <img id="profile-photo" src="https://dl.dropbox.com/s/u3j25jx9tkaruap/Webp.net-resizeimage.jpg?raw=1" />
+                                                        @endif                                                       
                                                     </div>
                                                     <div class="file file--upload">
                                                         <label for="photo">
@@ -254,22 +259,32 @@
                                     <div class="products">
                                         <img class="w-25" src="{{ asset('assets/img/svg/' . $social . '.svg') }}"
                                             alt="{{ ucfirst($social) }}">
-                                        {{ $social }}
+                                        {{ ucfirst($social) }}
                                     </div>
                                     <span class="status">
                                         <span class="status">
                                             @if ($socialMediaData[$social]['url'] && empty($socialMediaData[$social]['status']))
-                                                <span class="status-circle green"></span>
-                                                Añadido
-                                            @elseif ($socialMediaData[$social]['status'])
+                                            <span class="status-circle green"></span>
+                                            <span class="status-content">                                                
+                                                {{$socialMediaData[$social]['url']}}
+                                            </span>
+                                            @elseif($socialMediaData[$social]['status']=='added')
+                                                <span class="status-circle blue"></span>
+                                                <span class="status-content">
+                                                    Añadido
+                                                    <code>Pendiente guardar cambios</code>
+                                                </span>
+                                            @elseif ($socialMediaData[$social]['status']=='edited')
                                                 <span class="status-circle"></span>
-                                                <span>
+                                                <span class="status-content">
                                                     Editado
                                                     <code>Pendiente guardar cambios</code>
                                                 </span>
                                             @else
                                                 <span class="status-circle red"></span>
-                                                Sin Añadir
+                                                <span class="status-content">
+                                                    Sin Añadir                                                    
+                                                </span>
                                             @endif
                                         </span>
                                     </span>
@@ -280,15 +295,21 @@
                                             data-form-placeholder="{{ 'www.' . $social . '.com/your-user' }}"
                                             data-form-socialprompt="{{ $social }}"
                                             data-form-body="Ingrese por favor la URL de su perfil de {{ $social }}"
-                                            class="content-button status-button">{{ __('forms.profile.social-media.add') }}</button>
+                                            class="content-button status-button">
+                                            @if (empty($socialMediaData[$social]['url']))
+                                                {{ __('forms.profile.social-media.add') }}
+                                            @else
+                                                {{ __('forms.profile.social-media.edit') }}
+                                            @endif
+                                        </button>
                                         <div class="menu">
                                             <button class="dropdown">
                                                 <ul>
                                                     <li>
-                                                        @if (!empty($socialMediaData[$social]['url']))
-                                                            <a href="{{ $socialMediaData[$social]['url'] }}">Ir</a>
+                                                        @if (empty($socialMediaData[$social]['url']))
+                                                            <a class="social-link" href="#">Sin Url</a>
                                                         @else
-                                                            <a href="#">Sin Url</a>
+                                                            <a class="social-link" target="_blank" href="{{ $socialMediaData[$social]['url'] }}">Ir</a>
                                                         @endif
 
                                                     </li>
@@ -372,7 +393,7 @@
         <div class="pop-up__subtitle">
             <h6 id="modalSocialMediaBody"></h6>
             <em>{{ __('forms.profile.social-media-modal.em') }}</em>
-            <a target="__blanck" href="https://github.com/JpdzRamirez">
+            <a target="_blank" href="https://github.com/JpdzRamirez">
                 {{ __('forms.profile.social-media-modal.a') }}<i style="color:#F04A63"
                     class="fa-solid fa-circle-heart"></i>
             </a>
@@ -397,7 +418,7 @@
                     <input type="text" hidden id="socialPromptInput" name="socialPromptInput" value="">
                 </div>
             </div>
-            <div class="content-button-wrapper">
+            <div class="content-button-wrapper d-flex flex-row justify-content-center gap-3">
                 <button type="button" id="submitModalSocial"
                     class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
                 <button type="button"

@@ -20,13 +20,17 @@
 <body>
     {{-- TOOLS SECTION--}}
     <section>
-         <div id="preloader" class="preloader">            
-            <div id="status"><span>Loading</span></div>
-            <div id="status"><span>Loading</span></div>
-          </div>
-          <div id="spinner" class="spinner hidden">Loading
+        <div id="spinner" class="spinner hidden">Loading
             <span></span>
-          </div>
+        </div>
+        <div id="preloader"  class="preloader">
+            <div class="containerPreloader">
+                <div class="containerPreloader__a"></div>
+                <div class="containerPreloader__b"></div>
+                <div class="containerPreloader__c"></div>
+                <div class="containerPreloader__d"></div>
+            </div>
+        </div>
         <div class="video-bg">
             <img src="{{asset('assets/img/bg-1.jpg')}}" loading="lazy" alt="Wallpaper">
         </div>

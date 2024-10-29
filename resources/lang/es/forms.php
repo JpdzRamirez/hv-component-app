@@ -29,6 +29,7 @@ return [
     'profile.social-media' => 'Redes Sociales',
     'profile.social-media.subtext' => 'Agrega tu URL:',
     'profile.social-media.add' => 'Añadir',
+    'profile.social-media.edit' => 'Editar',
     'profile.social-media-modal.em' => '¿Te gustó este diseño?',
     'profile.social-media-modal.a' => '¡Sigueme para más!',
     'profile.social-media-modal.terms' => 'He leído los T&C y acepto ser contactado.',

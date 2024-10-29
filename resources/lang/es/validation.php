@@ -185,6 +185,20 @@ return [
             'required' => 'Es obligatorio aceptar los términos y condiciones.',
         ],
 
+        'socialMediaData.*.url' => [
+            'regex' => 'El enlace proporcionado para :attribute no es válido. Debe ser una URL correcta como example.com o www.example.com.',
+            'max' => 'El enlace de :attribute no puede superar los 255 caracteres.',
+        ],
+        'socialMediaData.*.status' => [
+            'in' => 'El estado de :attribute debe ser "added" o "edited".',
+        ],
+        'socialMediaData.*.terms' => [
+            'boolean' => 'El valor de términos para :attribute debe ser verdadero o falso.',
+        ],
+        'socialMediaData.*.marketing' => [
+            'boolean' => 'El valor de marketing para :attribute debe ser verdadero o falso.',
+        ],
+
     ],
     /*
     |--------------------------------------------------------------------------
@@ -228,6 +242,41 @@ return [
         'subject'               => 'asunto',
         'message'               => 'mensaje',
         'required'              => 'Requerido',
+
+        'socialMediaData.linkedin.url' => 'LinkedIn URL',
+        'socialMediaData.linkedin.status' => 'estado de LinkedIn',
+        'socialMediaData.linkedin.terms' => 'términos de LinkedIn',
+        'socialMediaData.linkedin.marketing' => 'marketing de LinkedIn',
+
+        'socialMediaData.facebook.url' => 'Facebook URL',
+        'socialMediaData.facebook.status' => 'estado de Facebook',
+        'socialMediaData.facebook.terms' => 'términos de Facebook',
+        'socialMediaData.facebook.marketing' => 'marketing de Facebook',
+
+        'socialMediaData.github.url' => 'GitHub URL',
+        'socialMediaData.github.status' => 'estado de GitHub',
+        'socialMediaData.github.terms' => 'términos de GitHub',
+        'socialMediaData.github.marketing' => 'marketing de GitHub',
+
+        'socialMediaData.office365.url' => 'Office 365 URL',
+        'socialMediaData.office365.status' => 'estado de Office 365',
+        'socialMediaData.office365.terms' => 'términos de Office 365',
+        'socialMediaData.office365.marketing' => 'marketing de Office 365',
+
+        'socialMediaData.youtube.url' => 'YouTube URL',
+        'socialMediaData.youtube.status' => 'estado de YouTube',
+        'socialMediaData.youtube.terms' => 'términos de YouTube',
+        'socialMediaData.youtube.marketing' => 'marketing de YouTube',
+
+        'socialMediaData.twitter.url' => 'Twitter URL',
+        'socialMediaData.twitter.status' => 'estado de Twitter',
+        'socialMediaData.twitter.terms' => 'términos de Twitter',
+        'socialMediaData.twitter.marketing' => 'marketing de Twitter',
+
+        'socialMediaData.instagram.url' => 'Instagram URL',
+        'socialMediaData.instagram.status' => 'estado de Instagram',
+        'socialMediaData.instagram.terms' => 'términos de Instagram',
+        'socialMediaData.instagram.marketing' => 'marketing de Instagram',
     ],
 ];
 

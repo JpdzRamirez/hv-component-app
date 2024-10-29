@@ -56,9 +56,8 @@
         }) => {
             //Si el componente es el selector de países
             if (component.id == wirePhoneId) {
-                let livewirePhoneComponent = Livewire.find(wirePhoneId);
                 if (isPhoneUpdating) return; // Si ya está actualizando, salir
-
+                let livewirePhoneComponent = Livewire.find(wirePhoneId);                
                 isPhoneUpdating = true;
                 loadingSpinner.classList.add('hidden');
 
@@ -72,7 +71,7 @@
                         initializePhoneSelect(newSelectedPhoneIndicator, 'selectedPhone', countriesData,
                             spanLanguage);
                         isPhoneUpdating = false;
-                    }, 500);
+                    }, 200);
                 }
                 // Solo ejecutar si los valores han cambiado
                 if (newSelectedPhoneIndicator !== previousSelectedPhoneIndicator) {
@@ -91,15 +90,11 @@
         phoneInput.addEventListener("change", () => {
             let livewirePhoneComponent = Livewire.find(wirePhoneId);
             let newSelectedPhoneIndicator = livewirePhoneComponent.get('selectedPhoneIndicator');
+            let phoneNumber = livewirePhoneComponent.get('phoneNumber');
 
-            let numeroCompleto = phoneInput.value.split(" ");
-            if (numeroCompleto.length > 1) {
-                numberDispatched = true;
-                Livewire.dispatch('inputPhoneCharger', { numberInput: numeroCompleto[1] }); // Usa el segundo elemento
-            } else {
-                numberDispatched = true;
-                Livewire.dispatch('inputPhoneCharger', { numberInput: numeroCompleto.toString() }); // Usa el primer elemento
-            }
+            numberDispatched = true;
+            Livewire.dispatch('inputPhoneCharger'); // Usa el segundo elemento
+            
         });
     </script>
 @endpush

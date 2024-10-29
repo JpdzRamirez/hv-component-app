@@ -11,6 +11,24 @@ class SocialMedia extends Model
 
     protected $table = 'socialmedia';
 
+    protected $fillable = [
+        'presentation_id',
+        'linkedin',
+        'linkedin_terms',
+        'facebook',
+        'facebook_terms',
+        'github',
+        'github_terms',
+        'office365',
+        'office365_terms',
+        'youtube',
+        'youtube_terms',
+        'twitter',
+        'twitter_terms',
+        'instagram',
+        'instagram_terms',        
+    ];
+
     public function presentation()
     {
         return $this->belongsTo(Presentation::class, 'presentation_id');

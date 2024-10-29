@@ -81,9 +81,13 @@
         width: 140px;
         font-size: 15px;
         position: relative;
-        span{
+        &-content{
             display: flex;
             flex-direction: column;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 200px;
             code{
                 color:var(--code-default-color);
             }
@@ -96,7 +100,9 @@
             border-radius: 50%;
             top: 4px;
             left: -20px;
-
+            &.blue{
+                background-color: $primary-color;
+            }
             &.green {
                 background-color: $success-color;
             }
@@ -151,7 +157,8 @@
         ul {
             position: absolute;
             background: var(--dropdown-bg);
-            width: 120px;
+            width: 80px;
+            height: 3em;
             right: 0;
             top: 20px;
             pointer-events: none;
@@ -159,7 +166,13 @@
             transform: translatey(10px);
             transition: all 0.4s ease;
 
-            li a {
+            li .social-link {
+                width: 100%;
+                position: absolute;
+                height: inherit;
+                left: 0;                
+                text-align: center;
+                align-content: center;
                 text-decoration: none;
                 color: var(--theme-color);
                 font-size: 12px;
@@ -174,6 +187,7 @@
             transform: translatey(25px);
 
             li:hover {
+                border-radius: inherit;
                 background-color: var(--dropdown-hover);
             }
         }
@@ -369,17 +383,22 @@
             gap: 1em;
             flex-direction: column;
             align-items: center;
-            margin-left: 1em;
             ~div{
                 padding: 2em;
             }
         }
     }
-    .row-photo{
-        flex-direction:column;
+    .row-photo {
+        flex-direction: row; // Por defecto, en columna
         align-items: center;
         justify-content: center;
-        color:var(--text-default-color);
+        color: var(--text-default-color);
+        flex-wrap: nowrap;
+        // Cuando la pantalla es mayor a 800px, cambiar a fila
+        @media (max-width: 992px) {
+            flex-direction: column; // Cambiar a fila
+            
+        }
     }
     @media(max-width:800px) {
         .card-pic {
@@ -387,9 +406,7 @@
         }
     }
     @media(min-width:800px) {
-        .row-photo{
-            flex-direction:row;
-        }
+
         section {
             padding-top: 15vw;
         }
@@ -412,6 +429,8 @@
         }
         .card-img img{
             border-radius: 50%;
+            width: inherit;
+            height: inherit;
         }
         .card-pic {
             position: relative;

@@ -11,7 +11,8 @@ Route::middleware(['CaptureSessionData'])
        
         Route::get('/', HomePage::class)->name('home');
 
-        Route::get('/register/{presentationID?}', Register::class)->name('profile.crud');
+        Route::get('/register', Register::class)->name('profile.create');
+        Route::get('/presentation/{presentationID?}', Register::class)->name('profile.update');
 
         Route::get('/not-found', [PresentationController ::class, 'notFound'])->name('not.found');
     });

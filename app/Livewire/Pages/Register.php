@@ -4,12 +4,12 @@ namespace App\Livewire\Pages;
 
 use Livewire\Component;
 use Livewire\WithFileUploads;
-use App\Models\Presentation;
 
 use App\Http\Requests\StorePresentationRequest;
 use App\Repositories\PresentationRepository;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Validation\ValidationException;
 
 class Register extends Component
 {
@@ -58,9 +58,12 @@ class Register extends Component
     private function loadSocialMediaData($socialMedia)
     {
         foreach ($this->socials as $social) {
-            if (property_exists($socialMedia, $social)) {
+            if (isset($socialMedia->{$social})) {
                 $this->socialMediaData[$social]['url'] = $socialMedia->{$social};
-                $terms = json_decode($socialMedia->{$social . '_terms'}, true);
+                $this->socialMediaData[$social]['status'] = '';
+                
+                // Decodificar el JSON de términos y marketing, si está presente
+                $terms = isset($socialMedia->{$social . '_terms'}) ? json_decode($socialMedia->{$social . '_terms'}, true) : [];
                 $this->socialMediaData[$social]['terms'] = $terms['terms'] ?? 0;
                 $this->socialMediaData[$social]['marketing'] = $terms['marketing'] ?? 0;
             }
@@ -75,7 +78,7 @@ class Register extends Component
     }
     // ****************************************************
     // COMPONENT LIFE, hydrate y dhydrate
-    public function mount(PresentationRepository $presentationRepository, $fullname = null, $description = null, $presentationID = null)
+    public function mount(PresentationRepository $presentationRepository, $description = null, $presentationID = null)
     {
         //Inicializar repositorio
         $this->presentationRepository = $presentationRepository;
@@ -90,11 +93,14 @@ class Register extends Component
                         if (property_exists($this, $key)) {
                             $this->{$key} = $value;
                         }
-                    }
+                    }                    
                     // Inicializa las redes sociales si existen
                     if ($presentation->socialmedia) {
                         $this->loadSocialMediaData($presentation->socialmedia);
                     }
+
+                    $this->fullname = trim("{$presentation->firstname} {$presentation->lastname}");
+                    $this->description = $presentation->description;
                 }
             } catch (ModelNotFoundException $e) {
                 // Manejo si no se encuentra la presentación
@@ -110,9 +116,10 @@ class Register extends Component
                     'marketing' => 0,
                 ];
             }
-        }
-        $this->fullname = $fullname ?? __('forms.register.model-full-name');
-        $this->description = $description;
+
+            $this->fullname = __('forms.register.model-full-name');
+            $this->description = $description;
+        }   
     }
     //Event live listener
     public function updated($propertyName)
@@ -126,7 +133,11 @@ class Register extends Component
         // Si el valor de 'socialPrompt' es válido, asignarlo a la propiedad correspondiente
         if (in_array($data['socialPrompt'], $this->socials)) {
             $this->socialMediaData[$data['socialPrompt']]['url'] = $data['url'];
-            $this->socialMediaData[$data['socialPrompt']]['status'] = 'edited';
+            if(empty($this->socialMediaData[$data['socialPrompt']]['status'])){
+                $this->socialMediaData[$data['socialPrompt']]['status'] = 'added';
+            }else{
+                $this->socialMediaData[$data['socialPrompt']]['status'] = 'edited';
+            }
             $this->socialMediaData[$data['socialPrompt']]['terms'] = $data['terms'];
             $this->socialMediaData[$data['socialPrompt']]['marketing'] = $data['marketing'];
         }
@@ -149,9 +160,11 @@ class Register extends Component
     }
     // ****************************************************
     // Form method
-    public function store()
+    public function store(PresentationRepository $presentationRepository)
     {
         try {
+            //Inicializar instancia
+            $this->presentationRepository=$presentationRepository;
             // Obtener las reglas de validación desde StorePresentationRequest
             $validatedData = $this->validate();
 
@@ -159,7 +172,7 @@ class Register extends Component
             $validatedData = $this->processPhoto($validatedData);
 
             // Usar el repositorio para crear la presentación
-            $this->presentationRepository->create($validatedData);
+            $presentation=$this->presentationRepository->create($validatedData);
 
             // Preparar los datos de redes sociales
             $socialMediaData = [];
@@ -170,9 +183,12 @@ class Register extends Component
                     'marketing' => $this->socialMediaData[$social]['marketing'] ?? 0,
                 ]);
             }
+            // Asociar las redes sociales con la presentación creada
+            $this->presentationRepository->createSocialMedia($presentation, $socialMediaData);
+
             // Redireccionar o mostrar mensaje de éxito
             session()->flash('success', 'Presentación creada exitosamente');
-        } catch (\Illuminate\Validation\ValidationException $exception) {
+        } catch (ValidationException $exception) {
             // Emitimos un solo evento con todos los errores relevantes
             $this->dispatch('receiveErrors', array_filter([
                 'country' => $exception->validator->errors()->get('country'),

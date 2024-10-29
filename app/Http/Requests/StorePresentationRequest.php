@@ -35,15 +35,15 @@ class StorePresentationRequest extends FormRequest
             'city' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
             'address' => ['required', 'string', 'max:500'],
             'address_complement' => ['nullable', 'string', 'max:500'],
-            'phone_root' => ['required', 'string', 'min:10', 'max:50'],
+            'phone_root' => ['required', 'string', 'max:50'],
             'phone' => ['required', 'string', 'regex:/^[0-9]+$/', 'min:10', 'max:50'],
         ];
 
         // Agregar validaciones para redes Sociales
         foreach (['linkedin', 'facebook', 'github', 'office365', 'youtube', 'twitter', 'instagram'] as $social) {
-            $rules["socialMediaData.$social.url"] = ['nullable', 'url', 'max:255'];
+            $rules["socialMediaData.$social.url"] = ['nullable', 'regex:/^(https?:\/\/)?(www\.)?[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}(\/\S*)?$/', 'max:255'];
             $rules["socialMediaData.$social.status"] = ['nullable', 'in:added,edited'];
-            $rules["socialMediaData.$social.terms"] = ['nullable', 'boolean'];
+            $rules["socialMediaData.$social.terms"] = ['required', 'boolean'];
             $rules["socialMediaData.$social.marketing"] = ['nullable', 'boolean'];
         }
 

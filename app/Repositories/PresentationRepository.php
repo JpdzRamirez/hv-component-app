@@ -3,7 +3,8 @@
 namespace App\Repositories;
 
 use App\Models\Presentation;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
+use App\Models\SocialMedia;
+
 class PresentationRepository 
 {
     protected $model;
@@ -34,5 +35,11 @@ class PresentationRepository
     {
         $presentation = $this->model->findOrFail($id);
         $presentation->delete();
+    }
+    public function createSocialMedia(Presentation $presentation, array $socialMediaData)
+    {
+        // Crear la entrada en la tabla socialmedia asociada a la presentación
+        $socialMediaData['presentation_id'] = $presentation->id; // Asociar con el ID de la presentación
+        return SocialMedia::create($socialMediaData);
     }
 }

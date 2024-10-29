@@ -281,3 +281,35 @@
             transform: translateY(-6.4px);
   }
 }
+// PRELOADER ANIMATION
+@keyframes bounce3 {
+
+  from,
+  5%,
+  95%,
+  to {
+    transform: translateY(0) scaleY(1);
+  }
+
+  16.7% {
+    transform: translateY(0) scaleY(8);
+  }
+
+  28.3%,
+  38.3% {
+    transform: translateY(5.25em) scaleY(1);
+  }
+
+  50% {
+    transform: translateY(2.625em) scaleY(4.5);
+  }
+
+  61.7%,
+  71.7% {
+    transform: translateY(2.625em) scaleY(1);
+  }
+
+  83.3% {
+    transform: translateY(0) scaleY(4.5);
+  }
+}

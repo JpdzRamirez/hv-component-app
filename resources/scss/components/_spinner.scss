@@ -3,20 +3,34 @@
 /**
 	preloader
 **/
-@keyframes ripple {
-  from {
-    transform: scale(0);
-    opacity: 1;
-  }
+.preloader {
+  .containerPreloader {
 
-  to {
-    transform: scale(1);
-    opacity: 0;
+    &__a,
+    &__b,
+    &__c,
+    &__d {
+      width: 0.75em;
+      height: 0.75em;
+    }
   }
 }
-
 .preloader {
+  .containerPreloader {
+    &__a,
+    &__b,
+    &__c,
+    &__d {
+      animation: bounce3 2s ease-in-out infinite;
+      transform-origin: 50% 0;
+    }
+  }
+}
+.preloader {
+  display: flex;
   position: fixed;
+  align-items: center;
+  justify-content: center;
   top: 0;
   left: 0;
   z-index: 99;
@@ -24,24 +38,28 @@
   width: 100vw;
   height: 100vh;
   transition: opacity 0.5s ease;
-
-  div {
+  .containerPreloader {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    width: 6rem;
-    top: 50vh;
-    left: 50vw;
-    height: 6rem;
-    border-radius: 50%;
-    border: .3rem solid #fff;
-    animation: 3.5s ripple infinite;
-    color: $white-color;
-
-    &:nth-child(2) {
-      animation-delay: 2s;
+    justify-content: space-between;
+    width: 10em;
+    &__a {
+      background: $danger-color;
+    }
+    &__b {
+      background: $warning-color;
+      animation-delay: 0.1s;
+    }
+    &__c {
+      background: $primary-color;
+      animation-delay: 0.2s;
+    }
+  }
+}
+.preloader {
+  .containerPreloader {
+    &__d {
+      background: $success-color;
+      animation-delay: 0.3s;
     }
   }
 }
@@ -51,7 +69,6 @@
   pointer-events: none;
   /* Evitar que interactúe */
 }
-
 /*     SPINNER     */
 .spinner {
   position: fixed;
@@ -112,6 +129,7 @@
   border-radius: 50%;
   animation: animateC 2s linear infinite;
 }
+
 .spinner:after {
   content: '';
   position: inherit;
@@ -123,9 +141,21 @@
   backdrop-filter: blur(2px);
   background-color: var(--scrollbar-bg);
 }
+
 .spinner.hidden {
   opacity: 0;
   display: none;
   pointer-events: none;
   /* Evitar que interactúe */
 }
+
+
+
+/* Dark theme */
+@media (prefers-color-scheme: dark) {
+  \:root {
+    --bg: #{hsl(223,10%,10%)};
+    --fg: #{hsl(223,10%,90%)};
+  }
+}
+

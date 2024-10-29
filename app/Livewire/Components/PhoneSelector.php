@@ -23,10 +23,9 @@ class PhoneSelector extends Component
         $this->selectedPhoneIndicator = $optionSelected;
         $this->dispatch('bindingPhoneRoot', $optionSelected);
     }
-    public function inputPhoneCharger(string $numberInput)
+    public function inputPhoneCharger()
     {
-        $this->phoneNumber = $numberInput;
-        $this->dispatch('bindingPhoneNumber', $numberInput);
+        $this->dispatch('bindingPhoneNumber', $this->phoneNumber);
     }
     public function render()
     {
