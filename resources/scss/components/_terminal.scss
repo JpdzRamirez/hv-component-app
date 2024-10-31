@@ -1,0 +1,82 @@
+@use "../utils" as *;
+
+.console,
+.console:before,
+.console:after:after {
+	position: absolute;
+}
+.console {
+	height: 80vh;
+	width: 80vw;
+	margin: 10vh 10vw;
+	padding: 26px 4px 4px;
+	border-radius: 5px;
+	background: linear-gradient(#f6f6f6, #d3d3d3 20px, #7e7e7e 20px, #7e7e7e 21px, #393456 21px);
+	box-shadow: 0 0 0 1px rgba(0,0,0,0.25);
+	transition: all 0.5s ease;
+	&:before {
+		content: " ";
+		width: 10px;
+		height: 10px;
+		margin: -20px 0 0 5px;
+		border-radius: 5px;
+		background: #fc625d;
+		box-shadow: 0 0 0 1px #de413e, 15px 0 #fec041, 15px 0 0 1px #dda035, 30px 0 #35cc4b, 30px 0 0 1px #28aa36;
+	}
+	&:after {
+		width: 100%;
+		content: "Pure CSS Terminal";
+		top: 0;
+		text-align: center;
+		color: #4c4c4c;
+		line-height: 20px;
+	}
+	p {
+		color: #fff;
+		&:before {
+			content: "$";
+			margin-right: 8px;
+			opacity: 0.5;
+			line-height: 18px;
+		}
+		&:after {
+			animation: console 1s linear 1s infinite;
+			content: " ";
+			width: 8px;
+			height: 18px;
+			margin-left: 1px;
+			background: #fec041;
+		}
+	}
+	p:after {
+		position: absolute;
+	}
+}
+
+@keyframes console {
+		0% {
+			background: rgba(254,192,65,0);
+			}
+
+		50% {
+			background: rgba(254,192,65,0);
+			background: rgba(254,192,65,0);
+			background: rgba(254,192,65,0);
+			background: rgba(254,192,65,0);
+		}
+		51% {
+			background: #fec041;
+			background: #fec041;
+			background: #fec041;
+			background: #fec041;
+		}
+		100% {
+			background: #fec041;
+			background: #fec041;
+			background: #fec041;
+			background: #fec041;
+		}
+} 
+
+
+

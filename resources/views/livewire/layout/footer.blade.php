@@ -1,7 +1,7 @@
 <div>
     <div class="taskBarFooter dark" id="taskBar-Footer">
         <div class="windows-container">
-          <a><i class="fa-solid fa-square-list"></i></a>
+          <a href="{{route('home')}}" target="_blanck"><i class="fa-solid fa-square-list"></i></a>
           <div class="windows-tab">
             <a id="max"><i class="fa-light fa-window-flip win-tab"></i><img src="{{asset('assets/img/wallpaper.jpg')}}" class="win-img"/></a>
             <a><i class="fa-light fa-window-flip win-tab"></i></a>
@@ -10,10 +10,10 @@
           <a><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
         </div>
         <div class="gadgets">
-          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/whatsapp.svg')}}" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/github.svg')}}" class="gadget"/></a>   
-          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/gmail.svg')}}" class="gadget"/></a>  
-          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/linkedin.svg')}}" class="gadget"/></a>
+          <a href="https://wa.me/573177163494" target="_blank"><img src="{{asset('assets/img/svg/whatsapp.svg')}}" class="gadget"/></a>
+          <a href="https://github.com/JpdzRamirez" target="_blank"><img src="{{asset('assets/img/svg/github.svg')}}" class="gadget"/></a>   
+          <a href="mailto:jeremyivanpedraza@gmail.com?Subject=%20Servicios%20de%20Programación%20" target="_blank"><img src="{{asset('assets/img/svg/gmail.svg')}}" class="gadget"/></a>  
+          <a href="https://www.linkedin.com/in/jeremy-iván-pedraza-hernández/" target="_blank"><img src="{{asset('assets/img/svg/linkedin.svg')}}" class="gadget"/></a>
           <a href="#" target="_blank"><img src="{{asset('assets/img/svg/terminal.png')}}" class="gadget"/></a>
           <a href="#" target="_blank"><img src="{{asset('assets/img/svg/google-chrome.svg')}}" class="gadget"/></a>
           <a href="#" target="_blank"><img src="{{asset('assets/img/svg/google-Drive.svg')}}" class="gadget"/></a>

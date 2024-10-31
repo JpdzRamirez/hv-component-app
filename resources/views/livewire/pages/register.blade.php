@@ -200,9 +200,9 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <livewire:components.location-selector :selectedCountry="$country" :initState="$state"
+                                    <livewire:components.tools.location-selector :selectedCountry="$country" :initState="$state"
                                         :initCity="$city" />
-                                    <livewire:components.phone-selector :selectedPhoneIndicator="$phone_root" :phoneNumber="$phone" />
+                                    <livewire:components.tools.phone-selector :selectedPhoneIndicator="$phone_root" :phoneNumber="$phone" />
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
                                             <label for="address"
@@ -350,33 +350,10 @@
                         </div>
                     </div>
                     {{-- Skills Media Form --}}
-                    <div class="content-section">
-                        <div class="content-section-title d-flex flex-row align-items-center">
-                            {{ __('forms.profile.skills') }}
-                        </div>
-                        <div class="apps-card">
-                            <div class="app-card maximized">
-                                <div class="tag-cointainer">
-                                    <div class="title">
-                                        <i class="fa-sharp fa-solid fa-trophy"></i>
-                                        <h2>{{ __('forms.profile.skills.subtitle') }}</h2>
-                                    </div>
-                                    <div class="content">
-                                        <p>{{ __('forms.profile.skills.content') }}</p>
-                                        <ul><input type="text" class="form-control" spellcheck="false"></ul>
-                                    </div>
-                                    <div class="details">
-                                        <p><span>10</span> {{ __('forms.profile.skills.tagCounter') }}</p>
-                                        <button>{{ __('forms.profile.skills.tagButton') }}</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <livewire:components.registerComponents.skillsform :skills="$skills"/>
                 </div>
             </div>
         </div>
-        <div class="overlay-app"></div>
     </div>
 </div>
 @push('templateModal')
@@ -426,6 +403,7 @@
             </div>
         </form>
     </div>
+    <div class="overlay-app"></div>
 @endpush
 @push('templateScripts')
     <script>
@@ -480,8 +458,20 @@
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
         // Toggler boton para actualizar modal
+
+        function toggleVisibility(selector, action) {
+            const elementSelector = `#${selector}`;
+            if (action === 'show') {                
+                $(elementSelector).addClass("visible");
+                $(".overlay-app").addClass("is-active");
+            } else {
+                $(elementSelector).removeClass("visible");
+                $(".overlay-app").addClass("is-active");
+            }
+        };
         $('button[data-toggle="modalSocialMedia"]').on("click", function() {
             // Obtener datos del botón
+            let idSelector=$(this).data('toggle');
             let modalsocialPrompt = $(this).data('form-socialprompt');
             let modalTitle = $(this).data('form-title');
             let modalBody = $(this).data('form-body');
@@ -492,7 +482,8 @@
             $('#modalSocialMedia #modalSocialMediaBody').text(modalBody);
             $('#modalSocialMedia #socialPromptInput').val(modalsocialPrompt);
             $('#modalSocialMedia #url').attr('placeholder', modalurlPlaceHolder);
-
+            console.log(idSelector)
+            toggleVisibility(idSelector,'show')
         });
 
         // Actualizar los valores del formulario de redes sociales

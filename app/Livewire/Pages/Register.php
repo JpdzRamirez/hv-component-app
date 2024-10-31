@@ -36,24 +36,27 @@ class Register extends Component
     public $socials = ['linkedin', 'facebook', 'github', 'office365', 'youtube', 'twitter', 'instagram'];
     public $socialMediaData = [];
 
+    public $skills=[];
+
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
         'bindingPhoneRoot' => 'updatePhoneRoot',
         'bindingPhoneNumber' => 'updatePhone',
+        'skillAdded'=>'updateSkills',
         'updateSocialPrompt',
         'socialMediaSubmitted',
     ];
 
     protected PresentationRepository $presentationRepository;
     //Functions
-    protected function processPhoto(array $validatedData)
-    {
+    protected function processPhoto($photo)
+    {   
         if ($this->photo) {
             $photoPath = $this->photo->getRealPath();
             $base64Photo = base64_encode(file_get_contents($photoPath));
-            $validatedData['photo'] = 'data:image/' . $this->photo->getClientOriginalExtension() . ';base64,' . $base64Photo;
+            $photo = 'data:image/' . $this->photo->getClientOriginalExtension() . ';base64,' . $base64Photo;
         }
-        return $validatedData;
+        return $photo;
     }
     private function loadSocialMediaData($socialMedia)
     {
@@ -69,7 +72,10 @@ class Register extends Component
             }
         }
     }
-    
+    private function loadSills($skills)
+    {
+        $this->skills=$skills->toArray();
+    }
     //*********************** */
     // Rules
     protected function rules()
@@ -97,6 +103,10 @@ class Register extends Component
                     // Inicializa las redes sociales si existen
                     if ($presentation->socialmedia) {
                         $this->loadSocialMediaData($presentation->socialmedia);
+                    }
+                    //Inicializa las skills en el form
+                    if ($presentation->skills) {
+                        $this->loadSills($presentation->skills);
                     }
 
                     $this->fullname = trim("{$presentation->firstname} {$presentation->lastname}");
@@ -128,6 +138,10 @@ class Register extends Component
             $this->fullname = trim("{$this->firstname} {$this->lastname}");
         }
     }
+    public function updatedPhoto(){
+        $tempPhoto=$this->photo;
+        $this->photo =$this->processPhoto($tempPhoto);
+    }
     public function socialMediaSubmitted($data)
     {
         // Si el valor de 'socialPrompt' es válido, asignarlo a la propiedad correspondiente
@@ -141,6 +155,10 @@ class Register extends Component
             $this->socialMediaData[$data['socialPrompt']]['terms'] = $data['terms'];
             $this->socialMediaData[$data['socialPrompt']]['marketing'] = $data['marketing'];
         }
+    }
+    public function updateSkills($skill)
+    {
+        $this->skills = $skill; // Añadir la habilidad al arreglo
     }
     //************************ */
     //Events binding
@@ -169,7 +187,9 @@ class Register extends Component
             $validatedData = $this->validate();
 
             // Procesar la foto en base64, si existe
-            $validatedData = $this->processPhoto($validatedData);
+            $tempPhoto=$validatedData['photo'];
+             
+            $validatedData['photo'] = $this->processPhoto($tempPhoto);
 
             // Usar el repositorio para crear la presentación
             $presentation=$this->presentationRepository->create($validatedData);

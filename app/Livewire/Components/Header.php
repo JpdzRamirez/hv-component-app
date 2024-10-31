@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components;
+namespace App\Livewire\components;
 
 use Livewire\Component;
 use App\Repositories\PresentationRepository;

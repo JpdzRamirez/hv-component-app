@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components;
+namespace App\Livewire\components\tools;
 
 use Livewire\Component;
 use App\Contracts\CountryServiceInterface;
@@ -97,7 +97,7 @@ class LocationSelector extends Component
 
     public function render()
     {
-        return view('livewire.components.location-selector',[
+        return view('livewire.components.tools.location-selector',[
             'customLocationId'=>$this->customLocationId,
         ]);
     }

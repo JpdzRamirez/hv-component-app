@@ -1,0 +1,117 @@
+@use "../utils" as *;
+
+.custom-template {
+	position: fixed;
+	top: 50%;
+	transform: translateY(-50%);
+	right: -325px;
+	width: 325px;
+	height: max-content;
+	display: block;
+	z-index: 1;
+	background: #ffffff;
+	transition: all .3s;
+	z-index: 1003;
+	box-shadow: -1px 1px 20px rgba(69, 65, 78, 0.15);
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	transition: all .5s;
+	&.open {
+		right: 0px;
+	}
+	.custom-toggle {
+		position: absolute;
+		width: 45px;
+		height: 45px;
+		background: #5867dd;
+		top: 50%;
+		left: -45px;
+		transform: translateY(-50%);
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		border-top-left-radius: 30px;
+		border-bottom-left-radius: 30px;
+		cursor: pointer;
+		color: #ffffff;
+		box-shadow: -5px 5px 20px rgba(69, 65, 78, 0.21);
+		i {
+			font-size: 20px;
+			animation: 1.3s spin linear infinite;
+		}
+	}
+	.title {
+		padding: 15px;
+		text-align: left;
+		font-size: 16px;
+		font-weight: 600;
+		color: #ffffff;
+		border-top-left-radius: 5px;
+		border-bottom: 1px solid #ebedf2;
+		background: #5867dd;
+	}
+	.custom-content {
+		padding: 20px 15px;
+		max-height: calc(100vh - 90px);
+		overflow: auto;
+	}
+	.switcher {
+		padding: 5px 0;
+	}
+	.switch-block {
+		h4 {
+			font-size: 13px;
+			font-weight: 600;
+			color: #444;
+			line-height: 1.3;
+			margin-bottom: 0;
+			text-transform: uppercase;
+		}
+	}
+	.btnSwitch {
+		margin-top: 20px;
+		margin-bottom: 25px;
+		button {
+			border: 0px;
+			height: 22px;
+			width: 22px;
+			outline: 0;
+			margin-right: 6px;
+			margin-bottom: 6px;
+			cursor: pointer;
+			padding: 0;
+			border-radius: 50%;
+			border: 2px solid #ededed;
+			position: relative;
+			transition: all .2s;
+			&:hover {
+				border-color: #0bf;
+			}
+			&.selected {
+				border-color: #0bf;
+				display: inline-flex;
+				align-items: center;
+			}
+		}
+	}
+	.img-pick {
+		padding: 4px;
+		min-height: 100px;
+		border-radius: 5px;
+		cursor: pointer;
+		img {
+			height: 100%;
+			height: 100px;
+			width: 100%;
+			border-radius: 5px;
+			border: 2px solid transparent;
+		}
+	}
+}
+.custom-template .btnSwitch button:not([data-color="white"], [data-color="bg1"], [data-color="bg2"], [data-color="bg3"]) .gg-check:after {
+	border-color: #fff;
+}
+.custom-template .img-pick:hover img, .custom-template .img-pick.active img {
+	border-color: #177dff;
+}

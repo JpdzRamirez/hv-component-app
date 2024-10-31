@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Livewire\Components;
+namespace App\Livewire\components\tools;
 
 use Livewire\Component;
 
@@ -29,6 +29,6 @@ class PhoneSelector extends Component
     }
     public function render()
     {
-        return view('livewire.components.phone-selector');
+        return view('livewire.components.tools.phone-selector');
     }
 }

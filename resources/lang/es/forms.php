@@ -40,8 +40,12 @@ return [
     'profile.skills' => 'Habilidades',
     'profile.skills.subtitle' => 'Añade tus Habilidades:',
     'profile.skills.content' => 'Presiona enter o coma para añadir.',
+    'profile.skills.input.placeholder' => 'Enter ↵',
     'profile.skills.tagCounter' => 'tags restantes.',
     'profile.skills.tagButton' => 'Eliminar todo',
+    'profile.skills-modal.title' => 'Descripción de ',
+    'profile.skills-modal.placeholder' => 'Tengo habilidades en  ',
+    'profile.skills-modal.label' => 'Añade una descripción',
 
 
 ];

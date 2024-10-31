@@ -125,15 +125,9 @@ toggleButton.on("click", function() {
   if ($('body').hasClass('light-mode')) {
     $("#dark-light-icon").removeClass("fa-solid fa-sun");
     $("#dark-light-icon").addClass("fa-solid fa-moon-cloud");
-    document.documentElement.style.setProperty('--text-default-color', '#333333');
-    document.documentElement.style.setProperty('--bg-default-color', '#ffff');
-    document.documentElement.style.setProperty('--bg-default-colorTransparent', '#f8f9fa');
   } else {
     $("#dark-light-icon").removeClass("fa-solid fa-moon-cloud");
     $("#dark-light-icon").addClass("fa-solid fa-sun");
-    document.documentElement.style.setProperty('--text-default-color', '#ffff');
-    document.documentElement.style.setProperty('--bg-default-color', '#515151');
-    document.documentElement.style.setProperty('--bg-default-colorTransparent', '#343a40');
   }
 });
 
@@ -206,30 +200,35 @@ $("#openBatteryToast").on("click", function() {
   }
 });
 
-// boton status-button mostrar
-$(".status-button:not(.open)").on("click", function() {
-  $(".pop-up").addClass("visible");
-});
-$(".status-button.open").on("click", function() {
-  $(".pop-up").removeClass("visible");
-});
 // Boton X cerrar modal popup
 $(".pop-up .close").on("click", function() {
   let form = $(this).closest(".pop-up").find("form");
   if(form)form.trigger('reset');  // Restablecer el formulario a su estado inicial  
   $(".pop-up").removeClass("visible");
 });
-//Botones status-button no submit
-$(".status-button:not(.open)").on("click",  function(e) {
-  // Si no es tipo submit, agrega un overlay
-  if ($(this).attr("type") != "submit") {    
-    $(".overlay-app").addClass("is-active");
-}
-});
+
 //Boton cancelar modal poupup
 $(".pop-up .close").on("click",function() {
   $(".overlay-app").removeClass("is-active");
 });
+
+// eliminador de mensajes de session flash
+
+  // Desvanece el mensaje de error si existe
+  let errorMessage = $('#error-message');
+  if (errorMessage.length) {
+      setTimeout(function() {
+          errorMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
+      }, 3000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
+  }
+
+  // Desvanece el mensaje de éxito si existe
+  let successMessage = $('#success-message');
+  if (successMessage.length) {
+      setTimeout(function() {
+          successMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
+      }, 3000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
+  }
 
 
 
