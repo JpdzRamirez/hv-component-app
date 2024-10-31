@@ -212,24 +212,6 @@ $(".pop-up .close").on("click",function() {
   $(".overlay-app").removeClass("is-active");
 });
 
-// eliminador de mensajes de session flash
-
-  // Desvanece el mensaje de error si existe
-  let errorMessage = $('#error-message');
-  if (errorMessage.length) {
-      setTimeout(function() {
-          errorMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
-      }, 3000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
-  }
-
-  // Desvanece el mensaje de éxito si existe
-  let successMessage = $('#success-message');
-  if (successMessage.length) {
-      setTimeout(function() {
-          successMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
-      }, 3000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
-  }
-
 
 
 

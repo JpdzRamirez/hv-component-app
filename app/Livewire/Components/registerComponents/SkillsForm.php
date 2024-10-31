@@ -14,7 +14,9 @@ class SkillsForm extends Component
 
     protected CastServiceInterface $castService;
 
-    protected $listeners = ['skilldescription' => 'skillSubmitted'];
+    protected $listeners = [
+        'skillSubmitted'
+    ];
 
     public function mount(CastServiceInterface $castService)
     {
@@ -49,6 +51,15 @@ class SkillsForm extends Component
                 skill: $this->skills
             )->to('pages.register');
         }
+    }
+    public function clearSkills()
+    {
+        // Elimina todos los registros y actualiza el formulario padre
+        $this->skills = []; 
+        $this->dispatch(
+            'skillAdded',
+            skill: $this->skills
+        )->to('pages.register');
     }
     public function skillSubmitted(CastServiceInterface $castService, $description)
     {

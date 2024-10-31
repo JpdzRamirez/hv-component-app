@@ -355,6 +355,7 @@
             </div>
         </div>
     </div>
+    <div class="overlay-app"></div>
 </div>
 @push('templateModal')
     {{-- MODAL SOCIAL MEDIA FORM --}}
@@ -402,8 +403,7 @@
                     class="content-button status-button open close">{{ __('forms.register.button-cancel') }}</button>
             </div>
         </form>
-    </div>
-    <div class="overlay-app"></div>
+    </div>    
 @endpush
 @push('templateScripts')
     <script>
@@ -457,8 +457,26 @@
         function capitalizeFirstLetter(string) {
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
-        // Toggler boton para actualizar modal
+        // Limpiador de errores
+        function cleanFlashRegisters(){
+            // Desvanece el mensaje de error si existe
+            let errorMessage = $('#error-message');            
+            if (errorMessage.length) {
+                setTimeout(function() {
+                    errorMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
+                }, 2000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
+            }
 
+            // Desvanece el mensaje de éxito si existe
+            
+            let successMessage = $('#success-message');
+            if (successMessage.length) {
+                setTimeout(function() {
+                    successMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
+                }, 2000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
+            }
+        }
+        // Toggler boton para actualizar modal
         function toggleVisibility(selector, action) {
             const elementSelector = `#${selector}`;
             if (action === 'show') {                
@@ -466,7 +484,7 @@
                 $(".overlay-app").addClass("is-active");
             } else {
                 $(elementSelector).removeClass("visible");
-                $(".overlay-app").addClass("is-active");
+                $(".overlay-app").removeClass("is-active");
             }
         };
         $('button[data-toggle="modalSocialMedia"]').on("click", function() {
@@ -482,7 +500,7 @@
             $('#modalSocialMedia #modalSocialMediaBody').text(modalBody);
             $('#modalSocialMedia #socialPromptInput').val(modalsocialPrompt);
             $('#modalSocialMedia #url').attr('placeholder', modalurlPlaceHolder);
-            console.log(idSelector)
+            
             toggleVisibility(idSelector,'show')
         });
 
