@@ -1,0 +1,51 @@
+@use "../../utils" as *;
+
+.starRankting {
+  width: 400px;
+  height: 4em;
+  position: relative;
+  flex-direction: row-reverse;
+  display: flex;
+  gap: 1em;  
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.starRankting label {
+  position: relative;
+  cursor: pointer;
+  padding: 0 10px;
+  height: 3em;
+  width: 3em;
+}
+.starRankting label:nth-of-type(5):after {
+  animation-delay: 0.5s;
+}
+.starRankting label:nth-of-type(4):after {
+  animation-delay: 0.4s;
+}
+.starRankting label:nth-of-type(3):after {
+  animation-delay: 0.3s;
+}
+.starRankting label:nth-of-type(2):after {
+  animation-delay: 0.2s;
+}
+.starRankting label:nth-of-type(1):after {
+  animation-delay: 0.1s;
+}
+.starRankting label:after {
+  transition: all 1s ease-out;
+  position: relative;
+  content: "☆";
+  color: orange;
+  font-size: xx-large;
+}
+.starRankting input {
+  display: none;
+}
+.starRankting input:checked + label:after,
+.starRankting input:checked ~ label:after {
+  content: "★";
+  color: gold;
+  text-shadow: 0 0 10px gold;
+}

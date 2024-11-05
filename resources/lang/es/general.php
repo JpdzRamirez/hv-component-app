@@ -10,5 +10,6 @@ return [
     'header-menu.studys'=>'Estudios',
     'header-menu.contact'=>'Contacto',
     'search-bar'=>'Buscar',
-    'battery-toast'=>'Fuente de alimentación: Adaptador de corriente'
+    'battery-toast'=>'Fuente de alimentación: Adaptador de corriente',
+    'toast-message.title'=>'Notificación'
 ];

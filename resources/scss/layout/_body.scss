@@ -19,7 +19,7 @@
     width: 2em;
     height: 2em;
     display: inline-flex;
-    bottom: 80px;
+    top:1em;
     right: 30px;
     background-color: var(--dropdown-bg);
     box-shadow: -1px 3px 8px -1px rgba(0, 0, 0, 0.2);
@@ -113,3 +113,46 @@ body.light-mode .video-bg:before {
         opacity: 1;
     }
 }
+div.toast.alert-success.flash-toast{
+    background-color: $success-color !important;
+    color: var(--text-default-color);
+    .toast-header{
+        background-color: var(--bg-default-colorTransparent); 
+        color: var(--text-default-color);
+    }
+}
+div.toast.alert-warning.flash-toast{
+    background-color: $warning-color !important;
+    color: var(--text-default-color);
+    .toast-header{
+        background-color: var(--bg-default-colorTransparent);        
+        color: var(--text-default-color);
+    }
+}
+div.toast.alert-danger.flash-toast{
+    background-color: $danger-color !important;
+    color: var(--text-default-color);
+    .toast-header{
+        background-color: var(--bg-default-colorTransparent);        
+        color: var(--text-default-color);
+    }
+}
+div.toast.alert-info.flash-toast{
+    background-color: $info-color !important;
+    color: var(--text-default-color);
+    .toast-header{
+        background-color: var(--bg-default-colorTransparent);
+        color: var(--text-default-color);        
+    }
+}
+
+.flash-toast{
+    display: grid !important;
+    text-align: center !important;
+    position: fixed !important;
+    z-index: 10;
+    bottom: 6em;
+    right: 1em;
+    color: $white-color;
+}
+

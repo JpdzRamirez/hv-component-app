@@ -6,8 +6,9 @@
     flex-direction: column;
 
     &-title {
-        color: var(--content-title-color);
+        color: var(--text-default-color);
         margin-bottom: 14px;
+        font-size: large;
     }
 
     ul {
@@ -34,7 +35,7 @@
             white-space: nowrap;
             transition: 0.3s;
 
-            &.adobe-product:hover {
+            &.social-media:hover {
                 background-color: var(--theme-bg-color);
 
                 &:first-child {
@@ -142,7 +143,22 @@
         margin: 0 12px;
     }
 
-
+    .menu.experience .dropdown ul{
+        width: 8em;
+        right: -1em;
+        &::before{
+            content: "";            
+            position: absolute;
+            width: 0;
+            right: 2em;
+            top: -1em;
+            z-index: -1;
+            height: 0;
+            border-left: 10px solid rgba(0, 0, 0, 0);
+            border-right: 10px solid rgba(0, 0, 0, 0);
+            border-bottom: 20px solid var(--dropdown-bg);
+        }
+    }
     .dropdown {
         position: relative;
         height: 53px;
@@ -165,6 +181,18 @@
             opacity: 0;
             transform: translatey(10px);
             transition: all 0.4s ease;
+            &::before{
+                content: "";            
+                position: absolute;
+                width: 0;
+                right: 1em;
+                top: -1em;
+                z-index: -1;
+                height: 0;
+                border-left: 10px solid rgba(0, 0, 0, 0);
+                border-right: 10px solid rgba(0, 0, 0, 0);
+                border-bottom: 20px solid var(--dropdown-bg);
+            }
 
             li .social-link {
                 width: 100%;
@@ -247,7 +275,28 @@
         &+.app-card {
             margin-left: 20px;
         }
-
+        .experience{
+            display: inline-flex;
+            +.line{
+                width: 100%;
+                height: 2px;
+                background-color: var(--text-default-color);
+                opacity: .7;
+                margin-bottom: 10px;
+            }
+            &-position{
+                font-size: larger;
+                font-weight: bold;
+                text-decoration: underline;
+                font-family: Ubuntu-Bold;
+            }
+            &-companny{
+                font-size: medium;
+            }   
+            &-serviceTime{
+                font-size: smaller;
+            }
+        }
         span {
             display: flex;
             align-items: center;

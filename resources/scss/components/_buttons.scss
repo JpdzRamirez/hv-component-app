@@ -1,17 +1,21 @@
 @use "../utils" as *;
 
 .content-button {
-    background-color: #3a6df0;
+    background-color: $primary-color;
     border: none;
     padding: 8px 26px;
-    color: #fff;
+    color: $white-color;
     border-radius: 20px;
     margin-top: 16px;
     cursor: pointer;
     transition: 0.3s;
     white-space: nowrap;
 }
-
+.content-button.submit-Button{    
+    width: 120px;
+    height: 40px;
+    background-color: $success-color !important;
+}
 .file {
     position: relative;
     display: flex;
@@ -19,11 +23,11 @@
     align-items: center;
 }
 
-.file>input[type='file'] {
-    display: none
+.file > input[type="file"] {
+    display: none;
 }
 
-.file>label {
+.file > label {
     font-size: 1rem;
     font-weight: 300;
     cursor: pointer;
@@ -44,29 +48,116 @@
     align-items: center;
 }
 
-.file>label:hover {
+.file > label:hover {
     border-color: var(--bg-default-colorTransparent);
 }
 
-.file>label:active {
+.file > label:active {
     background-color: $primary-color;
 }
 
-.file>label>i {
+.file > label > i {
     padding-right: 5px;
 }
 
-.file--upload>label {
+.file--upload > label {
     color: var(--text-default-color);
     border-color: var(--text-default-color);
 }
 
-.file--upload>label:hover {
+.file--upload > label:hover {
     border-color: var(--text-default-color);
     background-color: var(--text-default-color);
     color: var(--bg-default-color);
 }
 
-.file--upload>label:active {
+.file--upload > label:active {
     background-color: var(--content-bg);
+}
+
+div.submitButton {
+    position: relative;
+    button.circle {
+        padding: 0 !important;
+        background-color: $white-color;
+        border: solid 2px $success-color;
+        color: $success-color;
+        width: 120px;
+        height: 40px;
+        font-size: 18px;
+        font-weight: bold;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background-color 0.4s ease;
+        &:focus {
+            outline: none;
+        }
+        &::-moz-focus-inner {
+            border: none;
+            outline: none;
+        }
+        &:before {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background-color: $success-color;
+            margin: auto;
+            top: 1em;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+        &:after {
+            content: "";
+            display: block;
+            position: absolute;
+            width: 16px;
+            height: 8px;
+            border-left: solid 5px $white-color;
+            border-bottom: solid 5px $white-color;
+            opacity: 0;
+            transform: rotate(-45deg);
+            margin: auto;
+            top: 1em;
+            left: 0;
+            bottom: 0;
+            right: 0;
+        }
+    }
+
+    .circle {
+
+        animation-delay: 500ms, 3000ms;
+        animation-duration: 300ms, 800ms;
+        animation-timing-function: ease-out, ease-in;
+        animation-fill-mode: forwards, forwards;
+        animation-name: circle, button_grow;
+        &:before {
+            animation-delay: 800ms;
+            animation-duration: 2500ms;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            animation-name: grow;
+        }
+        &:after {
+            animation-delay: 4500ms;
+            animation-duration: 400ms;
+            animation-timing-function: ease-out;
+            animation-fill-mode: forwards;
+            animation-name: check;
+        }
+        .click {
+            animation-delay: 0s, 600ms;
+            animation-duration: 300ms, 100ms;
+            animation-timing-function: ease-in-out, linear;
+            animation-fill-mode: none, forwards;
+            animation-name: bounce, disapear;
+        }
+    }
+
+
+
 }

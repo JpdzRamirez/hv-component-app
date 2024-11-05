@@ -26,7 +26,7 @@
   //Variables del controlador
   let countriesData = @json($countries);
   let statesData = @json($states);
-  let citiesData = @json($cities);
+  let citiesData = @json($cities);  
 
   const initState= @json($initState);
   const initCity= @json($initCity);
@@ -49,11 +49,11 @@
         placeholder: "--{{ __('forms.register.select-country')}}--",
         data: countriesData.map(function(country) {
             return {
-                value: country.name.common,
-                img: country.flags.png,
+                value: country.name,
+                img: country.flag,
                 imgWidth: '50px',
                 imgHeight: '30px',
-                text: country.name.common,
+                text: country.name,
             };
         }),
     }, selectedCountry,selectorCountry,spanLang);

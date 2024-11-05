@@ -1,8 +1,8 @@
 @use "../utils" as *;
 
 ::selection {
-    color: #fff;
-    background: #353842;
+    color: $white-color;
+    background: $black-color;
   }
   .tag-cointainer {
 
@@ -34,30 +34,30 @@
             flex-wrap: wrap;
             padding: 7px;            
             border-radius: 5px;
-            border: 1px solid #a6a6a6;
+            border: 1px solid $body-text-color;
             flex-direction: row;
             justify-content: flex-start;
             border-radius: unset;
             border:unset;
             background-color: unset;
             li {
-                color: #333;
+                color: $default-color;
                 margin: 4px 3px;
                 list-style: none;
                 border-radius: 5px;
-                background: #f2f2f2;
+                background: $white-color;
                 padding: 5px 8px 5px 10px;
-                border: 1px solid #e3e1e1;
+                border: 1px solid $gray-text-color;
                 width: fit-content;
                 i {
                     height: 20px;
                     width: 20px;
-                    color: #808080;
+                    color: $body-text-color;
                     margin-left: 8px;
                     font-size: 12px;
                     cursor: pointer;
                     border-radius: 50%;
-                    background: #dfdfdf;
+                    background: $gray-text-color;
                     justify-content: center;
                   }
               }
@@ -71,7 +71,7 @@
       }
       input:after{
         padding: 7px;
-        border: 1px solid #a6a6a6;
+        border: 1px solid $gray-text-color;
         border-radius: 5px;
       }
       }
@@ -89,7 +89,7 @@
             transition: background 0.3s ease;
         }
         button:hover {
-            background: #fecd03;
+            background: $golden-color;
         }
     }
   }

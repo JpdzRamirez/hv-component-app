@@ -1,4 +1,4 @@
-<div>
+<div>    
     <div class="content-section">
         <div class="content-section-title d-flex flex-row align-items-center">
             {{ __('forms.profile.skills') }}
@@ -11,22 +11,13 @@
                         <h2>{{ __('forms.profile.skills.subtitle') }}</h2>
                     </div>
                     <div class="content" id="tagContent">
-                        @if (session()->has('error'))
-                            <div class="alert alert-danger" id="error-message">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-
-                        <!-- Mostrar mensaje de éxito si existe -->
-                        @if (session()->has('success'))
-                            <div class="alert alert-success" id="success-message">
-                                {{ session('success') }}
-                            </div>
-                        @endif
                         <p>{{ __('forms.profile.skills.content') }}</p>
                         <ul>
                             @foreach ($skills as $index => $skill)
-                                <li>
+                                <li
+                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                data-bs-custom-class="custom-tooltip"
+                                data-bs-title="<b>Descripción:</b>{{$skill['description']}}">
                                     {{ $skill['name'] }}
                                     <svg wire:click="removeSkill({{ $index }})"
                                         style="margin-rigth:0; with:24px;" class="close" width="12" height="12"
@@ -50,7 +41,7 @@
                 </div>
             </div>
         </div>
-    </div>    
+    </div>
 </div>
 @push('templateModal')
     <div id="modalSkills" tabindex="-1" role="dialog" aria-labelledby="modalSkillsLabel" class="pop-up">
@@ -117,11 +108,11 @@
 
         // Actualizar los valores del formulario de redes sociales
         $('#submitModalSkills').on('click', function(event) {
-            
+
             event.preventDefault(); // Evitar la recarga de la página
             // Obtener los valores de los inputs
             let form = $(this).closest(".pop-up").find("form");
-            let description = form.find('#description').val();            
+            let description = form.find('#description').val();
             // Despachar evento Livewire con los valores
             Livewire.dispatch('skillSubmitted', {
                 description: description
@@ -132,7 +123,7 @@
                 toggleVisibility("modalSkills", '');
                 setTimeout(() => {
                     cleanFlashRegisters()
-                },1000);
+                }, 2000);
             }, 600);
         });
     </script>

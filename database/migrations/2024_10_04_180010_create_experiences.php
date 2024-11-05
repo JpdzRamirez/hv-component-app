@@ -13,12 +13,17 @@ return new class extends Migration
     {
         Schema::create('experiences', function (Blueprint $table) {
             $table->id();
+            $table->longText('company_logo')->nullable();
+            $table->string('company');
             $table->string('position'); 
-            $table->string('company'); 
+            $table->string('main_role');
+            $table->mediumText('goals');
+            $table->boolean('status_working')->default(true);
             $table->date('start_date'); 
-            $table->date('end_date')->nullable(); 
-            $table->mediumText('description');
-            $table->string('feats',500);  
+            $table->date('end_date')->nullable();
+            $table->integer('rank_company')->default(0)->comment('Puntaje de 0 a 5');
+            $table->integer('rank_enviroment')->default(0)->comment('Puntaje de 0 a 5');
+            $table->boolean('recommend');
             $table->unsignedBigInteger('presentation_id'); 
             $table->timestamps();
 

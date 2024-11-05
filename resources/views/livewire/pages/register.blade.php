@@ -1,4 +1,5 @@
 <div>
+    <livewire:components.tools.toast />
     <div id="app" class="app">
         <header>
             <livewire:components.header />
@@ -6,6 +7,7 @@
         <div class="wrapper">
             <div class="main-container">
                 <div class="content-wrapper">
+                    <span wire:loading>Saving...</span>
                     <div class="content-profile-header">
                         <div class="row justify-content-center">
                             <div class="col-9">
@@ -47,9 +49,11 @@
                                                         </h5>
                                                         <div class="line"></div>
                                                         <div class="col-sm-12">
-                                                            <label for="description"
-                                                                class="mb-0 label-required">{{ __('forms.register.label-full-name') }}
-                                                            </label>
+                                                            @if (empty($description))
+                                                                <label for="description"
+                                                                    class="mb-0 label-required">{{ __('forms.register.label-description') }}
+                                                                </label>
+                                                            @endif
                                                         </div>
                                                         <div x-data="{ typing: false, description: '', fullText: @entangle('description'), index: 0 }" x-init="////  La funcion entangle nos permite por medio de apine comunicarnos con la variable
                                                         $watch('fullText', (newText) => {
@@ -238,14 +242,6 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="form-card-buttons">
-                                            <button type="submit"
-                                                class="content-button">{{ __('forms.register.button-submit') }}</button>
-                                        </div>
-                                        <span wire:loading>Saving...</span>
-                                    </div>
-                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -255,7 +251,7 @@
                         <div class="content-section-title">{{ __('forms.profile.social-media') }}</div>
                         <ul>
                             @foreach ($socials as $social)
-                                <li class="adobe-product">
+                                <li class="social-media">
                                     <div class="products">
                                         <img class="w-25" src="{{ asset('assets/img/svg/' . $social . '.svg') }}"
                                             alt="{{ ucfirst($social) }}">
@@ -291,7 +287,7 @@
                                     <div class="button-wrapper">
                                         <button type="button" data-toggle="modalSocialMedia"
                                             data-target="#modalSocialMedia"
-                                            data-form-title="Añadir {{ ucfirst($social) }}"
+                                            data-form-title="{{ empty($socialMediaData[$social]['url']) ? 'Añadir ' : 'Editar ' }}{{ ucfirst($social) }}"
                                             data-form-placeholder="{{ 'www.' . $social . '.com/your-user' }}"
                                             data-form-socialprompt="{{ $social }}"
                                             data-form-body="Ingrese por favor la URL de su perfil de {{ $social }}"
@@ -319,41 +315,24 @@
                                     </div>
                                 </li>
                             @endforeach
-
                         </ul>
                     </div>
                     {{-- END SOCIAL Media Form --}}
                     {{-- Experience Media Form --}}
-                    <div class="content-section">
-                        <div class="content-section-title d-flex flex-row align-items-center">
-                            {{ __('forms.profile.experience') }}
-                            <div class="app-card-buttons mt-0 ms-1">
-                                <button class="content-button status-button"><i
-                                        class="fa-solid fa-books-medical"></i></button>
-                                <div class="menu"></div>
-                            </div>
-                        </div>
-                        <div class="apps-card">
-                            <div class="app-card minimized">
-                                <span>
-                                    <img class="w-25" src="{{ asset('assets/img/svg/linkedin.svg') }}"
-                                        alt="Linkedin">
-                                    Linkedin
-                                </span>
-                                <div class="app-card__subtext">Edit, master and create fully proffesional videos
-                                </div>
-                                <div class="app-card-buttons">
-                                    <button type="button" class="content-button status-button">Update</button>
-                                    <div class="menu"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <livewire:components.registerComponents.experienceform :experiences="$experiences"/>
                     {{-- Skills Media Form --}}
                     <livewire:components.registerComponents.skillsform :skills="$skills"/>
+
+                    <div class="row">
+                        <div class="form-card-buttons submitButton d-flex flex-row justify-content-center">
+                            <button type="button" id="registerSubmit"
+                                class="content-button submit-Button"><span>{{ __('forms.register.button-submit') }}</span></button>
+                        </div>                        
+                    </div>
                 </div>
             </div>
         </div>
+    </form>
     </div>
     <div class="overlay-app"></div>
 </div>
@@ -458,24 +437,26 @@
             return string.charAt(0).toUpperCase() + string.slice(1);
         }
         // Limpiador de errores
-        function cleanFlashRegisters(){
-            // Desvanece el mensaje de error si existe
-            let errorMessage = $('#error-message');            
-            if (errorMessage.length) {
-                setTimeout(function() {
-                    errorMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
-                }, 2000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
-            }
-
+        function cleanFlashRegisters() {
             // Desvanece el mensaje de éxito si existe
-            
-            let successMessage = $('#success-message');
-            if (successMessage.length) {
+            let toastMessage = $('#toastMessage');                       
+            if (toastMessage.length) {
                 setTimeout(function() {
-                    successMessage.fadeOut(1000); // Desvanece en 1000ms (1 segundo)
-                }, 2000); // Espera 3000ms (3 segundos) antes de iniciar el desvanecimiento
+                    toastMessage.addClass('fade-out-top'); // Añade la clase para la animación
+                    setTimeout(function() {
+                        // Alterna entre las variables de color
+                        if (toastMessage.hasClass('slide-in-right')) {
+                            toastMessage.removeClass("slide-in-right");
+                            toastMessage.addClass("slide-in-right-out");
+                        } 
+                        setTimeout(() => {
+                            toastMessage.remove();
+                        }, 1000);
+                    }, 1000); // Tiempo de espera para que termine la animación
+                }, 2000); // Espera 2 segundos antes de iniciar el desvanecimiento
             }
         }
+
         // Toggler boton para actualizar modal
         function toggleVisibility(selector, action) {
             const elementSelector = `#${selector}`;

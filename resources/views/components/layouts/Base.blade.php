@@ -4,13 +4,14 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    <link rel="manifest" href="{{ asset('manifest.json') }}">
     <title>
         @yield('title', 'HV' . ' ' . __('general.owner'))
     </title>
 
     <!-- Fonts -->
-
     @vite(['resources/css/app.min.css', 'resources/js/app.js'])
     @livewireStyles
     <!-- Styles -->
@@ -48,10 +49,9 @@
     @stack('templateModal')
 
     @livewireScripts
-    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>
-    {{-- <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script> --}}
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+    <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>    
+    <script src="{{asset('assets/js/components/datePicker/bootstrap-datepicker.min.js')}}"></script>
     @stack('templateScripts')
 </body>
 

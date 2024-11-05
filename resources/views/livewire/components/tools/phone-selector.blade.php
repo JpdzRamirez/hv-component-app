@@ -32,12 +32,12 @@
                 placeholder: "--{{ __('forms.register.select-phone') }}--",
                 data: countriesPhoneData.map(function(country) {
                     return {
-                        value: country.idd.root + country.idd.suffixes,
-                        img: country.flags.png,
+                        value: country.phoneCode,
+                        img: country.flag,
                         imgWidth: '25px',
                         imgHeight: '15px',
-                        text: country.idd.root + country.idd.suffixes,
-                        name: country.name.common,
+                        text: country.phoneCode,
+                        name: country.name,
                     };
                 }),
             }, selectedPhoneIndicator, selectorPhone, spanLang);

@@ -37,6 +37,8 @@ class Register extends Component
     public $socialMediaData = [];
 
     public $skills=[];
+    public $experiences=[];
+    public $studies=[];
 
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
@@ -76,6 +78,14 @@ class Register extends Component
     {
         $this->skills=$skills->toArray();
     }
+    private function loadExperiences($experiences)
+    {
+        $this->experiences=$experiences->toArray();
+    }
+    private function loadStudies($studies)
+    {
+        $this->studies=$studies->toArray();
+    }
     //*********************** */
     // Rules
     protected function rules()
@@ -107,6 +117,12 @@ class Register extends Component
                     //Inicializa las skills en el form
                     if ($presentation->skills) {
                         $this->loadSills($presentation->skills);
+                    }
+                    if ($presentation->experiences) {
+                        $this->loadExperiences($presentation->experiences);
+                    }
+                    if ($presentation->studies) {
+                        $this->loadStudies($presentation->studies);
                     }
 
                     $this->fullname = trim("{$presentation->firstname} {$presentation->lastname}");
@@ -156,9 +172,9 @@ class Register extends Component
             $this->socialMediaData[$data['socialPrompt']]['marketing'] = $data['marketing'];
         }
     }
-    public function updateSkills($skill)
+    public function updateSkills($skills)
     {
-        $this->skills = $skill; // Añadir la habilidad al arreglo
+        $this->skills = $skills; // Añadir la habilidad al arreglo
     }
     //************************ */
     //Events binding
