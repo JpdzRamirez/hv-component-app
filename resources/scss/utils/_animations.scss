@@ -430,7 +430,7 @@
 @keyframes circle {
   100% {
       width: 40px;
-      border: solid 6px #ccc;
+      border: solid 6px $white-color;
   }
 }
 
@@ -453,13 +453,13 @@
 
 @keyframes button_grow {
   0% {
-      border: solid 2px $success-color;
-      background-color: $success-color;
+      border: solid 2px $primary-color;
+      background-color: $primary-color;
       width: 40px;
   }
   100% {
-      border: solid 2px $success-color;
-      background-color: $success-color;
+      border: solid 2px $primary-color;
+      background-color: $primary-color;
       width: 120px;
   }
 }
@@ -475,5 +475,73 @@
   100% {
       opacity: 1;
       transform: scale(1) rotate(-45deg);
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation shake-vertical attention-finger
+ * ----------------------------------------
+ */
+
+.shake-vertical {
+	-webkit-animation: shake-vertical 10s ease-out infinite both;
+	        animation: shake-vertical 10s ease-out infinite both;
+}
+
+ @-webkit-keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+  }
+  80% {
+    -webkit-transform: translateY(3.4px);
+            transform: translateY(3.4px);
+  }
+  90% {
+    -webkit-transform: translateY(-2.4px);
+            transform: translateY(-2.4px);
+  }
+}
+@keyframes shake-vertical {
+  0%,
+  100% {
+    -webkit-transform: translateY(0);
+            transform: translateY(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    -webkit-transform: translateY(-2px);
+            transform: translateY(-2px);
+  }
+  20%,
+  40%,
+  60% {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+  }
+  80% {
+    -webkit-transform: translateY(3.4px);
+            transform: translateY(3.4px);
+  }
+  90% {
+    -webkit-transform: translateY(-2.4px);
+            transform: translateY(-2.4px);
   }
 }

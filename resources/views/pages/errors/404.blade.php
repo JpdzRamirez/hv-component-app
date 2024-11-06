@@ -29,8 +29,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="overlay-app"></div>
+        </div>        
     </div>
     </div>
 </x-layouts.base>

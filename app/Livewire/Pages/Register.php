@@ -226,7 +226,7 @@ class Register extends Component
             session()->flash('success', 'Presentación creada exitosamente');
         } catch (ValidationException $exception) {
             // Emitimos un solo evento con todos los errores relevantes
-            $this->dispatch('receiveErrors', array_filter([
+            $this->dispatch('receiveErrorsSelectors', array_filter([
                 'country' => $exception->validator->errors()->get('country'),
                 'state' => $exception->validator->errors()->get('state'),
                 'city' => $exception->validator->errors()->get('city'),

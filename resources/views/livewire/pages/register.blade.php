@@ -19,12 +19,14 @@
                                                 <div class="col-12 col-sm-10 col-md-8 col-lg-4 jelly-bloc">
                                                     <div class="card-img card-pic slowfloat2s">
                                                         @if ($photo instanceof \Livewire\TemporaryUploadedFile)
-                                                            <img id="profile-photo" src="{{ $photo->temporaryUrl() }}" />
+                                                            <img id="profile-photo"
+                                                                src="{{ $photo->temporaryUrl() }}" />
                                                         @elseif ($photo)
                                                             <img id="profile-photo" src="{{ $photo }}" />
                                                         @else
-                                                            <img id="profile-photo" src="https://dl.dropbox.com/s/u3j25jx9tkaruap/Webp.net-resizeimage.jpg?raw=1" />
-                                                        @endif                                                       
+                                                            <img id="profile-photo"
+                                                                src="https://dl.dropbox.com/s/u3j25jx9tkaruap/Webp.net-resizeimage.jpg?raw=1" />
+                                                        @endif
                                                     </div>
                                                     <div class="file file--upload">
                                                         <label for="photo">
@@ -178,8 +180,9 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="email" id="email"
-                                                class="form-control @error('email') is-invalid @enderror" name="email"
-                                                wire:model="email" placeholder="user@mail.com" value="">
+                                                class="form-control @error('email') is-invalid @enderror"
+                                                name="email" wire:model="email" placeholder="user@mail.com"
+                                                value="">
                                             @error('email')
                                                 <div class="invalid-feedback">
                                                     {{ $message }}
@@ -260,17 +263,17 @@
                                     <span class="status">
                                         <span class="status">
                                             @if ($socialMediaData[$social]['url'] && empty($socialMediaData[$social]['status']))
-                                            <span class="status-circle green"></span>
-                                            <span class="status-content">                                                
-                                                {{$socialMediaData[$social]['url']}}
-                                            </span>
-                                            @elseif($socialMediaData[$social]['status']=='added')
+                                                <span class="status-circle green"></span>
+                                                <span class="status-content">
+                                                    {{ $socialMediaData[$social]['url'] }}
+                                                </span>
+                                            @elseif($socialMediaData[$social]['status'] == 'added')
                                                 <span class="status-circle blue"></span>
                                                 <span class="status-content">
                                                     Añadido
                                                     <code>Pendiente guardar cambios</code>
                                                 </span>
-                                            @elseif ($socialMediaData[$social]['status']=='edited')
+                                            @elseif ($socialMediaData[$social]['status'] == 'edited')
                                                 <span class="status-circle"></span>
                                                 <span class="status-content">
                                                     Editado
@@ -279,7 +282,7 @@
                                             @else
                                                 <span class="status-circle red"></span>
                                                 <span class="status-content">
-                                                    Sin Añadir                                                    
+                                                    Sin Añadir
                                                 </span>
                                             @endif
                                         </span>
@@ -299,13 +302,14 @@
                                             @endif
                                         </button>
                                         <div class="menu">
-                                            <button class="dropdown">
+                                            <button type="button" class="dropdown">
                                                 <ul>
                                                     <li>
                                                         @if (empty($socialMediaData[$social]['url']))
                                                             <a class="social-link" href="#">Sin Url</a>
                                                         @else
-                                                            <a class="social-link" target="_blank" href="{{ $socialMediaData[$social]['url'] }}">Ir</a>
+                                                            <a class="social-link" target="_blank"
+                                                                href="{{ $socialMediaData[$social]['url'] }}">Ir</a>
                                                         @endif
 
                                                     </li>
@@ -319,20 +323,20 @@
                     </div>
                     {{-- END SOCIAL Media Form --}}
                     {{-- Experience Media Form --}}
-                    <livewire:components.registerComponents.experienceform :experiences="$experiences"/>
+                    <livewire:components.registerComponents.experienceform :experiences="$experiences" />
                     {{-- Skills Media Form --}}
-                    <livewire:components.registerComponents.skillsform :skills="$skills"/>
+                    <livewire:components.registerComponents.skillsform :skills="$skills" />
 
                     <div class="row">
                         <div class="form-card-buttons submitButton d-flex flex-row justify-content-center">
                             <button type="button" id="registerSubmit"
                                 class="content-button submit-Button"><span>{{ __('forms.register.button-submit') }}</span></button>
-                        </div>                        
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </form>
+        </form>
     </div>
     <div class="overlay-app"></div>
 </div>
@@ -364,13 +368,13 @@
                 <input type="checkbox" id="marketing" class="checkbox">
                 <label for="marketing">{{ __('forms.profile.social-media-modal.marketing') }}</label>
             </div>
-            <div class="row mb-3">
+            <div class="row mb-3" id="inputGroupURL">
                 <div class="col-sm-3">
-                    <label for="url"
+                    <label for="url" 
                         class="mb-0 label-required">{{ __('forms.profile.social-media-modal.URL') }}:</label>
                 </div>
-                <div class="col-sm-9 text-secondary">
-                    <input type="text" class="form-control" id="url" name="url" placeholder=""
+                <div class="col-sm-9 text-secondary" id="labelURL" >
+                    <input required type="text" class="form-control" id="url" name="url" placeholder=""
                         value="">
                     <input type="text" hidden id="socialPromptInput" name="socialPromptInput" value="">
                 </div>
@@ -382,11 +386,11 @@
                     class="content-button status-button open close">{{ __('forms.register.button-cancel') }}</button>
             </div>
         </form>
-    </div>    
+    </div>
 @endpush
 @push('templateScripts')
     <script>
-        document.addEventListener('receiveErrors', function(event) {
+        document.addEventListener('receiveErrorsSelectors', function(event) {
             // Obtén los errores del evento
             const errors = event.detail[0]; // Accedemos al primer (y único) objeto del arreglo
 
@@ -402,19 +406,38 @@
                 }
             }
         });
-        // Función para agregar error a un campo específico
+        // Función para agregar error a un campo específico para location y phone
         function addErrorToField(field, errorMessages) {
             // Convertir el nombre del campo a su ID en el DOM
             const labelId = `label${capitalizeFirstLetter(field)}`;
             const inputId = `${field}`;
+            const status_working = $('input[name="status_working"]:checked').val();
             // Agregar la clase 'is-invalid' al label y al input
-            if (labelId != "labelPhone") {
+            if (labelId != "labelPhone" && labelId != "labelStart_date") {
                 document.getElementById(labelId).classList.add('is-invalid');
             } else if (labelId == "labelPhone") {
                 document.getElementById("phone").classList.add('is-invalid');
+            } else if (labelId == "labelStart_date") {
+                if (status_working == "1") {
+                    document.getElementById("labelStartDateSingle").classList.add('is-invalid');
+                } else {
+                    document.getElementById("labelStartDateGroup").classList.add('is-invalid');
+                }
             }
             // Insertar el feedback debajo del input group
-            let inputGroup = document.getElementById(`inputGroup${capitalizeFirstLetter(field)}`);
+            let inputGroup = '';
+            if (field != "start_date") {
+                inputGroup = document.getElementById(`inputGroup${capitalizeFirstLetter(field)}`);
+            } else if (field == "start_date") {
+                if (status_working === "1") {
+                    inputGroup = document.getElementById("date");
+                } else {
+                    inputGroup = document.getElementById("dateRangeInvalid");
+                }
+            } else if (field == "recommend") {
+                inputGroup = document.getElementById("inputGroupRecommend");
+            }
+
             let feedbackDiv = document.createElement('div');
             feedbackDiv.classList.add('invalid-feedback');
             feedbackDiv.innerText = errorMessages.join(', '); // Mostrar los errores concatenados
@@ -439,7 +462,7 @@
         // Limpiador de errores
         function cleanFlashRegisters() {
             // Desvanece el mensaje de éxito si existe
-            let toastMessage = $('#toastMessage');                       
+            let toastMessage = $('#toastMessage');
             if (toastMessage.length) {
                 setTimeout(function() {
                     toastMessage.addClass('fade-out-top'); // Añade la clase para la animación
@@ -448,7 +471,7 @@
                         if (toastMessage.hasClass('slide-in-right')) {
                             toastMessage.removeClass("slide-in-right");
                             toastMessage.addClass("slide-in-right-out");
-                        } 
+                        }
                         setTimeout(() => {
                             toastMessage.remove();
                         }, 1000);
@@ -460,7 +483,7 @@
         // Toggler boton para actualizar modal
         function toggleVisibility(selector, action) {
             const elementSelector = `#${selector}`;
-            if (action === 'show') {                
+            if (action === 'show') {
                 $(elementSelector).addClass("visible");
                 $(".overlay-app").addClass("is-active");
             } else {
@@ -469,8 +492,10 @@
             }
         };
         $('button[data-toggle="modalSocialMedia"]').on("click", function() {
+             //Limpiamos errores previos
+            clearErrors();
             // Obtener datos del botón
-            let idSelector=$(this).data('toggle');
+            let idSelector = $(this).data('toggle');
             let modalsocialPrompt = $(this).data('form-socialprompt');
             let modalTitle = $(this).data('form-title');
             let modalBody = $(this).data('form-body');
@@ -481,20 +506,40 @@
             $('#modalSocialMedia #modalSocialMediaBody').text(modalBody);
             $('#modalSocialMedia #socialPromptInput').val(modalsocialPrompt);
             $('#modalSocialMedia #url').attr('placeholder', modalurlPlaceHolder);
-            
-            toggleVisibility(idSelector,'show')
-        });
 
+            toggleVisibility(idSelector, 'show')
+        });
+        // Función para validar la URL
+        function validateURL(url) {
+            let feedbackDiv = document.querySelector('#inputGroupURL .invalid-feedback');
+
+            if (!url) {
+                // Si no hay URL, mostrar el error solo si no existe el mensaje
+                if (!feedbackDiv) {
+                    document.getElementById("labelURL").classList.add('is-invalid');
+                    let inputGroup = document.getElementById("inputGroupURL");
+                    feedbackDiv = document.createElement('div');
+                    feedbackDiv.classList.add('invalid-feedback');
+                    feedbackDiv.innerText = "URL Required";
+                    inputGroup.appendChild(feedbackDiv);
+                }
+            } else {
+                // Si hay una URL, eliminar el mensaje de error y la clase 'is-invalid'
+                if (feedbackDiv) {
+                    feedbackDiv.remove(); // Eliminar el mensaje de error
+                }
+                document.getElementById("labelURL").classList.remove('is-invalid'); // Quitar la clase de error
+            }
+        }
         // Actualizar los valores del formulario de redes sociales
         $('#submitModalSocial').on('click', function(event) {
-            setTimeout(() => {
-                let form = $(this).closest(".pop-up").find("form");
-                if (form) form.trigger('reset');
-                $(".pop-up").removeClass("visible");
-            }, 600);
+
             event.preventDefault(); // Evitar la recarga de la página
-            // Obtener los valores de los inputs
+            // Obtener el valor de la URL
             let url = $('#url').val();
+            // Llamar a la función de validación de la URL
+            validateURL(url);
+            if(!url) return;
             let socialPrompt = $('#socialPromptInput').val();
             let terms = $('#temrs').is(':checked') ? 1 : 0;
             let marketing = $('#marketing').is(':checked') ? 1 : 0;
@@ -508,6 +553,11 @@
             Livewire.dispatch('socialMediaSubmitted', {
                 data: data
             });
+            setTimeout(() => {
+                let form = $(this).closest(".pop-up").find("form");
+                if (form) form.trigger('reset');
+                $(".pop-up").removeClass("visible");
+            }, 600);
         });
     </script>
 @endpush

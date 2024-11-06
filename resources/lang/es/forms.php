@@ -37,6 +37,8 @@ return [
     'profile.social-media-modal.URL' => 'URL',
 
     'profile.experience' => 'Experiencia Laboral',
+    'profile.experience-firstExperience' => 'Agrega tus experiencias aquí',
+    'profile.experience.edit' => 'Editar',
     'profile.experience-modal.defaultTitle' => 'Añadir experiencia',
     'profile.experience-modal.defaultSubTitle' => 'Describe tus funciones y logros',
     'profile.experience-modal.labelCompany-logo' => 'Logo de la empresa',

@@ -1,17 +1,11 @@
 @use "../utils" as *;
 
 /*     Form     */
-
-
-
-
-
-
-
-
-
-
-
+#inputGroupURL{
+    .invalid-feedback{
+        text-align: center;
+    }
+}
 
 // SELECT
 .form-select{

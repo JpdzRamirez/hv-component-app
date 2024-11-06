@@ -14,7 +14,7 @@
 .content-button.submit-Button{    
     width: 120px;
     height: 40px;
-    background-color: $success-color !important;
+    background-color: $primary-color !important;
 }
 .file {
     position: relative;
@@ -80,8 +80,8 @@ div.submitButton {
     button.circle {
         padding: 0 !important;
         background-color: $white-color;
-        border: solid 2px $success-color;
-        color: $success-color;
+        border: solid 2px $primary-color;
+        color: $white-color;
         width: 120px;
         height: 40px;
         font-size: 18px;
@@ -103,9 +103,9 @@ div.submitButton {
             width: 0;
             height: 0;
             border-radius: 50%;
-            background-color: $success-color;
+            background-color: $primary-color;
             margin: auto;
-            top: 1em;
+            top: 0.8em;
             left: 0;
             bottom: 0;
             right: 0;
@@ -121,7 +121,7 @@ div.submitButton {
             opacity: 0;
             transform: rotate(-45deg);
             margin: auto;
-            top: 1em;
+            top: 0.8em;
             left: 0;
             bottom: 0;
             right: 0;

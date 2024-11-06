@@ -156,3 +156,13 @@ div.toast.alert-info.flash-toast{
     color: $white-color;
 }
 
+.centered-row{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+.centered-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}

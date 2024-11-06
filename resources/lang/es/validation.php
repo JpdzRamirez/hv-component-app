@@ -101,19 +101,19 @@ return [
         ],
         'firstName' => [
             'required' => 'El campo :attribute es obligatorio.',
-            'string'=>'El campo :attribute solo admite caracteres',
+            'string' => 'El campo :attribute solo admite caracteres',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
         ],
         'lastName' => [
             'required' => 'El campo :attribute es obligatorio.',
-            'string'=>'El campo :attribute solo admite caracteres.',
+            'string' => 'El campo :attribute solo admite caracteres.',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
         ],
         'card' => [
             'required' => 'El campo :attribute es obligatorio.',
-            'string'=>'El campo :attribute solo admite caracteres.',
+            'string' => 'El campo :attribute solo admite caracteres.',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute solo admite numeros.',
         ],
@@ -156,20 +156,20 @@ return [
             'max' => 'El :attribute no debe exceder :max caracteres.',
         ],
         'phoneRoot' => [
-            'string'=>'El campo :attribute solo admite caracteres.',
+            'string' => 'El campo :attribute solo admite caracteres.',
             'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
-            'max' => 'El campo :attribute no puede exceder los :max caracteres.',           
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
         ],
         'phone' => [
-            'string'=>'El campo :attribute solo admite caracteres.',
+            'string' => 'El campo :attribute solo admite caracteres.',
             'regex' => 'El campo :attribute solo admite numeros.',
             'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
-            'max' => 'El campo :attribute no puede exceder los :max caracteres.',           
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
         ],
         'password' => [
             'required' => 'El campo :attribute es obligatorio.',
             'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
-            'minjs'=> 'Al menos 8 caracteres de longitud',
+            'minjs' => 'Al menos 8 caracteres de longitud',
             'confirmed' => 'Las contraseñas deben coincidir.',
             'lowercase' => 'Al menos 1 letra minúscula (a...z)',
             'number' => 'Al menos 1 número (0...9)',
@@ -198,6 +198,7 @@ return [
         'socialMediaData.*.marketing' => [
             'boolean' => 'El valor de marketing para :attribute debe ser verdadero o falso.',
         ],
+        'after_or_equal' => 'El campo :attribute debe ser una fecha posterior o igual a la fecha inicial.',
 
     ],
     /*
@@ -213,14 +214,18 @@ return [
     'attributes'           => [
         'name'                  => 'nombre',
         'username'              => 'usuario',
-        'email'                 => 'correo electrónico',
+        'email'                 => 'Correo electrónico',
         'first_name'            => 'nombre',
+        'firstname'             => 'Nombres',
+        'lastname'              => 'Apellidos',
+        'card'                  => 'C.C/T.I',
+        'email_confirm'         => 'Confirmación de correo electrónico',
         'last_name'             => 'apellido',
         'password'              => 'contraseña',
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
         'state'                 => 'Departamento',
-        'country'               => 'país',
+        'country'               => 'País',
         'address'               => 'dirección',
         'phone'                 => 'teléfono',
         'mobile'                => 'celular',
@@ -235,13 +240,14 @@ return [
         'second'                => 'segundo',
         'title'                 => 'título',
         'body'                  => 'contenido',
-        'description'           => 'descripción',
+        'description'           => 'Descripción',
         'excerpt'               => 'extracto',
         'date'                  => 'fecha',
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
         'required'              => 'Requerido',
+        'end_date'              =>  'Fecha fin',
 
         'socialMediaData.linkedin.url' => 'LinkedIn URL',
         'socialMediaData.linkedin.status' => 'estado de LinkedIn',
@@ -279,4 +285,3 @@ return [
         'socialMediaData.instagram.marketing' => 'marketing de Instagram',
     ],
 ];
-
