@@ -11,5 +11,6 @@ return [
     'header-menu.contact'=>'Contacto',
     'search-bar'=>'Buscar',
     'battery-toast'=>'Fuente de alimentación: Adaptador de corriente',
-    'toast-message.title'=>'Notificación'
+    'toast-message.title'=>'Notificación',
+    'button-accept'=>'Aceptar'
 ];

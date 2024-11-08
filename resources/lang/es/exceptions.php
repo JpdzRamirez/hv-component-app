@@ -9,5 +9,7 @@ return [
     'server_error' => 'Se ha producido un error en el servidor. Por favor, inténtelo más tarde.',
     'cURL_exception'=>'Error en la solicitud cURL',
     'cURL_exception-limit' => 'Error: No se pudo obtener una respuesta JSON válida después de :retries intentos.',    
+    'error-validation' => 'Error: La validación de los campos no cumplen con los requisitos.',    
+    'error-validation-message' => 'Por favor verifica el formulario.',    
     // Agrega más traducciones según sea necesario
 ];

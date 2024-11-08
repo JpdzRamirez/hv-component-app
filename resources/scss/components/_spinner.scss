@@ -69,6 +69,50 @@
   pointer-events: none;
   /* Evitar que interactúe */
 }
+  /* For error form submitt*/
+
+@keyframes warning-anim {
+  0% {
+    transform: scale(0);
+  }
+  30% {
+    transform: scale(0);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+  .error-submit{
+    width: 40px;
+    height: 40px;
+    border: solid 6px;
+    background-color: $warning-color !important;
+    transform: scale(1);
+    padding: 0;
+    animation: warning-anim 700ms ease;
+  }
+  .error-submit::before,
+  .error-submit::after {
+    content: "";
+    display: block;
+    height: 4px;
+    background: $body-text-color;
+    position: absolute;
+  }
+  
+  .error-submit::before {
+    width: 20px;
+    top: 48%;
+    left: 5px;
+    transform: rotateZ(50deg);
+  }
+  
+  .error-submit::after {
+    width: 20px;
+    top: 48%;
+    left: 5px;
+    transform: rotateZ(-50deg);
+  }
 /*     SPINNER     */
 .spinner {
   position: fixed;

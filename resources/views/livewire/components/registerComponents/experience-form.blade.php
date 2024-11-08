@@ -89,10 +89,10 @@
 
         <!-- Formulario dentro del modal -->
         <form>
-            <div class="mb-3">
-                <label for="company_logo" 
+            <div class="mb-3" id="inputGroupCompany_logo">
+                <label for="company_logo" id="labelCompany_logo"
                     class="mb-3 label-required">{{ __('forms.profile.experience-modal.labelCompany-logo') }}:</label>
-                <div class="input-group mb-3" id="inputGroupCompany_logo">
+                <div class="input-group mb-3">
                     <label class="input-group-text" for="company_logo"><i
                             class="fa-sharp-duotone fa-solid fa-photo-film"></i></label>
                     <input type="file" type="file" name="company_logo" id="company_logo" accept=".jpg,.jpeg,.png"
@@ -159,11 +159,12 @@
                         <div class="col-lg-13 col-13 px-1">
                             <div class="input-group input-daterange gap-2" id="inputGroupEnd_date">
                                 <input type="text" id="start_date_group" placeholder=""
-                                    class="form-control text-left mr-2">
+                                    class="form-control text-left mr-2" value="">
                                 <label class="ml-3 form-control-placeholder" id="labelStartDateGroup"
                                     for="start_date">{{ __('forms.profile.experience-modal.labelDateStart') }}</label>
                                 <span class="fa fa-calendar" id="fa-1"></span>
-                                <input type="text" id="end_date" placeholder="" class="form-control text-left ml-2">
+                                <input type="text" id="end_date_group" 
+                                placeholder="" class="form-control text-left ml-2" value="">
                                 <label class="ml-3 form-control-placeholder" id="end_date-label"
                                     for="end_date">{{ __('forms.profile.experience-modal.labelDateEnd') }}</label>
                                 <span class="fa fa-calendar" id="fa-2"></span>
@@ -231,8 +232,10 @@
                 </div>
             </div>
             <div class="content-button-wrapper d-flex flex-row justify-content-center gap-3">
-                <button type="button" id="submitModalExperience"
-                    class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
+                <div class="submitButton">
+                    <button type="button" id="submitModalExperience"
+                    class="content-button status-button"><span>{{ __('forms.register.button-submit') }}</span></button>
+                </div>
                 <button type="button"
                     class="content-button status-button open close">{{ __('forms.register.button-cancel') }}</button>
             </div>
@@ -241,39 +244,7 @@
 @endpush
 @push('templateScripts')
     <script>
-        document.addEventListener('experienceAdded', function(event) {
-            // Obtener el valor de 'response' desde 'event.detail'
-            let response = event.detail.response;
-            
-            if (response) {
-                setTimeout(() => {
-                let form = $(this).closest(".pop-up").find("form");
-                if (form) form.trigger('reset');
-                toggleVisibility("modalExperience", '');
-                setTimeout(() => {
-                    cleanFlashRegisters()
-                }, 2000);
-            }, 600);
-            }
 
-        });
-
-        document.addEventListener('receiveErrorsExperience', function(event) {
-            // Obtén los errores del evento
-            const errors = event.detail[0]; // Accedemos al primer (y único) objeto del arreglo
-
-            // Limpiar cualquier error anterior
-            clearErrors();
-
-            // Iterar sobre los errores y asignar las clases y mensajes de error apropiados
-            for (const field in errors) {
-                if (errors.hasOwnProperty(field)) {
-                    const errorMessages = errors[field]; // Array de mensajes de error                        
-                    // Actualizamos dinámicamente cada input con errores
-                    addErrorToField(field, errorMessages);
-                }
-            }
-        });
         $('#dateSingleInput').datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
@@ -313,7 +284,7 @@
             $('#modalExperience #modalExperienceTitle').text(modalTitle);
             $('#modalExperience #start_date_single').attr('placeholder', placeHolderDate);
             $('#modalExperience #start_date_group').attr('placeholder', placeHolderDate);
-            $('#modalExperience #end_date').attr('placeholder', placeHolderDate);
+            $('#modalExperience #end_date_group').attr('placeholder', placeHolderDate);
             // Mostrar el modal
             toggleVisibility(idSelector, 'show');
         });
@@ -334,11 +305,11 @@
             let end_date = '';
 
             // Verifica el valor de status_working y selecciona las fechas apropiadas
-            if (status_working) {
+            if (status_working=='1') {                
                 start_date = form.find('#start_date_single').val();
-            } else {
-                start_date = form.find('#start_date').val();
-                end_date = form.find('#end_date').val(); // Cambié aquí para usar el end_date
+            } else {                
+                start_date = form.find('#start_date_group').val();
+                end_date = form.find('#end_date_group').val(); // Cambié aquí para usar el end_date                
             }
 
             let rank_company = form.find('input[name="rank_company"]:checked').val();

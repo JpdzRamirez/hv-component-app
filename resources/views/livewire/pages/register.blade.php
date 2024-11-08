@@ -1,5 +1,44 @@
 <div>
     <livewire:components.tools.toast />
+    @if ($errors->any())
+        {{-- MODAL Error de validación --}}
+        <div x-data="{ visible: @entangle('errorVisibility') }" x-show="visible" id="modalErrors" tabindex="-1" role="dialog"
+            aria-labelledby="modalErrorsLabel" class="pop-up" :class="{ 'visible': visible }">
+
+            <div class="pop-up__title">
+                <h4 id="modalErrorsTitle">{{__('exceptions.error-validation')}}</h4>
+                <svg class="close" x-on:click="visible = false; $wire.call('closeErrors')" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M15 9l-6 6M9 9l6 6" />
+                </svg>
+            </div>
+
+            <div class="pop-up__subtitle">
+                <h6 id="modalErrorsBody">{{__('exceptions.error-validation-message')}}</h6>
+                <em>{{ __('forms.profile.social-media-modal.em') }}</em>
+                <a target="_blank" href="https://github.com/JpdzRamirez">
+                    {{ __('forms.profile.social-media-modal.a') }}
+                    <i style="color:#F04A63" class="fa-solid fa-circle-heart"></i>
+                </a>
+            </div>
+
+            <div class="row mb-3">
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+
+            <div class="content-button-wrapper submitButton d-flex flex-row justify-content-center gap-3">
+                <button type="button" class="content-button status-button"
+                    x-on:click="visible = false; $wire.call('closeErrors')">{{__('general.button-accept')}}</button>
+            </div>
+        </div>
+    @endif
     <div id="app" class="app">
         <header>
             <livewire:components.header />
@@ -99,15 +138,6 @@
                             </div>
                         </div>
                     </div>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
                     <div class="content-section">
                         <div class="content-section-title">
                             @if (Route::currentRouteName() == 'profile.create')
@@ -146,7 +176,8 @@
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text"
                                                 class="form-control @error('lastname') is-invalid @enderror"
-                                                id="lastname" name="lastname" wire:model.live.debounce.500ms="lastname"
+                                                id="lastname" name="lastname"
+                                                wire:model.live.debounce.500ms="lastname"
                                                 placeholder="{{ __('forms.register.label-last-name') }}"
                                                 value="">
                                             @error('lastname')
@@ -329,7 +360,7 @@
 
                     <div class="row">
                         <div class="form-card-buttons submitButton d-flex flex-row justify-content-center">
-                            <button type="button" id="registerSubmit"
+                            <button type="submit" id="registerSubmit"
                                 class="content-button submit-Button"><span>{{ __('forms.register.button-submit') }}</span></button>
                         </div>
                     </div>
@@ -338,7 +369,9 @@
         </div>
         </form>
     </div>
-    <div class="overlay-app"></div>
+    <div x-data="{ visible: @entangle('errorVisibility') }" 
+     :class="{ 'is-active': visible }" 
+     class="overlay-app"></div>
 </div>
 @push('templateModal')
     {{-- MODAL SOCIAL MEDIA FORM --}}
@@ -370,16 +403,16 @@
             </div>
             <div class="row mb-3" id="inputGroupURL">
                 <div class="col-sm-3">
-                    <label for="url" 
+                    <label for="url"
                         class="mb-0 label-required">{{ __('forms.profile.social-media-modal.URL') }}:</label>
                 </div>
-                <div class="col-sm-9 text-secondary" id="labelURL" >
+                <div class="col-sm-9 text-secondary" id="labelURL">
                     <input required type="text" class="form-control" id="url" name="url" placeholder=""
                         value="">
                     <input type="text" hidden id="socialPromptInput" name="socialPromptInput" value="">
                 </div>
             </div>
-            <div class="content-button-wrapper d-flex flex-row justify-content-center gap-3">
+            <div class="content-button-wrapper submitButton d-flex flex-row justify-content-center gap-3">
                 <button type="button" id="submitModalSocial"
                     class="content-button status-button">{{ __('forms.register.button-submit') }}</button>
                 <button type="button"
@@ -390,13 +423,56 @@
 @endpush
 @push('templateScripts')
     <script>
-        document.addEventListener('receiveErrorsSelectors', function(event) {
+        document.addEventListener('formSubmittSuccess', function(event) {
+            // Obtener el valor de 'response' desde 'event.detail'
+            let responseAgree = event.detail.response;
+            let modal = $(event.detail.modal);
+            let button = $(event.detail.button);
+
+            if (responseAgree) {
+                //Eliminar checked del registro
+                setTimeout(function() {
+                    button.removeClass("circle")
+                    button.children("span").removeClass("click")
+                }.bind(this), 9000)
+
+                if (modal) {
+                    setTimeout(() => {
+                        let form = modal.closest(".pop-up").find("form");
+                        if (form) form.trigger('reset');
+                        toggleVisibility("modalExperience", '');
+                        setTimeout(() => {
+                            cleanFlashRegisters()
+                        }, 2000);
+                    }, 600);
+                }
+
+            }
+
+        });
+        document.addEventListener('receiveErrors', function(event) {
             // Obtén los errores del evento
-            const errors = event.detail[0]; // Accedemos al primer (y único) objeto del arreglo
+            // Accedemos al primer (y único) objeto del arreglo
+
+            const errors = event.detail[0].errors;
+            let modal = $(event.detail[0].modal);
+            let button = $(event.detail[0].button);
 
             // Limpiar cualquier error anterior
             clearErrors();
+            if (button) {
+                button.removeClass("circle")
+                    .addClass("error-submit");
 
+                button.children("span")
+                    .removeClass("click")
+                    .attr("hidden", true);
+
+                setTimeout(() => {
+                    button.removeClass("error-submit");
+                    button.children("span").attr("hidden", false);
+                }, 3000);
+            }
             // Iterar sobre los errores y asignar las clases y mensajes de error apropiados
             for (const field in errors) {
                 if (errors.hasOwnProperty(field)) {
@@ -412,6 +488,8 @@
             const labelId = `label${capitalizeFirstLetter(field)}`;
             const inputId = `${field}`;
             const status_working = $('input[name="status_working"]:checked').val();
+
+
             // Agregar la clase 'is-invalid' al label y al input
             if (labelId != "labelPhone" && labelId != "labelStart_date") {
                 document.getElementById(labelId).classList.add('is-invalid');
@@ -432,7 +510,7 @@
                 if (status_working === "1") {
                     inputGroup = document.getElementById("date");
                 } else {
-                    inputGroup = document.getElementById("dateRangeInvalid");
+                    inputGroup = document.getElementById("inputGroupEnd_date");
                 }
             } else if (field == "recommend") {
                 inputGroup = document.getElementById("inputGroupRecommend");
@@ -492,7 +570,7 @@
             }
         };
         $('button[data-toggle="modalSocialMedia"]').on("click", function() {
-             //Limpiamos errores previos
+            //Limpiamos errores previos
             clearErrors();
             // Obtener datos del botón
             let idSelector = $(this).data('toggle');
@@ -512,23 +590,35 @@
         // Función para validar la URL
         function validateURL(url) {
             let feedbackDiv = document.querySelector('#inputGroupURL .invalid-feedback');
-
-            if (!url) {
+            const validator = [{
+                    regex: /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+(\.[a-zA-Z]{2,})(\.com)$/,
+                    index: 5
+                } // Validación de URL
+            ];
+            let isValid = false;
+            validator.forEach((item) => {
+                // Check if the password matches the requirement regex
+                isValid = item.regex.test(url);
+            });
+            if (!url || !isValid) {
                 // Si no hay URL, mostrar el error solo si no existe el mensaje
                 if (!feedbackDiv) {
                     document.getElementById("labelURL").classList.add('is-invalid');
                     let inputGroup = document.getElementById("inputGroupURL");
                     feedbackDiv = document.createElement('div');
                     feedbackDiv.classList.add('invalid-feedback');
-                    feedbackDiv.innerText = "URL Required";
+                    feedbackDiv.innerText = "Valid URL Required";
                     inputGroup.appendChild(feedbackDiv);
+                    return false;
                 }
             } else {
                 // Si hay una URL, eliminar el mensaje de error y la clase 'is-invalid'
                 if (feedbackDiv) {
                     feedbackDiv.remove(); // Eliminar el mensaje de error
                 }
-                document.getElementById("labelURL").classList.remove('is-invalid'); // Quitar la clase de error
+                // Quitar la clase de error
+                document.getElementById("labelURL").classList.remove('is-invalid');
+                return true;
             }
         }
         // Actualizar los valores del formulario de redes sociales
@@ -538,8 +628,8 @@
             // Obtener el valor de la URL
             let url = $('#url').val();
             // Llamar a la función de validación de la URL
-            validateURL(url);
-            if(!url) return;
+            let validate = validateURL(url);
+            if (!url || !validate) return;
             let socialPrompt = $('#socialPromptInput').val();
             let terms = $('#temrs').is(':checked') ? 1 : 0;
             let marketing = $('#marketing').is(':checked') ? 1 : 0;

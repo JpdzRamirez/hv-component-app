@@ -248,7 +248,9 @@ return [
         'message'               => 'mensaje',
         'required'              => 'Requerido',
         'end_date'              =>  'Fecha fin',
-
+        'start_date'            =>  'Fecha inicio',
+        'company_logo'          =>  'Logo de la empresa',
+        
         'socialMediaData.linkedin.url' => 'LinkedIn URL',
         'socialMediaData.linkedin.status' => 'estado de LinkedIn',
         'socialMediaData.linkedin.terms' => 'términos de LinkedIn',

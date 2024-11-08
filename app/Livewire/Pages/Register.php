@@ -11,6 +11,8 @@ use App\Repositories\PresentationRepository;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
 
+use App\Contracts\CastServiceInterface;
+
 class Register extends Component
 {
     use WithFileUploads;
@@ -32,6 +34,7 @@ class Register extends Component
     public $address;
     public $address_complement;
 
+
     // Variables Social Media
     public $socials = ['linkedin', 'facebook', 'github', 'office365', 'youtube', 'twitter', 'instagram'];
     public $socialMediaData = [];
@@ -40,16 +43,22 @@ class Register extends Component
     public $experiences=[];
     public $studies=[];
 
+    public $errorVisibility=false;
+
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
         'bindingPhoneRoot' => 'updatePhoneRoot',
         'bindingPhoneNumber' => 'updatePhone',
         'skillAdded'=>'updateSkills',
+        'experienceAdded'=>'updateExperiences',
         'updateSocialPrompt',
         'socialMediaSubmitted',
     ];
 
     protected PresentationRepository $presentationRepository;
+
+    protected CastServiceInterface $castService;
+
     //Functions
     protected function processPhoto($photo)
     {   
@@ -94,10 +103,11 @@ class Register extends Component
     }
     // ****************************************************
     // COMPONENT LIFE, hydrate y dhydrate
-    public function mount(PresentationRepository $presentationRepository, $description = null, $presentationID = null)
+    public function mount(PresentationRepository $presentationRepository,CastServiceInterface $castService, $description = null, $presentationID = null)
     {
         //Inicializar repositorio
         $this->presentationRepository = $presentationRepository;
+        $this->castService = $castService;
 
         if ($presentationID) {
             try {
@@ -147,16 +157,22 @@ class Register extends Component
             $this->description = $description;
         }   
     }
-    //Event live listener
+    /*
+    *******************************************
+    -----------Event live listener-------------
+    *******************************************
+    */
     public function updated($propertyName)
     {
         if (in_array($propertyName, ['firstname', 'lastname'])) {
             $this->fullname = trim("{$this->firstname} {$this->lastname}");
         }
     }
-    public function updatedPhoto(){
+    public function updatedPhoto(CastServiceInterface $castService){
+        //Inicializar Instancia
+        $this->castService = $castService;
         $tempPhoto=$this->photo;
-        $this->photo =$this->processPhoto($tempPhoto);
+        $this->photo =$this->castService->processPhoto($tempPhoto);
     }
     public function socialMediaSubmitted($data)
     {
@@ -174,10 +190,21 @@ class Register extends Component
     }
     public function updateSkills($skills)
     {
-        $this->skills = $skills; // Añadir la habilidad al arreglo
+        // Añadir la habilidad al arreglo
+        $this->skills = $skills; 
     }
+    public function updateExperiences($experiences)
+    {
+        // Añadir la experiencia al arreglo
+        $this->experiences = $experiences; 
+    }
+    
     //************************ */
-    //Events binding
+    /*
+    **************************************************
+    ---------------Events binding---------------------
+    **************************************************
+    */
     public function updateLocation($data)
     {
         $this->country = $data['country'];
@@ -193,19 +220,25 @@ class Register extends Component
         $this->phone = $data;
     }
     // ****************************************************
-    // Form method
-    public function store(PresentationRepository $presentationRepository)
+    /* 
+    ***************************************************
+    --------------Form method---------------------------
+    *****************************************************
+    */
+    public function store(PresentationRepository $presentationRepository,CastServiceInterface $castService)
     {
         try {
             //Inicializar instancia
             $this->presentationRepository=$presentationRepository;
+            $this->castService = $castService;
             // Obtener las reglas de validación desde StorePresentationRequest
             $validatedData = $this->validate();
 
+            
             // Procesar la foto en base64, si existe
             $tempPhoto=$validatedData['photo'];
              
-            $validatedData['photo'] = $this->processPhoto($tempPhoto);
+            $validatedData['photo'] = $this->castService->processPhoto($tempPhoto);
 
             // Usar el repositorio para crear la presentación
             $presentation=$this->presentationRepository->create($validatedData);
@@ -222,18 +255,39 @@ class Register extends Component
             // Asociar las redes sociales con la presentación creada
             $this->presentationRepository->createSocialMedia($presentation, $socialMediaData);
 
+            $this->dispatch('formSubmittSuccess', 
+                response:true,
+                modal: '',
+                button: '#registerSubmit'
+            );
             // Redireccionar o mostrar mensaje de éxito
             session()->flash('success', 'Presentación creada exitosamente');
         } catch (ValidationException $exception) {
+            $this->errorVisibility=true;
+
             // Emitimos un solo evento con todos los errores relevantes
-            $this->dispatch('receiveErrorsSelectors', array_filter([
-                'country' => $exception->validator->errors()->get('country'),
-                'state' => $exception->validator->errors()->get('state'),
-                'city' => $exception->validator->errors()->get('city'),
-                'phone' => $exception->validator->errors()->get('phone'),
-            ]));
+            $this->dispatch('receiveErrors', [
+                'errors' => array_filter([
+                    'country' => $exception->validator->errors()->get('country'),
+                    'state' => $exception->validator->errors()->get('state'),
+                    'city' => $exception->validator->errors()->get('city'),
+                    'phone' => $exception->validator->errors()->get('phone'),
+                ]),
+                // Añadimos destino de origen
+                'modal' => '',
+                'button'=> '#registerSubmit'
+            ]
+
+        );
 
             throw $exception;
+        }
+    }
+    
+    public function closeErrors()
+    {
+        if ($this->getErrorBag()->isNotEmpty()) {
+            $this->errorVisibility=false;
         }
     }
 

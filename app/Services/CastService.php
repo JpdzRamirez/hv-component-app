@@ -22,7 +22,7 @@ class CastService implements CastServiceInterface
         ];
     }
     /**
-     * Castea y transforma un arreglo de habilidades.
+     * Construye mensaje de notificación.
      *
      * @param string $type
      * @param string $case
@@ -66,6 +66,26 @@ class CastService implements CastServiceInterface
                     $message['type'] = 'default';
                     break; // Se puede omitir ya que está al final
             }
+        }else if($case==='exp'){
+            switch ($type) {
+                case 'success':
+                    $message['message'] = __('sessions.success-exp.added');
+                    break;
+
+                case 'warning':
+                    $message['message'] = __('sessions.warning-exp.deleted-all');
+                    break;
+
+                case 'info':
+                    $message['message'] = __('sessions.info-exp.deleted');
+                    break;
+                default:
+                    // Registrar en log el tipo no reconocido
+                    Log::warning("Tipo de mensaje no reconocido: {$type}");
+                    $message['message'] = __('sessions.error.general');
+                    $message['type'] = 'default';
+                    break; // Se puede omitir ya que está al final
+            }
         } else {
             // Mensaje por defecto si no se cumplen las condiciones anteriores
             Log::warning(__('exceptions.error') . __('exceptions.not_found') . __('exceptions.type') . $type);
@@ -74,5 +94,19 @@ class CastService implements CastServiceInterface
         }
 
         return $message;
+    }
+     /**
+     * Castea y transforma un arreglo de habilidades.
+     *
+     * @param object $photo
+     * @return string
+     */
+    public function processPhoto(object $photo)
+    {   
+        $photoPath = $photo->getRealPath();
+        $base64Photo = base64_encode(file_get_contents($photoPath));
+        $photo = 'data:image/' . $photo->getClientOriginalExtension() . ';base64,' . $base64Photo;
+        
+        return $photo;
     }
 }
