@@ -23,7 +23,6 @@ class StoreExperienceRequest extends FormRequest
     {   
         //Reglas de validación para cración de un perfil Presentation
         $rules = [
-            'company_logo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],            
             'company' => ['required', 'string', 'max:255'],
             'position' => ['required', 'string', 'max:255'],
             'main_role' => ['required', 'string', 'max:255'], 

@@ -12,5 +12,6 @@ return [
     'search-bar'=>'Buscar',
     'battery-toast'=>'Fuente de alimentación: Adaptador de corriente',
     'toast-message.title'=>'Notificación',
+    'spinner-message'=>'Cargando...',
     'button-accept'=>'Aceptar'
 ];

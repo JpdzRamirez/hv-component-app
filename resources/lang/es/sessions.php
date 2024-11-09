@@ -15,7 +15,7 @@ return [
     */
     'success-exp.added' => 'Experiencia añadida.',
     'info-exp.deleted' => 'Experiencia eliminada.',
-    'warning-exp.deleted-all' => 'Todos los experiencias han sido eliminadas.',        
+    'warning-exp.deleted-all' => 'Todas las experiencias han sido eliminadas.',        
     /* 
     ****************************
     --------Tag Errors ---------

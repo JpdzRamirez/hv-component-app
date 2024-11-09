@@ -60,15 +60,15 @@ class Register extends Component
     protected CastServiceInterface $castService;
 
     //Functions
-    protected function processPhoto($photo)
-    {   
-        if ($this->photo) {
-            $photoPath = $this->photo->getRealPath();
-            $base64Photo = base64_encode(file_get_contents($photoPath));
-            $photo = 'data:image/' . $this->photo->getClientOriginalExtension() . ';base64,' . $base64Photo;
-        }
-        return $photo;
-    }
+    // protected function processPhoto($photo)
+    // {   
+    //     if ($this->photo) {
+    //         $photoPath = $this->photo->getRealPath();
+    //         $base64Photo = base64_encode(file_get_contents($photoPath));
+    //         $photo = 'data:image/' . $this->photo->getClientOriginalExtension() . ';base64,' . $base64Photo;
+    //     }
+    //     return $photo;
+    // }
     private function loadSocialMediaData($socialMedia)
     {
         foreach ($this->socials as $social) {

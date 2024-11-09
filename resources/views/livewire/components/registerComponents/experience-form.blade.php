@@ -4,16 +4,14 @@
             {{ __('forms.profile.experience') }}
             <div class="app-card-buttons mt-0 ms-1">
                 @if (!empty($experiences))
-                    <button type="button" class="content-button status-button" id="experienceAddButton"
-                        data-toggle="modalExperience"
-                        data-form-title="{{ __('forms.profile.experience-modal.defaultTitle') }}"
-                        data-placeholder="{{ now()->format('d-m-Y') }}">
+                    <button type="button" class="content-button status-button"
+                        onclick="openModalExperience('{{ __('forms.profile.experience-modal.defaultTitle') }}','{{ now()->format('d-m-Y') }}','modalExperience')">
                         <i class="fa-solid fa-books-medical"></i></button>
-                    <div class="menu experience">
-                        <button type="button" class="dropdown">
+                    <div class="menu experiences">
+                        <button type="button" id="buttonDropExperiences" onclick="openMenu(event)" class="dropdown">
                             <ul>
                                 <li>
-                                    <a class="social-link" href="#">Eliminar experiencias</a>
+                                    <a class="social-link" href="#">{{ __('profile.experience.deleteAll') }}</a>
                                 </li>
                             </ul>
                         </button>
@@ -21,47 +19,72 @@
                 @endif
             </div>
         </div>
-        <div class="apps-card {{ empty($experience) ? 'centered-row ' : '' }}">
+        <div class="apps-card {{ empty($experiences) ? 'centered-row ' : '' }}">
             {{-- CARD START --}}
-            @foreach ($experiences as $experience)
-                <div class="app-card minimized">
-                    <div class="experience gap-1">
-                        <img class="w-25" src="{{ asset('assets/img/svg/linkedin.svg') }}" alt="Linkedin">
-                        <div class="d-flex flex-column">
-                            <div class="experience-position">Analista Programador</div>
-                            <div class="experience-companny">Linkedin</div>
-                            <div class="experience-serviceTime">Julio 2024 a Octubre 2024</div>
-                        </div>
-                    </div>
-                    <div class="line"></div>
-                    <div class="app-card__subtext">
-                        Desarrolle aplicativos web y diseño de páginas web
-                    </div>
-                    <div class="app-card-buttons">
-                        <button type="button"
-                            class="content-button status-button">{{ __('forms.profile.experience.edit') }}</button>
-                        <div class="menu"></div>
-                    </div>
-                </div>
-            @endforeach
-            {{-- CARD END --}}
             @if (empty($experiences))
                 <div class="app-card minimized col">
                     <div class="container d-flex flex-column align-items-center">
                         <h3 style="text-align: center">{{ __('forms.profile.experience-firstExperience') }}</h3>
                         <i class="fa-solid fa-hand-back-point-down shake-vertical"
                             style="color:tan; font-size:2em;"></i>
-                        <button type="button" class="content-button status-button" id="experienceAddButton"
-                            data-toggle="modalExperience"
-                            data-form-title="{{ __('forms.profile.experience-modal.defaultTitle') }}"
-                            data-placeholder="{{ now()->format('d-m-Y') }}">
+                        <button type="button" class="content-button status-button"
+                            onclick="openModalExperience('{{ __('forms.profile.experience-modal.defaultTitle') }}','{{ now()->format('d-m-Y') }}','modalExperience')">
                             <i class="fa-solid fa-books-medical"></i></button>
                         <lottie-player src="{{ asset('assets/lottie/registerExperiences.json') }}"
                             background="transparent" speed="0.5" style="width: 12em;" loop nocontrols autoplay>
                         </lottie-player>
                     </div>
                 </div>
+            @else
+                @foreach ($experiences as $experience)
+                    <div class="app-card minimized">
+                        <div class="experience gap-1">
+                            @if (empty($experience['company_logo']))
+                                <img class="w-25" style="border-radius:1em; max-height:4.5em;"
+                                    src="{{ asset('assets/img/jpdzSoftwareLogo') }}" alt="Linkedin">
+                            @else
+                                <img class="w-25" style="border-radius:1em; max-height:4.5em;"
+                                    src="{{ $experience['company_logo'] }}" alt="{{ $experience['company'] }}">
+                            @endif
+
+                            <div class="d-flex flex-column">
+                                <div class="experience-position">{{ $experience['position'] }}</div>
+                                <div class="experience-companny">{{ $experience['company'] }}</div>
+                                @if (empty($experience['end_date']))
+                                    <div class="experience-serviceTime">
+                                        {{ __('forms.profile.experience-modal.labelDateStart') .': ' .\Carbon\Carbon::parse($experience['start_date'])->locale(app()->getLocale())->format('M Y') }}
+                                    </div>
+                                @else
+                                    <div class="experience-serviceTime">
+                                        {{ __('forms.profile.experience-modal.labelDateStart') .': ' .\Carbon\Carbon::parse($experience['start_date'])->locale(app()->getLocale())->format('M Y') }}
+                                        {{ ' - ' .__('forms.profile.experience-modal.labelDateEnd') .': ' .\Carbon\Carbon::parse($experience['end_date'])->locale(app()->getLocale())->format('M Y') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="line"></div>
+                        <div class="app-card__subtext">
+                            {{ $experience['main_role'] }}
+                        </div>
+                        <div class="app-card-buttons">
+                            <button type="button" id="editExperience"
+                                class="content-button status-button">{{ __('forms.profile.experience.edit') }}</button>
+                            <div class="menu">
+                                <button type="button" id="buttonDropExperience" onclick="openMenu(event)"
+                                    class="dropdown">
+                                    <ul>
+                                        <li>
+                                            <a class="social-link"
+                                                href="#">{{ __('profile.experience.delete') }}</a>
+                                        </li>
+                                    </ul>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
             @endif
+            {{-- CARD END --}}
         </div>
     </div>
 </div>
@@ -88,7 +111,7 @@
         </div>
 
         <!-- Formulario dentro del modal -->
-        <form>
+        <form id="modalExperienceForm">
             <div class="mb-3" id="inputGroupCompany_logo">
                 <label for="company_logo" id="labelCompany_logo"
                     class="mb-3 label-required">{{ __('forms.profile.experience-modal.labelCompany-logo') }}:</label>
@@ -124,7 +147,7 @@
                     placeholder="{{ __('forms.profile.experience-modal.inputGoals') }}" value="" /></textarea>
             </div>
             <div class="mb-3" id="inputGroupStatus_working">
-                <span 
+                <span
                     class="mb-3 form-label label-required">{{ __('forms.profile.experience-modal.labelWorking') }}:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="status_working" id="workingYes" value="1"
@@ -140,7 +163,7 @@
                     </label>
                 </div>
             </div>
-            <div class="mb-3" id="date" >
+            <div class="mb-3" id="date">
                 <label class="mb-3 form-label label-required" id="labelStartDateSingle"
                     for="date">{{ __('forms.profile.experience-modal.labelDateStart') }}</label>
                 <div class="container-datePicker input-group date" id="dateSingleInput">
@@ -152,8 +175,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row mb-3 pt-5" id="dateRange" 
-            style="display: none">
+            <div class="row mb-3 pt-5" id="dateRange" style="display: none">
                 <div class="container-datePicker px-1 px-sm-7 mx-auto" id="dateRangeInvalid">
                     <div class="flex-row d-flex justify-content-center">
                         <div class="col-lg-13 col-13 px-1">
@@ -163,8 +185,8 @@
                                 <label class="ml-3 form-control-placeholder" id="labelStartDateGroup"
                                     for="start_date">{{ __('forms.profile.experience-modal.labelDateStart') }}</label>
                                 <span class="fa fa-calendar" id="fa-1"></span>
-                                <input type="text" id="end_date_group" 
-                                placeholder="" class="form-control text-left ml-2" value="">
+                                <input type="text" id="end_date_group" placeholder=""
+                                    class="form-control text-left ml-2" value="">
                                 <label class="ml-3 form-control-placeholder" id="end_date-label"
                                     for="end_date">{{ __('forms.profile.experience-modal.labelDateEnd') }}</label>
                                 <span class="fa fa-calendar" id="fa-2"></span>
@@ -176,9 +198,9 @@
             <div class="mb-3" id="inputGroupRank_company">
                 <h3>{{ __('forms.profile.experience-modal.rankCompany-Title') }}</h3>
                 <p>{{ __('forms.profile.experience-modal.rankCompany-Paragraf') }}</p>
-                <label class="mb-3 form-label label-required" 
+                <label class="mb-3 form-label label-required"
                     for="rank_company">{{ __('forms.profile.experience-modal.rankCompany-Label') }}</label>
-                <div class="starRankting" >
+                <div class="starRankting">
                     <input class="form-check-input" type="radio" name="rank_company" id="r5" value="5">
                     <label class="form-check-label" for="r5"></label>
                     <input class="form-check-input" type="radio" name="rank_company" id="r4" value="4">
@@ -196,7 +218,7 @@
             <div class="mb-3" id="inputGroupRank_enviroment">
                 <label class="mb-3 form-label label-required"
                     for="rank_enviroment">{{ __('forms.profile.experience-modal.rankEnviroment-Label') }}</label>
-                <div class="starRankting"  >
+                <div class="starRankting">
                     <input class="form-check-input" type="radio" name="rank_enviroment" id="re5"
                         value="5">
                     <label class="form-check-label" for="re5"></label>
@@ -217,7 +239,8 @@
                 </div>
             </div>
             <div class="mb-3" id="inputGroupRecommend">
-                <span id="labelRecommend" class="mb-3 form-label label-required">{{ __('forms.profile.experience-modal.recommend') }}:</span>
+                <span id="labelRecommend"
+                    class="mb-3 form-label label-required">{{ __('forms.profile.experience-modal.recommend') }}:</span>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="recommend" id="recommendYes" value="1">
                     <label class="form-check-label" for="recommendYes">
@@ -234,7 +257,7 @@
             <div class="content-button-wrapper d-flex flex-row justify-content-center gap-3">
                 <div class="submitButton">
                     <button type="button" id="submitModalExperience"
-                    class="content-button status-button"><span>{{ __('forms.register.button-submit') }}</span></button>
+                        class="content-button status-button"><span>{{ __('forms.register.button-submit') }}</span></button>
                 </div>
                 <button type="button"
                     class="content-button status-button open close">{{ __('forms.register.button-cancel') }}</button>
@@ -244,7 +267,21 @@
 @endpush
 @push('templateScripts')
     <script>
+        let $button = null;
 
+        function openMenu(event) {
+            const $button = $(event.currentTarget);
+            $button.toggleClass("is-activeExp");
+            // Evento para detectar clics fuera del botón
+            $(document).on("click.outside", function(e) {
+                // Si el clic es fuera del botón, quitamos la clase
+                if (!$button.is(e.target) && $button.has(e.target).length === 0) {
+                    $button.removeClass("is-activeExp");
+                    // Removemos el evento .outside una vez ejecutado
+                    $(document).off("click.outside");
+                }
+            });
+        }
         $('#dateSingleInput').datepicker({
             format: 'dd-mm-yyyy',
             autoclose: true,
@@ -272,14 +309,10 @@
                 date.hide();
             }
         });
-        $('button[data-toggle="modalExperience"]').on('click', function() {
+
+        function openModalExperience(modalTitle, placeHolderDate, idSelector) {
             //Limpiamos errores previos
             clearErrors();
-            // Accede al elemento que disparó el evento (el input)           
-            // Obtén el valor y datos desde el input            
-            let modalTitle = $(this).data('form-title');
-            let placeHolderDate = $(this).data('placeholder');
-            let idSelector = $(this).data('toggle');
             // Actualizar el contenido del modal
             $('#modalExperience #modalExperienceTitle').text(modalTitle);
             $('#modalExperience #start_date_single').attr('placeholder', placeHolderDate);
@@ -287,15 +320,84 @@
             $('#modalExperience #end_date_group').attr('placeholder', placeHolderDate);
             // Mostrar el modal
             toggleVisibility(idSelector, 'show');
-        });
+        }
 
+        function validateImage(file) {
+            let feedbackDiv = document.querySelector('#inputGroupCompany_logo .invalid-feedback');
+            const validators = [{
+                    // Validación de tipo de archivo: jpg, jpeg, png
+                    regex: /\.(jpg|jpeg|png)$/i,
+                    errorMessage: "El archivo debe ser una imagen en formato JPG, JPEG o PNG.",
+                    validate: (file) => validators[0].regex.test(file.name)
+                },
+                {
+                    // Validación de tamaño de archivo: no mayor a 2 MB
+                    maxSize: 2 * 1024 * 1024, // 2 MB en bytes
+                    errorMessage: "El archivo no debe ser mayor a 2 MB.",
+                    validate: (file) => file.size <= validators[1].maxSize
+                }
+            ];
+            let isValid = true;
+            let errorMessage = "";
+
+            // Ejecutar cada validador y acumular mensajes de error si falla alguna validación
+            validators.forEach((validator) => {
+                if (!validator.validate(file)) {
+                    isValid = false;
+                    errorMessage = validator.errorMessage;
+                }
+            });
+
+            if (!isValid) {
+                // Mostrar el mensaje de error si no existe
+                if (!feedbackDiv) {
+                    let inputGroup = document.getElementById("inputGroupCompany_logo");
+                    feedbackDiv = document.createElement('div');
+                    feedbackDiv.classList.add('invalid-feedback');
+                    feedbackDiv.innerText = errorMessage;
+                    inputGroup.appendChild(feedbackDiv);
+                } else {
+                    // Actualizar el mensaje de error si ya existe
+                    feedbackDiv.innerText = errorMessage;
+                }
+
+                document.getElementById("labelCompany_logo").classList.add('is-invalid');
+                return false;
+            } else {
+                // Si el archivo es válido, eliminar el mensaje de error y la clase 'is-invalid'
+                if (feedbackDiv) {
+                    feedbackDiv.remove(); // Eliminar el mensaje de error
+                }
+                document.getElementById("labelCompany_logo").classList.remove('is-invalid');
+                return true;
+            }
+        }
+        $("#company_logo").on('change', function() {
+            let fileInput = $(this)[0];
+            let file = fileInput.files[0];
+
+            if (file && validateImage(file)) {
+                // Crear un FileReader para leer el archivo como base64
+                let reader = new FileReader();
+                reader.onload = function() {
+                    // Obtener solo la cadena base64 (sin el prefijo data:image/jpeg;base64,)
+                    let base64Image = reader.result.split(',')[1];
+                    // Emitir el evento a Livewire con la cadena base64 de la imagen
+                    Livewire.dispatch('upload', {
+                        file: base64Image
+                    });
+                };
+                reader.readAsDataURL(file);
+
+            }
+        });
         // Actualizar los valores del formulario de redes sociales
-        $('#submitModalExperience').on('click', function(event) {            
+        $('#submitModalExperience').on('click', async function(event) {
             // Evitar la recarga de la página
-            event.preventDefault(); 
+            event.preventDefault();
             // Obtener los valores de los inputs
-            let form = $(this).closest(".pop-up").find("form");
-            let company_logo = form.find('#company_logo').val();
+            let form = $("#modalExperienceForm");
+
             let company = form.find('#company').val();
             let position = form.find('#position').val();
             let main_role = form.find('#main_role').val();
@@ -305,18 +407,18 @@
             let end_date = '';
 
             // Verifica el valor de status_working y selecciona las fechas apropiadas
-            if (status_working=='1') {                
+            if (status_working == '1') {
                 start_date = form.find('#start_date_single').val();
-            } else {                
+            } else {
                 start_date = form.find('#start_date_group').val();
-                end_date = form.find('#end_date_group').val(); // Cambié aquí para usar el end_date                
+                end_date = form.find('#end_date_group')
+            .val(); // Cambié aquí para usar el end_date                
             }
 
             let rank_company = form.find('input[name="rank_company"]:checked').val();
             let rank_enviroment = form.find('input[name="rank_enviroment"]:checked').val();
-            let recommend = form.find('input[name="recommend"]:checked').val();            
+            let recommend = form.find('input[name="recommend"]:checked').val();
             let data = {
-                company_logo: company_logo,
                 company: company,
                 position: position,
                 main_role: main_role,
@@ -327,7 +429,8 @@
                 rank_company: rank_company,
                 rank_enviroment: rank_enviroment,
                 recommend: recommend
-            };            
+            };
+
 
             // Despachar evento Livewire con los valores
             Livewire.dispatch(

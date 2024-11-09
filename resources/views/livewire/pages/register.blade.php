@@ -426,9 +426,8 @@
         document.addEventListener('formSubmittSuccess', function(event) {
             // Obtener el valor de 'response' desde 'event.detail'
             let responseAgree = event.detail.response;
-            let modal = $(event.detail.modal);
-            let button = $(event.detail.button);
-
+            let modal = event.detail.modal;
+            let button = $(event.detail.button);            
             if (responseAgree) {
                 //Eliminar checked del registro
                 setTimeout(function() {
@@ -437,10 +436,11 @@
                 }.bind(this), 9000)
 
                 if (modal) {
-                    setTimeout(() => {
-                        let form = modal.closest(".pop-up").find("form");
+                    setTimeout(() => {                        
+                        let tempSelector=`#${modal}`;                        
+                        let form = $(tempSelector).closest(".pop-up").find("form");
                         if (form) form.trigger('reset');
-                        toggleVisibility("modalExperience", '');
+                        toggleVisibility(modal, '');
                         setTimeout(() => {
                             cleanFlashRegisters()
                         }, 2000);
@@ -560,7 +560,9 @@
 
         // Toggler boton para actualizar modal
         function toggleVisibility(selector, action) {
+
             const elementSelector = `#${selector}`;
+            
             if (action === 'show') {
                 $(elementSelector).addClass("visible");
                 $(".overlay-app").addClass("is-active");

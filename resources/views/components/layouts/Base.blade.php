@@ -21,7 +21,7 @@
 <body>
     {{-- TOOLS SECTION--}}
     <section>
-        <div id="spinner" class="spinner hidden">Loading
+        <div id="spinner" class="spinner hidden">{{__('general.spinner-message')}}
             <span></span>
         </div>
         <div id="preloader"  class="preloader">

@@ -2,11 +2,21 @@ import $ from "jquery";
 window.$ = window.jQuery = $;
 
 const dropdowns = document.querySelectorAll(".dropdown");
+
 dropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("click", function(e) {
+  dropdown.addEventListener("click", function (e) {
     e.stopPropagation();
+
+    // Si el dropdown ya tiene la clase 'is-active', la removemos de todos
+    const isActive = dropdown.classList.contains("is-active");
+
+    // Primero quitamos 'is-active' de todos los elementos
     dropdowns.forEach((c) => c.classList.remove("is-active"));
-    dropdown.classList.add("is-active");
+
+    // Si el botón no estaba activo, le volvemos a agregar 'is-active'
+    if (!isActive) {
+      dropdown.classList.add("is-active");
+    }
   });
 });
 

@@ -9,8 +9,12 @@ use Illuminate\Validation\ValidationException;
 
 use App\Contracts\CastServiceInterface;
 
+use Livewire\WithFileUploads;
+
 class ExperienceForm extends Component
 {
+    use WithFileUploads;
+
     //Arreglo de experiencias
     public $experiences = [];
 
@@ -29,7 +33,10 @@ class ExperienceForm extends Component
 
     protected CastServiceInterface $castService;
 
-    protected $listeners = ['experienceSubmitted'];
+    protected $listeners = [
+        'experienceSubmitted',
+        'upload' => 'handleImageUpload'
+    ];
 
     //*********************** */
     // Rules
@@ -38,29 +45,38 @@ class ExperienceForm extends Component
         return (new StoreExperienceRequest)->rules();
     }
     // ****************************************************
-    public function mount($experiences = null,CastServiceInterface $castService)
+    public function mount($experiences = null, CastServiceInterface $castService)
     {
         $this->castService = $castService;
         $this->experiences = $experiences;
     }
+    public function handleImageUpload($file)
+    {
+        $base64Image = 'data:image/jpeg;base64,' . $file;
+        $this->company_logo = $base64Image;
+    }
 
-    public function experienceSubmitted(CastServiceInterface $castService,$data)
+    public function experienceSubmitted(CastServiceInterface $castService, array $data)
     {
         try {
-            //Inicializar Instancia
+            //Inicializar variable
             $this->castService = $castService;
-
             // Asignar solo si todas las propiedades existen
             $this->fill($data);
 
+            // Formatear fechas
+            $this->start_date = $this->castService->formatDate($this->start_date, 'd-m-y');
+            // Si tiene fecha final
+            if ($this->end_date) {
+                $this->end_date = $this->castService->formatDate($this->end_date, 'd-m-y');
+            }
+      
             // Validar los datos
             $validatedData = $this->validate();
-            // Procesar la foto en base64, si existe
-            $tempPhoto=$validatedData['company_logo'];
-             
-            $validatedData['company_logo'] = $this->castService->processPhoto($tempPhoto);
+            //Añadimos la imagen al arreglo, si no hay se sube por defecto null 
+            $validatedData['company_logo'] = $this->company_logo;
 
-            //Si están validados
+            //Añadimos a campos validados
             $this->experiences[] = $validatedData;
 
             $messageData = $this->castService->transformMessage('success', 'exp');
@@ -73,12 +89,27 @@ class ExperienceForm extends Component
                 experiences: $this->experiences
             )->to('pages.register');
 
-            $this->dispatch('formSubmittSuccess', 
-            response:true,
-            modal: '',
-            button: '#registerSubmit'
-        );
-
+            //Response to close modals and clean
+            $this->dispatch(
+                'formSubmittSuccess',
+                response: true,
+                modal: 'modalExperience',
+                button: '#submitModalExperience'
+            );
+            // reset variables
+            $this->reset([
+                'company_logo',
+                'company',
+                'position',
+                'main_role',
+                'goals',
+                'status_working',
+                'start_date',
+                'end_date',
+                'rank_company',
+                'rank_enviroment',
+                'recommend'
+            ]);
         } catch (ValidationException $exception) {
             // Emitimos un solo evento con todos los errores relevantes
             $this->dispatch('receiveErrors', [
@@ -95,9 +126,9 @@ class ExperienceForm extends Component
                     'rank_enviroment' => $exception->validator->errors()->get('rank_enviroment'),
                     'recommend' => $exception->validator->errors()->get('recommend'),
                 ]),
-                 // Añadimos destino de origen
+                // Añadimos destino de origen
                 'modal' => '#modalExperience',
-                'button'=> '#submitModalExperience'
+                'button' => '#submitModalExperience'
             ]);
 
             throw $exception;
