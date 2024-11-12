@@ -73,5 +73,10 @@ return [
     'profile.skills-modal.placeholder' => 'Tengo habilidades en  ',
     'profile.skills-modal.label' => 'Añade una descripción',
 
+    'contact.form-name'=>'Nombre de contacto',
+    'contact.form-email'=>'Correo de contacto',
+    'contact.form-number'=>'Numero de contacto',
+    'contact.form-message'=>'Mensaje de correo',
+    'contact.form-msg-palceholder'=>'Me gustaría contactarlo por sus servicios de..',
 
 ];

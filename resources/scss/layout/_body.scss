@@ -73,14 +73,12 @@ body.light-mode .video-bg:before {
 
 .app {
     background-color: var(--theme-bg-color);
-    max-width: var(--app-max-width);
-    max-height: 860px;
     height: var(--app-height);
     display: flex;
     flex-direction: column;
     overflow: hidden;
     position: relative;
-    width: 100%;
+    width: 75vw;
     border-radius: 14px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -117,7 +115,7 @@ div.toast.alert-success.flash-toast{
     background-color: $success-color !important;
     color: var(--text-default-color);
     .toast-header{
-        background-color: var(--bg-default-colorTransparent); 
+        background-color: $transparent-bg-toast; 
         color: var(--text-default-color);
     }
 }
@@ -125,7 +123,7 @@ div.toast.alert-warning.flash-toast{
     background-color: $warning-color !important;
     color: var(--text-default-color);
     .toast-header{
-        background-color: var(--bg-default-colorTransparent);        
+        background-color: $transparent-bg-toast;        
         color: var(--text-default-color);
     }
 }
@@ -133,7 +131,7 @@ div.toast.alert-danger.flash-toast{
     background-color: $danger-color !important;
     color: var(--text-default-color);
     .toast-header{
-        background-color: var(--bg-default-colorTransparent);        
+        background-color: $transparent-bg-toast;        
         color: var(--text-default-color);
     }
 }
@@ -141,7 +139,7 @@ div.toast.alert-info.flash-toast{
     background-color: $info-color !important;
     color: var(--text-default-color);
     .toast-header{
-        background-color: var(--bg-default-colorTransparent);
+        background-color: $transparent-bg-toast;
         color: var(--text-default-color);        
     }
 }

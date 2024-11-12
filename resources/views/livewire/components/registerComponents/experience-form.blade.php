@@ -11,7 +11,7 @@
                         <button type="button" id="buttonDropExperiences" onclick="openMenu(event)" class="dropdown">
                             <ul>
                                 <li>
-                                    <a class="social-link" href="#">{{ __('profile.experience.deleteAll') }}</a>
+                                    <a class="social-link" href="#">{{ __('forms.profile.experience.deleteAll') }}</a>
                                 </li>
                             </ul>
                         </button>
@@ -267,8 +267,6 @@
 @endpush
 @push('templateScripts')
     <script>
-        let $button = null;
-
         function openMenu(event) {
             const $button = $(event.currentTarget);
             $button.toggleClass("is-activeExp");

@@ -10,14 +10,19 @@ class Header extends Component
 {
     public $exception;
 
+    public $section;
+
     protected  PresentationRepository $presentationRepository;
 
     //Inyeccion de dependencias
     public function mount(PresentationRepository $presentationRepository)
     {
         $this->presentationRepository = $presentationRepository;
+        $this->section = 1;
     }
-
+    public function updatedSection($section){
+        $this->section=$section;
+    }
     public function render()
     {
 

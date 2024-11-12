@@ -2,11 +2,12 @@
 
 namespace App\Repositories;
 
-use App\Contracts\PresentationRepositoryInterface;
-
+use App\Models\SocialMedia;
 use App\Models\Presentation;
 
-class PresentationRepository implements PresentationRepositoryInterface
+use App\Contracts\SocialMediaRepositoryInterface;
+
+class SocialMediaRepository implements SocialMediaRepositoryInterface
 {
     protected $model;
 
@@ -14,13 +15,13 @@ class PresentationRepository implements PresentationRepositoryInterface
      * A fresh builder instance should contain a blank product object, which is
      * used in further assembly.
      */
-    public function __construct(Presentation $model)
+    public function __construct(SocialMedia $model)
     {
         $this->model = $model;
     }
     public function reset(): void
     {
-        $this->model = new Presentation();
+        $this->model = new SocialMedia();
     }
     /**
      * All production steps work with the same product instance.
@@ -48,4 +49,10 @@ class PresentationRepository implements PresentationRepositoryInterface
         $presentation->delete();
     }
 
+    public function createSocialMedia(Presentation $presentation, array $socialMediaData)
+    {
+        // Crear la entrada en la tabla socialmedia asociada a la presentación
+        $socialMediaData['presentation_id'] = $presentation->id; // Asociar con el ID de la presentación
+        return SocialMedia::create($socialMediaData);
+    }
 }

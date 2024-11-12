@@ -6,7 +6,11 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 
 use App\Http\Requests\StorePresentationRequest;
-use App\Repositories\PresentationRepository;
+
+use App\Contracts\PresentationRepositoryInterface;
+use App\Contracts\SkillRepositoryInterface;
+use App\Contracts\ExperienceRepositoryInterface;
+use App\Contracts\SocialMediaRepositoryInterface;
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Validation\ValidationException;
@@ -34,6 +38,8 @@ class Register extends Component
     public $address;
     public $address_complement;
 
+    // Section
+    public $section;
 
     // Variables Social Media
     public $socials = ['linkedin', 'facebook', 'github', 'office365', 'youtube', 'twitter', 'instagram'];
@@ -43,7 +49,7 @@ class Register extends Component
     public $experiences=[];
     public $studies=[];
 
-    public $errorVisibility=false;
+    public $messageVisibility=false;
 
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
@@ -51,24 +57,51 @@ class Register extends Component
         'bindingPhoneNumber' => 'updatePhone',
         'skillAdded'=>'updateSkills',
         'experienceAdded'=>'updateExperiences',
+        'sectionChanged' =>'updateSection',
         'updateSocialPrompt',
         'socialMediaSubmitted',
     ];
 
-    protected PresentationRepository $presentationRepository;
+    protected PresentationRepositoryInterface $presentationBuilder;
+    protected ExperienceRepositoryInterface $experienceBuilder;
+    protected SkillRepositoryInterface $skillBuilder;
+    protected SocialMediaRepositoryInterface $socialmediaBuilder;
 
     protected CastServiceInterface $castService;
+    /**************************************
+    --------------Functions------------------
+    ******************************************/
+    public function resetAll(){
+        $this->reset([
+            'fullname',
+            'description',
+            'photo',
+            'firstname',
+            'lastname',
+            'card',
+            'email',
+            'email_confirm',
+            'phone',
+            'phone_root',
+            'country',
+            'state',
+            'city',
+            'address',
+            'address_complement',
+            'socialMediaData',
+            'skills',
+            'experiences',
+            'studies',
+        ]);
+    }
+    public function closeErrors()
+    {
+        if ($this->getErrorBag()->isNotEmpty()) {
+            $this->messageVisibility=false;
+        }
+    }
 
-    //Functions
-    // protected function processPhoto($photo)
-    // {   
-    //     if ($this->photo) {
-    //         $photoPath = $this->photo->getRealPath();
-    //         $base64Photo = base64_encode(file_get_contents($photoPath));
-    //         $photo = 'data:image/' . $this->photo->getClientOriginalExtension() . ';base64,' . $base64Photo;
-    //     }
-    //     return $photo;
-    // }
+    // Loaders
     private function loadSocialMediaData($socialMedia)
     {
         foreach ($this->socials as $social) {
@@ -102,16 +135,29 @@ class Register extends Component
         return (new StorePresentationRequest)->rules();
     }
     // ****************************************************
-    // COMPONENT LIFE, hydrate y dhydrate
-    public function mount(PresentationRepository $presentationRepository,CastServiceInterface $castService, $description = null, $presentationID = null)
+    //  COMPONENT LIFE, INICIALIZADOR, hydrate y dhydrate
+    //**************************************************** */
+    public function mount(
+        PresentationRepositoryInterface $presentationBuilder,
+        ExperienceRepositoryInterface $experienceBuilder,
+        SkillRepositoryInterface $skillBuilder,
+        SocialMediaRepositoryInterface $socialmediaBuilder,
+        CastServiceInterface $castService,
+        $description = null,
+        $presentationID = null)
     {
+        //Inicializar seccion
+        $this->section=1;
         //Inicializar repositorio
-        $this->presentationRepository = $presentationRepository;
+        $this->presentationBuilder = $presentationBuilder;
+        $this->experienceBuilder = $experienceBuilder;
+        $this->skillBuilder = $skillBuilder;
+        $this->socialmediaBuilder = $socialmediaBuilder;
         $this->castService = $castService;
 
         if ($presentationID) {
             try {
-                $presentation = $this->presentationRepository->find($presentationID);
+                $presentation = $this->presentationBuilder->find($presentationID);
 
                 if ($presentation) {
                     // Convertir a array antes de asignar
@@ -198,7 +244,9 @@ class Register extends Component
         // Añadir la experiencia al arreglo
         $this->experiences = $experiences; 
     }
-    
+    public function updateSection($section){
+        $this->section=$section;
+    }
     //************************ */
     /*
     **************************************************
@@ -225,11 +273,20 @@ class Register extends Component
     --------------Form method---------------------------
     *****************************************************
     */
-    public function store(PresentationRepository $presentationRepository,CastServiceInterface $castService)
+    public function store(
+        PresentationRepositoryInterface $presentationBuilder,
+        ExperienceRepositoryInterface $experienceBuilder,
+        SkillRepositoryInterface $skillBuilder,
+        SocialMediaRepositoryInterface $socialmediaBuilder,
+        CastServiceInterface $castService
+        )
     {
         try {
             //Inicializar instancia
-            $this->presentationRepository=$presentationRepository;
+            $this->presentationBuilder = $presentationBuilder;
+            $this->socialmediaBuilder = $socialmediaBuilder;
+            $this->experienceBuilder = $experienceBuilder;
+            $this->skillBuilder = $skillBuilder;
             $this->castService = $castService;
             // Obtener las reglas de validación desde StorePresentationRequest
             $validatedData = $this->validate();
@@ -253,7 +310,13 @@ class Register extends Component
                 ]);
             }
             // Asociar las redes sociales con la presentación creada
-            $this->presentationRepository->createSocialMedia($presentation, $socialMediaData);
+            $this->socialmediaBuilder->createSocialMedia($presentation, $socialMediaData);
+
+            // Asociar las experiencias con la presentación creada
+            $this->experienceBuilder->createExperiences($presentation, $this->experiences);
+
+            // Asociar las skills con la presentación creada
+            $this->skillBuilder->createSkills($presentation, $this->skills);
 
             $this->dispatch('formSubmittSuccess', 
                 response:true,
@@ -261,9 +324,15 @@ class Register extends Component
                 button: '#registerSubmit'
             );
             // Redireccionar o mostrar mensaje de éxito
-            session()->flash('success', 'Presentación creada exitosamente');
+            session()->flash('success', __('exceptions.success-message',['name'=>$this->fullname]));
+
+
+            $this->messageVisibility=true;
+
+            $this->resetAll();
+
         } catch (ValidationException $exception) {
-            $this->errorVisibility=true;
+            $this->messageVisibility=true;
 
             // Emitimos un solo evento con todos los errores relevantes
             $this->dispatch('receiveErrors', [
@@ -284,13 +353,6 @@ class Register extends Component
         }
     }
     
-    public function closeErrors()
-    {
-        if ($this->getErrorBag()->isNotEmpty()) {
-            $this->errorVisibility=false;
-        }
-    }
-
     //***************************************************** */
     public function render()
     {

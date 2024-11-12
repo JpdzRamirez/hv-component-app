@@ -1,0 +1,96 @@
+@use "../../../utils" as *;
+@media (max-width: 1480px) {
+  .contact-body {
+display: flex !important;
+flex-direction: column;
+justify-content: center;
+  }
+  .contact-body-form { 
+    grid-area: content; 
+    align-self: initial !important;
+}
+}
+@media (max-width: 730px) {
+  .animation > div > div {
+    font-size: small;
+    margin-bottom: 2.11rem !important;
+  }
+}
+.contact-body {
+    display: grid; 
+    grid-auto-flow: row dense; 
+    grid-template-columns: 1.3fr 1.7fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 1em; 
+    grid-template-areas: 
+      "image content";
+      
+      &-image { 
+        grid-area: image; 
+        font-family: Ubuntu-Medium;
+        align-items: center;
+
+        img{
+          filter: drop-shadow(2px 4px 6px black);
+          border-radius: 1em;
+          max-height: 20em;
+          transition: transform ease-in-out 0.5s;
+          cursor:pointer;
+        }
+
+        &-animation{
+          display: flex;
+          align-items: center;
+          flex-direction: row;
+          font-size: 1.26rem;
+          text-transform: uppercase;
+          p{
+            text-shadow: 0 0 7px rgba(255,255,255,.3), 0 0 3px rgba(255,255,255,.3);
+          }
+          .animation {
+            height:50px;
+            overflow:hidden;
+            margin-left: 1rem;
+          }
+          .animation > div > div {
+            padding: .15rem .65rem;
+            height: 1.81rem;
+            margin-bottom: 2.81rem;
+            display: inline-block;
+          }
+          .animation div:first-child {
+            animation: text-animation 8s infinite;
+          }
+          .first div {
+            background-color:$info-color;
+          }
+          .second div {
+            background-color:$warning-color;
+          }
+          .third div {
+            background-color:$danger-color;
+          }   
+          .fourth div {
+            background-color:$secondary-color;
+          }   
+        }     
+    }
+    &-form { 
+      grid-area: content; 
+      align-self: center;
+    }
+    &-phone{
+      display: inline-flex;
+      align-items: center;
+      p{
+        font-size: x-large;
+        animation: wave-animation 0.5s infinite;
+        margin-bottom: 0;
+      }
+      a{
+        text-decoration: none;
+        color: #36a3f7;
+      }
+    }
+    
+  }

@@ -49,6 +49,23 @@
     @stack('templateModal')
 
     @livewireScripts
+    <script>
+        let spinnerShow=false;
+        // Escuchar el evento 'section-changed' para actualizar la sección y activar el spinner
+        window.addEventListener('sectionChanged', event => {
+            spinnerShow=true;
+            $("#spinner").removeClass('hidden');
+        })
+        Livewire.hook('morph.updated', ({ el, component }) => {
+                if(spinnerShow){
+                    console.log("changed")
+                    spinnerShow=false
+                    setTimeout(() => {
+                        $("#spinner").addClass('hidden');
+                    }, 1500); 
+                }
+        })
+    </script>
     <script src="{{asset('assets/js/jquery-3.7.1.min.js')}}"></script>    
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>    
     <script src="{{asset('assets/js/components/datePicker/bootstrap-datepicker.min.js')}}"></script>

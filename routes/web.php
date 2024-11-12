@@ -15,5 +15,7 @@ Route::middleware(['CaptureSessionData'])
         Route::get('/presentation/{presentationID?}', Register::class)->name('profile.update');
 
         Route::get('/not-found', [PresentationController ::class, 'notFound'])->name('not.found');
+        Route::get('/contact', [PresentationController ::class, 'contact'])->name('contact');
+        
     });
 

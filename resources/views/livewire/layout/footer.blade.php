@@ -26,8 +26,8 @@
             <a><i class="fa-sharp fa-solid fa-plug"></i></a>
             <a><i class="fa-sharp fa-solid fa-power-off"></i></a>
             <a><i class="fa-sharp fa-solid fa-bell"></i></a>
-            <button id="openBatteryToast" class="battery"></button>
-            <div class="toast battery-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <button id="openBatteryToast" onclick="openBatteryToast(event)" class="battery"></button>
+            <div class="toast battery-toast" id="batteryToast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-body">
                     {{__('general.battery-toast')}}
                   <hr class="hr-text m-0">
@@ -52,3 +52,22 @@
         (PHP v{{ PHP_VERSION }}), Livewire v3.5.9
     </span>
 </div>
+@push('templateScripts')
+<script>
+    //Events
+    function openBatteryToast(event) {
+        const $toastBody = $("#batteryToast");
+        let toastBattery = new bootstrap.Toast($toastBody);
+        toastBattery.hide();
+        // Evento para detectar clics fuera del botón
+        $(document).on("click.outside", function(e) {
+            // Si el clic es fuera del botón, quitamos la clase
+            if (!$toastBody.is(e.target) && $toastBody.has(e.target).length === 0) {
+              toastBattery.show();
+                // Removemos el evento .outside una vez ejecutado
+                $(document).off("click.outside");
+            }
+        });
+    }
+</script>
+@endpush

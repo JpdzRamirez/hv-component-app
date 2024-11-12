@@ -24,7 +24,6 @@ dropdowns.forEach((dropdown) => {
 //CONSTANTES
 const appWindow = $("#app");
 const toggleButton = $('.dark-light');
-const toggleProfile = $("#profileToggle");
 
 const time = document.getElementById("time");
 const day = document.getElementById("day");
@@ -127,11 +126,6 @@ $(window).on("load", function() {
 
 // END DOCUMENT READY
 //Events
-
-toggleProfile.on("click", function() {
-  $("#menuProfile").toggleClass("active")
-})
-
 toggleButton.on("click", function() {
   $('body').toggleClass('light-mode');
 
@@ -202,17 +196,7 @@ $("#min").on("click", function() {
   isMinimized = !isMinimized;
 });
 
-//TOAST BATTERY MESSAGE
-$("#openBatteryToast").on("click", function() {
-  let toastBody = document.querySelector('.battery-toast');
-  let toastBattery = new bootstrap.Toast(toastBody);
 
-  if ($(toastBody).hasClass('show')) {
-    toastBattery.hide();
-  } else {
-    toastBattery.show();
-  }
-});
 
 // Boton X cerrar modal popup
 $(".pop-up .close").on("click", function() {
@@ -226,6 +210,8 @@ $(".pop-up .close").on("click",function() {
   $(".overlay-app").removeClass("is-active");
 });
 
-
-
+$(".header-menu").on('wheel', function(e) {
+  e.preventDefault(); // Prevenir el desplazamiento vertical
+  this.scrollLeft += e.originalEvent.deltaY; // Aplicar desplazamiento horizontal
+});
 
