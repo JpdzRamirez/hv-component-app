@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="content-type" content="text/html; charset=utf-8">
-  	<meta name="viewport" content="width=device-width, initial-scale=1.0;">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
  	<meta name="format-detection" content="telephone=no"/>
 
 
@@ -32,7 +32,7 @@ a, a:hover {
  	</style>
 
 	<!-- MESSAGE SUBJECT  $subject -->
-	<title>Asunto: asunto de correo </title>
+	<title>{{__('general.contact-message-body-subject')}} asunto de correo </title>
 
 </head>
 
@@ -69,8 +69,9 @@ a, a:hover {
 			<!-- LOGO -->
 			
 			<a target="_blank" style="text-decoration: none;"
-				href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
-				src="https://raw.githubusercontent.com/konsav/email-templates/master/images/logo-black.png"
+				href="https://github.com/konsav/email-templates/">
+				<img border="0" vspace="0" hspace="0"
+				src="{{asset('assets/img/svg/contact-logo.svg')}}"
 				width="100" height="30"
 				alt="Logo" title="Logo" style="
 				color: #000000;
@@ -96,7 +97,7 @@ a, a:hover {
 			padding-top: 25px;
 			color: #000000;
 			font-family: sans-serif;" class="header">
-				JPDZSoftware.com <br>Notificación de correo<br>📩
+				{{__('general.contact-message-slogan')}}<br>{{__('general.contact-message-title')}}<br>📩
 		</td>
 	</tr>
 	
@@ -107,7 +108,7 @@ a, a:hover {
 			padding-top: 5px;
 			color: #000000;
 			font-family: sans-serif;" class="subheader">
-				Muchas gracias por contactarme
+				{{__('general.contact-message-subtitle')}}
 		</td>
 	</tr>
 
@@ -116,8 +117,9 @@ a, a:hover {
 	<tr>
 		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0;
 			padding-top: 20px;" class="hero"><a target="_blank" style="text-decoration: none;"
-			href="https://github.com/konsav/email-templates/"><img border="0" vspace="0" hspace="0"
-			src="https://raw.githubusercontent.com/konsav/email-templates/master/images/hero-wide.png"
+			href="https://github.com/konsav/email-templates/">
+			<img border="0" vspace="0" hspace="0"
+			src="https://raw.githubusercontent.com/JpdzRamirez/cros_repository/main/Resources/img/JpdzMail.png"
 			alt="Please enable images to view this content" title="Hero Image"
 			width="560" style="
 			width: 100%;
@@ -132,8 +134,9 @@ a, a:hover {
 			padding-top: 25px; 
 			color: #000000;
 			font-family: sans-serif;" class="paragraph">
-                <h4>Mensaje de contacto</h4>
-				<p><strong>Mensaje:</strong><br> contenido mensaje</p>
+                <h4>{{__('general.contact-message-body-title')}}</h4>
+				<p>{{__('general.contact-message-body-content')}}</p>
+				<p><strong>{{__('general.contact-message-body-subject')}}</strong><br> contenido mensaje</p>
 		</td>
 	</tr>
 
@@ -141,13 +144,15 @@ a, a:hover {
 	<tr>
 		<td align="center" valign="top" style="border-collapse: collapse; border-spacing: 0; margin: 0; padding: 0; padding-left: 6.25%; padding-right: 6.25%; width: 87.5%;
 			padding-top: 25px;
-			padding-bottom: 5px;" class="button"><a
-			href="https://github.com/konsav/email-templates/" target="_blank" style="text-decoration: underline;">
+			padding-bottom: 5px;" class="button">
+			<a
+			href="{{ route('home') }}" target="_blank" style="text-decoration: underline;">
 				<table border="0" cellpadding="0" cellspacing="0" align="center" style="max-width: 240px; min-width: 120px; border-collapse: collapse; border-spacing: 0; padding: 0;"><tr><td align="center" valign="middle" style="padding: 12px 24px; margin: 0; text-decoration: underline; border-collapse: collapse; border-spacing: 0; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px;"
-					bgcolor="#E9703E"><a target="_blank" style="text-decoration: underline;
+					bgcolor="#ffa534">
+					<a target="_blank" style="text-decoration: underline;
 					color: #FFFFFF; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 120%;"
-					href="https://github.com/konsav/email-templates/">
-						Get the template
+					href="{{ route('home') }}">
+					{{__('general.contact-message-body-ticket')}} 0025
 					</a>
 			</td></tr></table></a>
 		</td>
@@ -173,10 +178,11 @@ a, a:hover {
 				<!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
 				<td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;
 					padding-top: 30px;
-					padding-right: 20px;"><img
-				border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
+					padding-right: 20px;">
+					<img
+					border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
 					color: #000000;"
-					src="https://raw.githubusercontent.com/konsav/email-templates/master/images/list-item.png"
+					src="https://ecdisis.com/wp-content/uploads/2020/07/Diseño-Web-Responsive-1024x614.png"
 					alt="H" title="Highly compatible"
 					width="50" height="50"></td>
 
@@ -186,8 +192,14 @@ a, a:hover {
 					padding-top: 25px;
 					color: #000000;
 					font-family: sans-serif;" class="paragraph">
-						<b style="color: #333333;">Highly compatible</b><br/>
-						Tested on the most popular email clients for web, desktop and mobile. Checklist included.
+						<b style="color: #333333;">{{__('general.contact-message-promotion-first-title')}}</b><br/>
+						{{__('general.contact-message-promotion-first-content')}}
+						<br><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
+						color: #000000;"
+						alt="F" title="SCSS"
+						width="20" height="20"
+						src="https://pluginicons.craft-cdn.com/scssqTY8srJEesn2VFiUV73mUCyRIZsfXfDj2eOY.svg?1528091210">
+						<strong>{{__('general.contact-message-promotion-first-call')}}</strong>
 				</td>
 
 			</tr>
@@ -199,10 +211,11 @@ a, a:hover {
 				<!-- Image text color should be opposite to background color. Set your url, image src, alt and title. Alt text should fit the image size. Real image size should be x2 -->
 				<td align="left" valign="top" style="border-collapse: collapse; border-spacing: 0;
 					padding-top: 30px;
-					padding-right: 20px;"><img
-				border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
+					padding-right: 20px;">
+					<img
+					border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;
 					color: #000000;"
-					src="https://raw.githubusercontent.com/konsav/email-templates/master/images/list-item.png"
+					src="https://grupomng.com/wp-content/uploads/2020/11/paginas-web-dinamicas-799x399-1.png"
 					alt="D" title="Designer friendly"
 					width="50" height="50"></td>
 
@@ -212,8 +225,14 @@ a, a:hover {
 					padding-top: 25px;
 					color: #000000;
 					font-family: sans-serif;" class="paragraph">
-						<b style="color: #333333;">Designer friendly</b><br/>
-						Sketch app resource file and a&nbsp;bunch of&nbsp;social media icons are&nbsp;also included in&nbsp;GitHub repository.
+						<b style="color: #333333;">{{__('general.contact-message-promotion-second-title')}}</b><br/>
+						{{__('general.contact-message-promotion-second-content')}}
+						<br><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
+						color: #000000;"
+						alt="F" title="Livewire"
+						width="30" height="30"
+						src="https://raw.githubusercontent.com/JpdzRamirez/cros_repository/refs/heads/main/Resources/img/livewire.jpg">
+						<strong>{{__('general.contact-message-promotion-second-call')}}</strong>
 				</td>
 
 			</tr>
@@ -238,7 +257,7 @@ a, a:hover {
 			padding-bottom: 25px;
 			color: #000000;
 			font-family: sans-serif;" class="paragraph">
-				Have a&nbsp;question? <a href="mailto:support@ourteam.com" target="_blank" style="color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;">support@ourteam.com</a>
+				Consultoría <a href="mailto:jeremyivanpedraza@gmail.com?Subject=%20Servicios%20de%20Programación%20" target="_blank" style="color: #127DB3; font-family: sans-serif; font-size: 17px; font-weight: 400; line-height: 160%;">jeremyivanpedraza@gmail.com</a>
 		</td>
 	</tr>
 
@@ -261,39 +280,21 @@ a, a:hover {
 
 				<!-- ICON 1 -->
 				<td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank"
-					href="https://raw.githubusercontent.com/konsav/email-templates/"
+					href="https://wa.me/573177163494"
 				style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;"
-					alt="F" title="Facebook"
+					color: #999999;"
+					alt="F" title="whatsapp"
 					width="44" height="44"
-					src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/facebook.png"></a></td>
+					src="https://e7.pngegg.com/pngimages/632/756/png-clipart-whatsapp-logo-computer-icons-whatsapp-cdr-text-thumbnail.png"></a></td>
 
 				<!-- ICON 2 -->
 				<td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank"
-					href="https://raw.githubusercontent.com/konsav/email-templates/"
+					href="https://github.com/JpdzRamirez"
 				style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;"
-					alt="T" title="Twitter"
+					color: #999999;"
+					alt="I" title="GitHub"
 					width="44" height="44"
-					src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/twitter.png"></a></td>				
-
-				<!-- ICON 3 -->
-				<td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank"
-					href="https://raw.githubusercontent.com/konsav/email-templates/"
-				style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;"
-					alt="G" title="Google Plus"
-					width="44" height="44"
-					src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/googleplus.png"></a></td>		
-
-				<!-- ICON 4 -->
-				<td align="center" valign="middle" style="margin: 0; padding: 0; padding-left: 10px; padding-right: 10px; border-collapse: collapse; border-spacing: 0;"><a target="_blank"
-					href="https://raw.githubusercontent.com/konsav/email-templates/"
-				style="text-decoration: none;"><img border="0" vspace="0" hspace="0" style="padding: 0; margin: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: inline-block;
-					color: #000000;"
-					alt="I" title="Instagram"
-					width="44" height="44"
-					src="https://raw.githubusercontent.com/konsav/email-templates/master/images/social-icons/instagram.png"></a></td>
+					src="https://cdn.icon-icons.com/icons2/3685/PNG/512/github_logo_icon_229278.png"></a></td>
 
 			</tr>
 			</table>
@@ -308,14 +309,7 @@ a, a:hover {
 			padding-bottom: 20px;
 			color: #999999;
 			font-family: sans-serif;" class="footer">
-
-				This email template was sent to&nbsp;you becouse we&nbsp;want to&nbsp;make the&nbsp;world a&nbsp;better place. You&nbsp;could change your <a href="https://github.com/konsav/email-templates/" target="_blank" style="text-decoration: underline; color: #999999; font-family: sans-serif; font-size: 13px; font-weight: 400; line-height: 150%;">subscription settings</a> anytime.
-
-				<!-- ANALYTICS -->
-				
-				<img width="1" height="1" border="0" vspace="0" hspace="0" style="margin: 0; padding: 0; outline: none; text-decoration: none; -ms-interpolation-mode: bicubic; border: none; display: block;"
-				src="https://raw.githubusercontent.com/konsav/email-templates/master/images/tracker.png" />
-
+			{{__('general.contact-message-terms')}}
 		</td>
 	</tr>
 
