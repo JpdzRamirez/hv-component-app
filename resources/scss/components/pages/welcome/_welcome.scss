@@ -1,8 +1,24 @@
 @use "../../../utils" as *;
 .welcome{
-  overflow: hidden;
-  width: auto;
-  height: auto;
+  overflow: hidden !important;
+  
+
+  .container{
+    
+    z-index: 1;
+    a{
+      position: relative;
+      bottom: 0;
+      width: fit-content;
+      left: 45%;
+      top: -24em;
+      color: #333;
+      text-decoration: overline;
+    }    
+    a:hover{
+      color: $info-color;    
+    }
+  }
 }
 .welcome video {
   position: absolute;
@@ -12,7 +28,7 @@
   height: 100%;
   object-fit: cover; /* Asegura que el video cubra el área completa */
   transform: translate(-50%, -50%);
-  z-index: -1; /* Envía el video al fondo */
+  z-index: 0; /* Envía el video al fondo */
 }
 .brand{
     animation: fade-in 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
@@ -20,8 +36,8 @@
 }
 .logo{
     position:absolute;
-    top:50vh;
-    left:50vw;
+    top:0;
+    left:50%;
     transform:prespective(1000px) translate(-50%,-50%);
     transform:skewY(15deg);
     transition:0.5s;
@@ -77,8 +93,8 @@
     min-width: 375px;
     height: 200px;
     position: absolute;
-    top: 50vh;
-    left: 36vw; 
+    top: 1em;
+    left: 30%; 
     color:$info-color;
     .slogan-text {
         position: relative;
@@ -95,8 +111,9 @@
             white-space: nowrap;
             animation: scatter 1.75s infinite;
             mask: linear-gradient(transparent 5%, rgba(255, 255, 255, .9) 99%);
-            transform: rotatex(180deg) translatey(40px) skew(135deg) translatex(-8px);
+            transform: rotatex(180deg) translatey(86px) skew(135deg) translatex(-36px);
             filter: blur(8px);
+            color: #282a3c;
         }
     }
     .payful{ 

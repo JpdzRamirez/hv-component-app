@@ -12,7 +12,7 @@
     </title>
 
     <!-- Fonts -->
-    @vite(['resources/css/app.min.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
     @livewireStyles
     <!-- Styles -->
     @stack('templateStyles')
