@@ -1,14 +1,22 @@
-import $ from 'jquery';
+import $ from "jquery";
 window.$ = window.jQuery = $;
 
-
-
 const dropdowns = document.querySelectorAll(".dropdown");
+
 dropdowns.forEach((dropdown) => {
-  dropdown.addEventListener("click", (e) => {
+  dropdown.addEventListener("click", function (e) {
     e.stopPropagation();
+
+    // Si el dropdown ya tiene la clase 'is-active', la removemos de todos
+    const isActive = dropdown.classList.contains("is-active");
+
+    // Primero quitamos 'is-active' de todos los elementos
     dropdowns.forEach((c) => c.classList.remove("is-active"));
-    dropdown.classList.add("is-active");
+
+    // Si el botón no estaba activo, le volvemos a agregar 'is-active'
+    if (!isActive) {
+      dropdown.classList.add("is-active");
+    }
   });
 });
 
@@ -16,7 +24,6 @@ dropdowns.forEach((dropdown) => {
 //CONSTANTES
 const appWindow = $("#app");
 const toggleButton = $('.dark-light');
-const toggleProfile = $("#profileToggle");
 
 const time = document.getElementById("time");
 const day = document.getElementById("day");
@@ -28,35 +35,39 @@ let isMinimized = false;
 
 // Document ready
 $(function () {
-  $(".menu-link").click(function () {
+  $("#submitModalExperience").on("click", function() {        
+    $(this).addClass("circle")
+    $(this).children("span").addClass("click")    
+  });
+  $(".menu-link").on("click", function(){
     $(".menu-link").removeClass("is-active");
     $(this).addClass("is-active");
   });
 
-  $(".main-header-link").click(function () {
+  $(".main-header-link").on("click",function(){
     $(".main-header-link").removeClass("is-active");
     $(this).addClass("is-active");
   });
 
   $(".search-bar input")
-    .focus(function () {
+    .on("focus", function() {
       $(".header").addClass("wide");
     })
-    .blur(function () {
+    .on("blur", function() {
       $(".header").removeClass("wide");
     });
 
-  $(".dropdown").on("click", function (e) {
+  $(".dropdown").on("click",  function(e) {
     $(".content-wrapper").addClass("overlay");
     e.stopPropagation();
   });
   
-  $('.select-selected').click(function() {
+  $('.select-selected').on("click",function() {
     $('.select-items').toggle();
 });
 
 
-  $(document).on("click", function (e) {
+  $(document).on("click", function(e) {
     if ($(e.target).is(".dropdown") === false) {
       $(".content-wrapper").removeClass("overlay");
     }
@@ -102,7 +113,7 @@ $(function () {
   );
 });
 //Full page charged
-$(window).on('load', function () {
+$(window).on("load", function() {
   // Oculta el estado de carga
   $('#status').fadeOut();
   // Aplica un retraso de 350ms y luego oculta el preloader lentamente
@@ -115,31 +126,20 @@ $(window).on('load', function () {
 
 // END DOCUMENT READY
 //Events
-
-toggleProfile.on('click', function () {
-  $("#menuProfile").toggleClass("active")
-})
-
-toggleButton.on('click', function () {
+toggleButton.on("click", function() {
   $('body').toggleClass('light-mode');
 
   // Alterna entre las variables de color
   if ($('body').hasClass('light-mode')) {
     $("#dark-light-icon").removeClass("fa-solid fa-sun");
     $("#dark-light-icon").addClass("fa-solid fa-moon-cloud");
-    document.documentElement.style.setProperty('--text-default-color', '#333333');
-    document.documentElement.style.setProperty('--bg-default-color', '#ffff');
-    document.documentElement.style.setProperty('--bg-default-colorTransparent', '#f8f9fa');
   } else {
     $("#dark-light-icon").removeClass("fa-solid fa-moon-cloud");
     $("#dark-light-icon").addClass("fa-solid fa-sun");
-    document.documentElement.style.setProperty('--text-default-color', '#ffff');
-    document.documentElement.style.setProperty('--bg-default-color', '#515151');
-    document.documentElement.style.setProperty('--bg-default-colorTransparent', '#343a40');
   }
 });
 
-$(document).click(function (e) {
+$(document).on("click", function(e) {
   let container = $(".status-button");
   let dd = $(".dropdown");
   if (!container.is(e.target) && container.has(e.target).length === 0) {
@@ -148,7 +148,7 @@ $(document).click(function (e) {
 });
 
 
-$("#resize").on('click', function () {
+$("#resize").on("click", function() {
   if (!isResize) {
     // Restablecer los valores originales
     document.documentElement.style.setProperty('--app-max-width', '1250px');
@@ -163,7 +163,7 @@ $("#resize").on('click', function () {
 
   isResize = !isResize;
 });
-$("#max").on('click', function () {
+$("#max").on("click",  function(){
   if (!isMinimized) {
     // Restablecer los valores originales
     appWindow.addClass('window-minimized');
@@ -185,7 +185,7 @@ $("#max").on('click', function () {
   }
   isMinimized = !isMinimized;
 });
-$("#min").on('click', function () {
+$("#min").on("click", function() {
   appWindow.addClass('window-minimized');
   setTimeout(function () {
     appWindow.attr('hidden', true);
@@ -196,32 +196,22 @@ $("#min").on('click', function () {
   isMinimized = !isMinimized;
 });
 
-//TOAST BATTERY MESSAGE
-$("#openBatteryToast").click(function () {
-  let toastBody = document.querySelector('.battery-toast');
-  let toastBattery = new bootstrap.Toast(toastBody);
 
-  if ($(toastBody).hasClass('show')) {
-    toastBattery.hide();
-  } else {
-    toastBattery.show();
-  }
-});
 
-$(".status-button:not(.open)").click(function () {
-  $(".pop-up").addClass("visible");
-});
-
-$(".pop-up .close").click(function () {
+// Boton X cerrar modal popup
+$(".pop-up .close").on("click", function() {
+  let form = $(this).closest(".pop-up").find("form");
+  if(form)form.trigger('reset');  // Restablecer el formulario a su estado inicial  
   $(".pop-up").removeClass("visible");
 });
-$(".status-button:not(.open)").on("click", function (e) {
-  $(".overlay-app").addClass("is-active");
-});
-$(".pop-up .close").click(function () {
+
+//Boton cancelar modal poupup
+$(".pop-up .close").on("click",function() {
   $(".overlay-app").removeClass("is-active");
 });
 
-
-
+$(".header-menu").on('wheel', function(e) {
+  e.preventDefault(); // Prevenir el desplazamiento vertical
+  this.scrollLeft += e.originalEvent.deltaY; // Aplicar desplazamiento horizontal
+});
 

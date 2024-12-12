@@ -1,0 +1,95 @@
+@use "../utils" as *;
+
+::selection {
+    color: $white-color;
+    background: $black-color;
+  }
+  .tag-cointainer {
+
+    :where(.title, li, li i, .details) {
+        display: flex;
+        align-items: center;
+      }
+      .title{
+        i {
+            color: $golden-color;
+            max-width: 21px;
+            font-size: xxx-large;
+            margin-right: 1em;
+          }
+          h2 {
+            font-size: 21px;
+            font-weight: 600;
+            margin-left: 8px;
+          }
+      }
+      .content {
+        margin: 10px 0;
+
+        p {
+            font-size: 15px;
+          }
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 7px;            
+            border-radius: 5px;
+            border: 1px solid $body-text-color;
+            flex-direction: row;
+            justify-content: flex-start;
+            border-radius: unset;
+            border:unset;
+            background-color: unset;
+            li {
+                color: $default-color;
+                margin: 4px 3px;
+                list-style: none;
+                border-radius: 5px;
+                background: $white-color;
+                padding: 5px 8px 5px 10px;
+                border: 1px solid $gray-text-color;
+                width: fit-content;
+                i {
+                    height: 20px;
+                    width: 20px;
+                    color: $body-text-color;
+                    margin-left: 8px;
+                    font-size: 12px;
+                    cursor: pointer;
+                    border-radius: 50%;
+                    background: $gray-text-color;
+                    justify-content: center;
+                  }
+              }
+        }
+        input {
+          flex: 1;
+          padding: 5px;
+          border: none;
+          outline: none;
+          font-size: 16px;
+      }
+      input:after{
+        padding: 7px;
+        border: 1px solid $gray-text-color;
+        border-radius: 5px;
+      }
+      }
+    .details {
+        justify-content: space-between;
+        button {
+            border: none;
+            outline: none;
+            color: $black-color;
+            font-size: 14px;
+            cursor: pointer;
+            padding: 9px 15px;
+            border-radius: 5px;
+            background: $golden-color;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: $golden-color;
+        }
+    }
+  }

@@ -13,19 +13,21 @@ return new class extends Migration
     {
         Schema::create('presentation', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('firstname');
             $table->string('lastname');
+            $table->text('description');
             $table->string('card',15)->unique();
             $table->string('email')->unique();
+            $table->string('phone_root', 15);
             $table->string('phone', 15);
-            $table->longText('photo_base64')->nullable();
+            $table->longText('photo')->nullable();
             $table->string('country', 50)->nullable();
             $table->string('state', 50)->nullable();
-            $table->string('city', 50)->nullable();         
+            $table->string('city', 50)->nullable();
+            $table->text('address')->nullable();
+            $table->text('address_complement')->nullable();               
             $table->timestamps();
         });
-
-
         Schema::create('sessions', function (Blueprint $table) {
             $table->string('id')->primary();
             $table->foreignId('user_id')->nullable()->index();
@@ -33,9 +35,8 @@ return new class extends Migration
             $table->text('user_agent')->nullable();
             $table->longText('payload');
             $table->integer('last_activity')->index();
-            $table->decimal('lat', 10, 8)->index(); 
-            $table->decimal('lng', 11, 8)->index();
         });
+
     }
 
     /**

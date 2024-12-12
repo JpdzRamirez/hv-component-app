@@ -13,7 +13,7 @@ class Presentation extends Authenticatable
 
     protected $table = 'presentation';
 
-    protected $with = ['experiences','socialmedia'];
+    protected $with = ['experiences', 'socialmedia', 'skills', 'studies'];
     /**
      * The attributes that are mass assignable.
      *
@@ -22,6 +22,19 @@ class Presentation extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'description',
+        'firstname',
+        'lastname',
+        'card',
+        'phone',
+        'phone_root',
+        'photo',
+        'country',
+        'state',
+        'city',
+        'address',
+        'address_complement',
+        // Agrega cualquier otro campo que se deba asignar masivamente
     ];
 
     //Se relaciona experiencia a través del id guardado en title
@@ -33,5 +46,12 @@ class Presentation extends Authenticatable
     {
         return $this->hasOne(SocialMedia::class, 'presentation_id');
     }
-
+    public function studies()
+    {
+        return $this->hasMany(Study::class, 'presentation_id');
+    }
+    public function skills()
+    {
+        return $this->hasMany(Skill::class, 'presentation_id');
+    }
 }

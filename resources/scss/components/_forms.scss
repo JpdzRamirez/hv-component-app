@@ -1,18 +1,14 @@
 @use "../utils" as *;
 
 /*     Form     */
-
-
-
-
-
-
-
-
-
-
-
-
+#inputGroupURL{
+    .invalid-feedback{
+        text-align: center;
+    }
+}
+.form-control:focus{
+    border: 2px solid #297ef9 !important;
+}
 // SELECT
 .form-select{
     .img-flag {

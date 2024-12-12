@@ -88,22 +88,88 @@ return [
     |
     */
     'custom' => [
-        'name' => [
+        'photo' => [
+            'nullable' => 'El campo de la foto es opcional.',
+            'image' => 'El archivo debe ser una imagen válida.',
+            'mimes' => 'La imagen debe ser de tipo: jpg, jpeg, png.',
+            'max' => 'La imagen no debe superar los 2 MB.',
+        ],
+        'description' => [
             'required' => 'El campo :attribute es obligatorio.',
-            'string'=>'El campo :attribute solo admite caracteres',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+        ],
+        'firstName' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El campo :attribute solo admite caracteres',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
         ],
-        'lastname' => [
+        'lastName' => [
             'required' => 'El campo :attribute es obligatorio.',
-            'string'=>'El campo :attribute solo admite caracteres.',
+            'string' => 'El campo :attribute solo admite caracteres.',
             'max' => 'El campo :attribute no puede exceder los :max caracteres.',
             'regex' => 'El campo :attribute no admite numeros.',
+        ],
+        'card' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El campo :attribute solo admite caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
+            'regex' => 'El campo :attribute solo admite numeros.',
+        ],
+        'email' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'email' => 'El formato del :attribute es inválido.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'unique' => 'Este :attribute ya está en uso.',
+        ],
+        'email_confirm' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'same' => 'Los correos electrónicos no coinciden.',
+        ],
+        'country' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros ni espacios.',
+        ],
+        'state' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros ni espacios.',
+        ],
+        'city' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+            'regex' => 'El campo :attribute no admite numeros ni espacios.',
+        ],
+        'address' => [
+            'required' => 'El campo :attribute es obligatorio.',
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+        ],
+        'address_complement' => [
+            'string' => 'El :attribute debe ser una cadena de texto.',
+            'max' => 'El :attribute no debe exceder :max caracteres.',
+        ],
+        'phoneRoot' => [
+            'string' => 'El campo :attribute solo admite caracteres.',
+            'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
+        ],
+        'phone' => [
+            'string' => 'El campo :attribute solo admite caracteres.',
+            'regex' => 'El campo :attribute solo admite numeros.',
+            'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
+            'max' => 'El campo :attribute no puede exceder los :max caracteres.',
         ],
         'password' => [
             'required' => 'El campo :attribute es obligatorio.',
             'min' => 'El campo :attribute debe tener mínimo :min caracteres.',
-            'minjs'=> 'Al menos 8 caracteres de longitud',
+            'minjs' => 'Al menos 8 caracteres de longitud',
             'confirmed' => 'Las contraseñas deben coincidir.',
             'lowercase' => 'Al menos 1 letra minúscula (a...z)',
             'number' => 'Al menos 1 número (0...9)',
@@ -118,13 +184,22 @@ return [
             'accepted' => 'Debes aceptar los términos y condiciones.',
             'required' => 'Es obligatorio aceptar los términos y condiciones.',
         ],
-        'email' => [
-            'required' => 'El campo :attribute es obligatorio.',
-            'string' => 'El :attribute debe ser una cadena de texto.',
-            'email' => 'El formato del :attribute es inválido.',
-            'max' => 'El :attribute no debe exceder :max caracteres.',
-            'unique' => 'Este :attribute ya está en uso.',
+
+        'socialMediaData.*.url' => [
+            'regex' => 'El enlace proporcionado para :attribute no es válido. Debe ser una URL correcta como example.com o www.example.com.',
+            'max' => 'El enlace de :attribute no puede superar los 255 caracteres.',
         ],
+        'socialMediaData.*.status' => [
+            'in' => 'El estado de :attribute debe ser "added" o "edited".',
+        ],
+        'socialMediaData.*.terms' => [
+            'boolean' => 'El valor de términos para :attribute debe ser verdadero o falso.',
+        ],
+        'socialMediaData.*.marketing' => [
+            'boolean' => 'El valor de marketing para :attribute debe ser verdadero o falso.',
+        ],
+        'after_or_equal' => 'El campo :attribute debe ser una fecha posterior o igual a la fecha inicial.',
+
     ],
     /*
     |--------------------------------------------------------------------------
@@ -139,13 +214,18 @@ return [
     'attributes'           => [
         'name'                  => 'nombre',
         'username'              => 'usuario',
-        'email'                 => 'correo electrónico',
+        'email'                 => 'Correo electrónico',
         'first_name'            => 'nombre',
+        'firstname'             => 'Nombres',
+        'lastname'              => 'Apellidos',
+        'card'                  => 'C.C/T.I',
+        'email_confirm'         => 'Confirmación de correo electrónico',
         'last_name'             => 'apellido',
         'password'              => 'contraseña',
         'password_confirmation' => 'confirmación de la contraseña',
         'city'                  => 'ciudad',
-        'country'               => 'país',
+        'state'                 => 'Departamento',
+        'country'               => 'País',
         'address'               => 'dirección',
         'phone'                 => 'teléfono',
         'mobile'                => 'celular',
@@ -160,13 +240,50 @@ return [
         'second'                => 'segundo',
         'title'                 => 'título',
         'body'                  => 'contenido',
-        'description'           => 'descripción',
+        'description'           => 'Descripción',
         'excerpt'               => 'extracto',
         'date'                  => 'fecha',
         'time'                  => 'hora',
         'subject'               => 'asunto',
         'message'               => 'mensaje',
         'required'              => 'Requerido',
+        'end_date'              =>  'Fecha fin',
+        'start_date'            =>  'Fecha inicio',
+        'company_logo'          =>  'Logo de la empresa',
+        
+        'socialMediaData.linkedin.url' => 'LinkedIn URL',
+        'socialMediaData.linkedin.status' => 'estado de LinkedIn',
+        'socialMediaData.linkedin.terms' => 'términos de LinkedIn',
+        'socialMediaData.linkedin.marketing' => 'marketing de LinkedIn',
+
+        'socialMediaData.facebook.url' => 'Facebook URL',
+        'socialMediaData.facebook.status' => 'estado de Facebook',
+        'socialMediaData.facebook.terms' => 'términos de Facebook',
+        'socialMediaData.facebook.marketing' => 'marketing de Facebook',
+
+        'socialMediaData.github.url' => 'GitHub URL',
+        'socialMediaData.github.status' => 'estado de GitHub',
+        'socialMediaData.github.terms' => 'términos de GitHub',
+        'socialMediaData.github.marketing' => 'marketing de GitHub',
+
+        'socialMediaData.office365.url' => 'Office 365 URL',
+        'socialMediaData.office365.status' => 'estado de Office 365',
+        'socialMediaData.office365.terms' => 'términos de Office 365',
+        'socialMediaData.office365.marketing' => 'marketing de Office 365',
+
+        'socialMediaData.youtube.url' => 'YouTube URL',
+        'socialMediaData.youtube.status' => 'estado de YouTube',
+        'socialMediaData.youtube.terms' => 'términos de YouTube',
+        'socialMediaData.youtube.marketing' => 'marketing de YouTube',
+
+        'socialMediaData.twitter.url' => 'Twitter URL',
+        'socialMediaData.twitter.status' => 'estado de Twitter',
+        'socialMediaData.twitter.terms' => 'términos de Twitter',
+        'socialMediaData.twitter.marketing' => 'marketing de Twitter',
+
+        'socialMediaData.instagram.url' => 'Instagram URL',
+        'socialMediaData.instagram.status' => 'estado de Instagram',
+        'socialMediaData.instagram.terms' => 'términos de Instagram',
+        'socialMediaData.instagram.marketing' => 'marketing de Instagram',
     ],
 ];
-

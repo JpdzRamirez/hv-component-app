@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('socialmedia', function (Blueprint $table) {
             $table->id();
-            $table->string('social_facebook');
-            $table->string('social_github');
-            $table->string('social_mail');
-            $table->string('social_youtube');
-            $table->string('social_twitter');
-            $table->string('social_instagram');
+            $table->string('linkedin');
+            $table->string('linkedin_terms');
+            $table->string('facebook');
+            $table->string('facebook_terms');
+            $table->string('github');
+            $table->string('github_terms');
+            $table->string('office365');
+            $table->string('office365_terms');
+            $table->string('youtube');
+            $table->string('youtube_terms');
+            $table->string('twitter');
+            $table->string('twitter_terms');
+            $table->string('instagram');
+            $table->string('instagram_terms');
             $table->unsignedBigInteger('presentation_id'); 
             $table->timestamps();
 

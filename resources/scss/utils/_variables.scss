@@ -5,12 +5,14 @@ $gray-text-color: #D3D3D3;
 $white-color: #ffffff;
 $black-color: #191919;
 $transparent-bg : transparent;
+$transparent-bg-toast:#343a4082;
 $default-color : #282a3c;
 $primary-color : #177dff;
 $secondary-color : #716aca;
 $info-color : #36a3f7;
 $success-color : #35cd3a;
 $warning-color : #ffa534;
+$golden-color:#ffcf40;
 $danger-color : #f3545d;
 $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
 :root {
@@ -38,7 +40,8 @@ $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
     --scrollbar-bg: rgb(1 2 3 / 40%);
     --text-default-color: #ffffff;
     --bg-default-color: #515151;
-    --bg-default-colorTransparent: #343a40;
+    --bg-default-colorTransparent: #343a40e8;
+    --code-default-color: #ffa534;
 }
 
 .light-mode {
@@ -55,4 +58,8 @@ $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
     --hover-menu-bg: rgba(255 255 255 / 35%);
     --scrollbar-bg: rgb(255 253 253 / 57%);
     --content-title-color: --theme-color;
+    --code-default-color: #f3545d;
+    --text-default-color: #333333;
+    --bg-default-color: #ffff;
+    --bg-default-colorTransparent: #f8f9fa;
 }

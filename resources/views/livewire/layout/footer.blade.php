@@ -1,24 +1,24 @@
 <div>
     <div class="taskBarFooter dark" id="taskBar-Footer">
         <div class="windows-container">
-          <a><i class="fa-solid fa-square-list"></i></a>
+          <a href="{{route('home')}}" target="_blanck"><i class="fa-solid fa-square-list"></i></a>
           <div class="windows-tab">
-            <a id="max"><i class="fa-light fa-window-flip win-tab"></i><img src="/assets/img/wallpaper.jpg" class="win-img"/></a>
+            <a id="max"><i class="fa-light fa-window-flip win-tab"></i><img src="{{asset('assets/img/wallpaper.jpg')}}" class="win-img"/></a>
             <a><i class="fa-light fa-window-flip win-tab"></i></a>
             <a><i class="fa-light fa-window-flip win-tab"></i></a>
           </div>
           <a><i class="fa-sharp fa-solid fa-magnifying-glass"></i></a>
         </div>
         <div class="gadgets">
-          <a href="#" target="_blank"><img src="assets/img/svg/whatsapp.svg" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="assets/img/svg/github.svg" class="gadget"/></a>   
-          <a href="#" target="_blank"><img src="assets/img/svg/gmail.svg" class="gadget"/></a>  
-          <a href="#" target="_blank"><img src="assets/img/svg/linkedin.svg" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="assets/img/svg/terminal.png" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="assets/img/svg/google-chrome.svg" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="assets/img/svg/google-Drive.svg" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="assets/img/svg/trash.svg" class="gadget"/></a>
-          <a href="#" target="_blank"><img src="assets/img/svg/settings.svg" class="gadget"/></a>
+          <a href="https://wa.me/573177163494" target="_blank"><img src="{{asset('assets/img/svg/whatsapp.svg')}}" class="gadget"/></a>
+          <a href="https://github.com/JpdzRamirez" target="_blank"><img src="{{asset('assets/img/svg/github.svg')}}" class="gadget"/></a>   
+          <a href="mailto:jeremyivanpedraza@gmail.com?Subject=%20Servicios%20de%20Programación%20" target="_blank"><img src="{{asset('assets/img/svg/gmail.svg')}}" class="gadget"/></a>  
+          <a href="https://www.linkedin.com/in/jeremy-iván-pedraza-hernández/" target="_blank"><img src="{{asset('assets/img/svg/linkedin.svg')}}" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/terminal.png')}}" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/google-chrome.svg')}}" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/google-Drive.svg')}}" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/trash.svg')}}" class="gadget"/></a>
+          <a href="#" target="_blank"><img src="{{asset('assets/img/svg/settings.svg')}}" class="gadget"/></a>
         </div>
         <div class="clock-container">
           <div class="otherIcons">
@@ -26,8 +26,8 @@
             <a><i class="fa-sharp fa-solid fa-plug"></i></a>
             <a><i class="fa-sharp fa-solid fa-power-off"></i></a>
             <a><i class="fa-sharp fa-solid fa-bell"></i></a>
-            <button id="openBatteryToast" class="battery"></button>
-            <div class="toast battery-toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <button id="openBatteryToast" onclick="openBatteryToast(event)" class="battery"></button>
+            <div class="toast battery-toast" id="batteryToast" role="alert" aria-live="assertive" aria-atomic="true">
                 <div class="toast-body">
                     {{__('general.battery-toast')}}
                   <hr class="hr-text m-0">
@@ -52,3 +52,22 @@
         (PHP v{{ PHP_VERSION }}), Livewire v3.5.9
     </span>
 </div>
+@push('templateScripts')
+<script>
+    //Events
+    function openBatteryToast(event) {
+        const $toastBody = $("#batteryToast");
+        let toastBattery = new bootstrap.Toast($toastBody);
+        toastBattery.hide();
+        // Evento para detectar clics fuera del botón
+        $(document).on("click.outside", function(e) {
+            // Si el clic es fuera del botón, quitamos la clase
+            if (!$toastBody.is(e.target) && $toastBody.has(e.target).length === 0) {
+              toastBattery.show();
+                // Removemos el evento .outside una vez ejecutado
+                $(document).off("click.outside");
+            }
+        });
+    }
+</script>
+@endpush

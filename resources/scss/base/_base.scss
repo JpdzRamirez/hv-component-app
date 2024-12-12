@@ -1,12 +1,10 @@
 @use "../utils" as *;
 
-
-
 *:focus {
-  outline: 0 !important;
-  -webkit-box-shadow: none !important;
-  box-shadow: none !important; 
-  box-sizing: border-box;
+    outline: 0 !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    box-sizing: border-box;
 }
 
 html {
@@ -15,33 +13,39 @@ html {
     scroll-behavior: smooth;
     cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23EFB519" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>'),
         default !important;
+        background-color: #333333;
+        width: 100vw;
+        height: 100vh;
 }
 
 body {
- font-family: var(--body-font-personal)!important;
- color: $black-color;
- overflow-x: hidden;
- font-style: normal;
- cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23EFB519" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>'),
- default !important;
- background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
- background-size: cover;
- background-position: center;
- display: flex;
- justify-content: center;
- align-items: center;
- flex-direction: column;
- padding: var(--body-padding);
- width: 100%;
- height: 100vh;
-
+    font-family: var(--body-font-personal) !important;
+    color: $black-color;
+    overflow-x: hidden;
+    font-style: normal;
+    cursor: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="%23EFB519" d="M4.5.79v22.42l6.56-6.57h9.29L4.5.79z"></path></svg>'),
+        default !important;
+    background-image: url(https://wallpapershome.com/images/wallpapers/macos-big-sur-1280x720-dark-wwdc-2020-22655.jpg);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: var(--body-padding);
+    width: auto;
+    height: -webkit-fill-available;
 }
 
 img {
- max-width: 100%;
+    max-width: 100%;
 }
 
 div {
-  transition: all 0.5s ease; /* Aplica la transición a todas las propiedades que cambian */
+    transition: all 0.2s ease; /* Aplica la transición a todas las propiedades que cambian */
+}
+
+code {
+    animation: shake-vertical 0.8s cubic-bezier(0.455, 0.03, 0.515, 0.955) both;
 }
 
