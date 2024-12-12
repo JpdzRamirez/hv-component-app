@@ -41,7 +41,9 @@
     </section>
     {{--END TOOLS SECTION--}}
     {{--DINAMIC SECTION--}}
-        {{ $slot }}
+
+        @livewire('pages.register')
+
     {{--END DINAMIC SECTION--}}
     <footer>
         @livewire('layout.footer')

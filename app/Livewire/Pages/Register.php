@@ -364,6 +364,6 @@ class Register extends Component
                 'cityError' => $this->getErrorBag()->get('city'),
                 'phoneError' => $this->getErrorBag()->get('phone'),
             ]
-        )->layout('components.layouts.base');
+        );
     }
 }

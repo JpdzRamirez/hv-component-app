@@ -414,6 +414,7 @@
     </div>
     <div x-data="{ visible: @entangle('messageVisibility') }" :class="{ 'is-active': visible }" class="overlay-app"></div>
 </div>
+
 @push('templateModal')
     {{-- MODAL SOCIAL MEDIA FORM --}}
     <div id="modalSocialMedia" tabindex="-1" role="dialog" aria-labelledby="modalSocialMediaLabel" class="pop-up">

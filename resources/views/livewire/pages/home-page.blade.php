@@ -1,3 +1,4 @@
+<x-layouts.base>
 <div>
     <div id="app" class="app">
         <header>
@@ -242,3 +243,4 @@
                 <div class="overlay-app"></div>
             </div>
 </div>
+</x-layouts.base>
