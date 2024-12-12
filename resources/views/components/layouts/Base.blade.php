@@ -41,9 +41,11 @@
     </section>
     {{--END TOOLS SECTION--}}
     {{--DINAMIC SECTION--}}
-
+    @if (isset($presentationID))
+        @livewire('pages.register', ['presentationID' => $presentationID])
+    @else
         @livewire('pages.register')
-
+    @endif
     {{--END DINAMIC SECTION--}}
     <footer>
         @livewire('layout.footer')

@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\Models\Experience;
 use App\Models\Presentation;
+use Carbon\Carbon;
 
 use App\Contracts\ExperienceRepositoryInterface;
 
@@ -55,6 +56,13 @@ class ExperienceRepository implements ExperienceRepositoryInterface
         $createdExperiences= [];
         foreach($experiences as $experience) {
             $experience['presentation_id'] = $presentation->id; // Asociar con el ID de la presentación
+            $experience['start_date'] = Carbon::createFromFormat('d-m-Y', trim($experience['start_date']));
+            if($experience['end_date']){
+                $experience['end_date'] = Carbon::createFromFormat('d-m-Y', trim($experience['end_date']));
+            }else {
+                // Handle empty end_date, e.g., set to null or a default value
+                $experience['end_date'] = null;
+            }
             $createdExperiences[] = Experience::create($experience); // Guardar cada habilidad creada en el arreglo
         }
         

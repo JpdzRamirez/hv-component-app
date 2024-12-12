@@ -13,7 +13,9 @@ Route::middleware(['CaptureSessionData'])
         Route::get('/register', function () {
             return view('components.layouts.base');
         })->name('profile.create');
-        Route::get('/presentation/{presentationID?}', Register::class)->name('profile.update');
+        Route::get('/presentation/{presentationID?}', function ($presentationID) {
+            return view('components.layouts.base',compact('presentationID'));
+        })->name('profile.update');
         Route::get('/not-found', [PresentationController::class, 'notFound'])->name('not.found');
         Route::get('/contact', [PresentationController::class, 'contact'])->name('contact');
     });

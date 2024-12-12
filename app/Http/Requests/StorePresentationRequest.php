@@ -23,11 +23,10 @@ class StorePresentationRequest extends FormRequest
     {   
         //Reglas de validación para cración de un perfil Presentation
         $rules = [
-            'photo' => ['nullable', 'image', 'mimes:jpg,jpeg,png', 'max:2048'],
             'description' => ['required', 'string', 'max:500'],
             'firstname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
             'lastname' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],
-            'card' => ['required', 'string', 'regex:/^[0-9]+$/', 'max:20'],
+            'card' => ['required', 'string', 'regex:/^[0-9]+$/', 'max:20','unique:presentation'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:presentation'],
             'email_confirm' => ['required', 'email', 'same:email'],
             'country' => ['required', 'string', 'max:255', 'regex:/^[\pL\s]+$/u'],

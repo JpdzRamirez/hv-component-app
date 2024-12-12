@@ -37,18 +37,22 @@
             </div>
 
             <div class="row mb-3">
-                <div class="alert alert-danger">
+                @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
                     <ul>
-                        @if ($errors->any())
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        @elseif (session('success'))
-                            <li>{{ session('success') }}</li>
-                        @endif
-
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
                     </ul>
                 </div>
+                @endif
+                @if (session('success'))
+                <div class="alert alert-success" role="alert">
+                    <ul>
+                        <li>{{ session('success') }}</li>
+                    </ul>
+                </div>
+                @endif
             </div>
 
             <div class="content-button-wrapper submitButton d-flex flex-row justify-content-center gap-3">
@@ -465,6 +469,12 @@
 @endpush
 @push('templateScripts')
     <script>
+        document.addEventListener('openNewTab', function(event){
+            console.log("abierto resultado")            
+            const URL=event.detail[0].url;
+            console.log(URL);
+            let win = window.open(URL, "_blank");
+        });
         document.addEventListener('formSubmittSuccess', function(event) {
             // Obtener el valor de 'response' desde 'event.detail'
             let responseAgree = event.detail.response;

@@ -64,13 +64,6 @@ class ExperienceForm extends Component
             // Asignar solo si todas las propiedades existen
             $this->fill($data);
 
-            // Formatear fechas
-            $this->start_date = $this->castService->formatDate($this->start_date, 'd-m-y');
-            // Si tiene fecha final
-            if ($this->end_date) {
-                $this->end_date = $this->castService->formatDate($this->end_date, 'd-m-y');
-            }
-      
             // Validar los datos
             $validatedData = $this->validate();
             //Añadimos la imagen al arreglo, si no hay se sube por defecto null 

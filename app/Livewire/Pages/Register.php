@@ -45,19 +45,19 @@ class Register extends Component
     public $socials = ['linkedin', 'facebook', 'github', 'office365', 'youtube', 'twitter', 'instagram'];
     public $socialMediaData = [];
 
-    public $skills=[];
-    public $experiences=[];
-    public $studies=[];
+    public $skills = [];
+    public $experiences = [];
+    public $studies = [];
 
-    public $messageVisibility=false;
+    public $messageVisibility = false;
 
     protected $listeners = [
         'bindingLocation' => 'updateLocation',
         'bindingPhoneRoot' => 'updatePhoneRoot',
         'bindingPhoneNumber' => 'updatePhone',
-        'skillAdded'=>'updateSkills',
-        'experienceAdded'=>'updateExperiences',
-        'sectionChanged' =>'updateSection',
+        'skillAdded' => 'updateSkills',
+        'experienceAdded' => 'updateExperiences',
+        'sectionChanged' => 'updateSection',
         'updateSocialPrompt',
         'socialMediaSubmitted',
     ];
@@ -70,8 +70,9 @@ class Register extends Component
     protected CastServiceInterface $castService;
     /**************************************
     --------------Functions------------------
-    ******************************************/
-    public function resetAll(){
+     ******************************************/
+    public function resetAll()
+    {
         $this->reset([
             'fullname',
             'description',
@@ -88,7 +89,6 @@ class Register extends Component
             'city',
             'address',
             'address_complement',
-            'socialMediaData',
             'skills',
             'experiences',
             'studies',
@@ -97,7 +97,7 @@ class Register extends Component
     public function closeErrors()
     {
         if ($this->getErrorBag()->isNotEmpty()) {
-            $this->messageVisibility=false;
+            $this->messageVisibility = false;
         }
     }
 
@@ -108,7 +108,7 @@ class Register extends Component
             if (isset($socialMedia->{$social})) {
                 $this->socialMediaData[$social]['url'] = $socialMedia->{$social};
                 $this->socialMediaData[$social]['status'] = '';
-                
+
                 // Decodificar el JSON de términos y marketing, si está presente
                 $terms = isset($socialMedia->{$social . '_terms'}) ? json_decode($socialMedia->{$social . '_terms'}, true) : [];
                 $this->socialMediaData[$social]['terms'] = $terms['terms'] ?? 0;
@@ -118,15 +118,15 @@ class Register extends Component
     }
     private function loadSills($skills)
     {
-        $this->skills=$skills->toArray();
+        $this->skills = $skills->toArray();
     }
     private function loadExperiences($experiences)
     {
-        $this->experiences=$experiences->toArray();
+        $this->experiences = $experiences->toArray();
     }
     private function loadStudies($studies)
     {
-        $this->studies=$studies->toArray();
+        $this->studies = $studies->toArray();
     }
     //*********************** */
     // Rules
@@ -144,10 +144,10 @@ class Register extends Component
         SocialMediaRepositoryInterface $socialmediaBuilder,
         CastServiceInterface $castService,
         $description = null,
-        $presentationID = null)
-    {
+        $presentationID = null
+    ) {
         //Inicializar seccion
-        $this->section=1;
+        $this->section = 1;
         //Inicializar repositorio
         $this->presentationBuilder = $presentationBuilder;
         $this->experienceBuilder = $experienceBuilder;
@@ -165,7 +165,7 @@ class Register extends Component
                         if (property_exists($this, $key)) {
                             $this->{$key} = $value;
                         }
-                    }                    
+                    }
                     // Inicializa las redes sociales si existen
                     if ($presentation->socialmedia) {
                         $this->loadSocialMediaData($presentation->socialmedia);
@@ -201,7 +201,7 @@ class Register extends Component
 
             $this->fullname = __('forms.register.model-full-name');
             $this->description = $description;
-        }   
+        }
     }
     /*
     *******************************************
@@ -214,20 +214,21 @@ class Register extends Component
             $this->fullname = trim("{$this->firstname} {$this->lastname}");
         }
     }
-    public function updatedPhoto(CastServiceInterface $castService){
+    public function updatedPhoto(CastServiceInterface $castService)
+    {
         //Inicializar Instancia
         $this->castService = $castService;
-        $tempPhoto=$this->photo;
-        $this->photo =$this->castService->processPhoto($tempPhoto);
+        $tempPhoto = $this->photo;
+        $this->photo = $this->castService->processPhoto($tempPhoto);
     }
     public function socialMediaSubmitted($data)
     {
         // Si el valor de 'socialPrompt' es válido, asignarlo a la propiedad correspondiente
         if (in_array($data['socialPrompt'], $this->socials)) {
             $this->socialMediaData[$data['socialPrompt']]['url'] = $data['url'];
-            if(empty($this->socialMediaData[$data['socialPrompt']]['status'])){
+            if (empty($this->socialMediaData[$data['socialPrompt']]['status'])) {
                 $this->socialMediaData[$data['socialPrompt']]['status'] = 'added';
-            }else{
+            } else {
                 $this->socialMediaData[$data['socialPrompt']]['status'] = 'edited';
             }
             $this->socialMediaData[$data['socialPrompt']]['terms'] = $data['terms'];
@@ -237,15 +238,16 @@ class Register extends Component
     public function updateSkills($skills)
     {
         // Añadir la habilidad al arreglo
-        $this->skills = $skills; 
+        $this->skills = $skills;
     }
     public function updateExperiences($experiences)
     {
         // Añadir la experiencia al arreglo
-        $this->experiences = $experiences; 
+        $this->experiences = $experiences;
     }
-    public function updateSection($section){
-        $this->section=$section;
+    public function updateSection($section)
+    {
+        $this->section = $section;
     }
     //************************ */
     /*
@@ -279,8 +281,7 @@ class Register extends Component
         SkillRepositoryInterface $skillBuilder,
         SocialMediaRepositoryInterface $socialmediaBuilder,
         CastServiceInterface $castService
-        )
-    {
+    ) {
         try {
             //Inicializar instancia
             $this->presentationBuilder = $presentationBuilder;
@@ -288,17 +289,14 @@ class Register extends Component
             $this->experienceBuilder = $experienceBuilder;
             $this->skillBuilder = $skillBuilder;
             $this->castService = $castService;
+
             // Obtener las reglas de validación desde StorePresentationRequest
             $validatedData = $this->validate();
 
-            
-            // Procesar la foto en base64, si existe
-            $tempPhoto=$validatedData['photo'];
-             
-            $validatedData['photo'] = $this->castService->processPhoto($tempPhoto);
+            $validatedData['photo'] = $this->photo;
 
             // Usar el repositorio para crear la presentación
-            $presentation=$this->presentationRepository->create($validatedData);
+            $presentation = $this->presentationBuilder->create($validatedData);
 
             // Preparar los datos de redes sociales
             $socialMediaData = [];
@@ -318,41 +316,61 @@ class Register extends Component
             // Asociar las skills con la presentación creada
             $this->skillBuilder->createSkills($presentation, $this->skills);
 
-            $this->dispatch('formSubmittSuccess', 
-                response:true,
+            $this->dispatch(
+                'formSubmittSuccess',
+                response: true,
                 modal: '',
                 button: '#registerSubmit'
             );
-            // Redireccionar o mostrar mensaje de éxito
-            session()->flash('success', __('exceptions.success-message',['name'=>$this->fullname]));
+            // Abrir otra pestaña y mostrar mensaje de éxito
 
+            // Generar la URL completa
+            $presentationUrl = route('profile.update', ['presentationID' => $presentation->id]);
 
-            $this->messageVisibility=true;
+            // Crear un evento de JavaScript para abrir la nueva pestaña
+            $this->dispatch('openNewTab', [
+                'url' => $presentationUrl,
+            ]);
+
+            session()->flash('success', __('exceptions.success-message', ['name' => $this->fullname]));
+
+            $this->messageVisibility = true;
 
             $this->resetAll();
 
+            //Inicializar redes sociales por defecto
+            foreach ($this->socials as $social) {
+                $this->socialMediaData[$social] = [
+                    'url' => '',
+                    'status' => '',
+                    'terms' => 0,
+                    'marketing' => 0,
+                ];
+            }
         } catch (ValidationException $exception) {
-            $this->messageVisibility=true;
+            $this->messageVisibility = true;
 
             // Emitimos un solo evento con todos los errores relevantes
-            $this->dispatch('receiveErrors', [
-                'errors' => array_filter([
-                    'country' => $exception->validator->errors()->get('country'),
-                    'state' => $exception->validator->errors()->get('state'),
-                    'city' => $exception->validator->errors()->get('city'),
-                    'phone' => $exception->validator->errors()->get('phone'),
-                ]),
-                // Añadimos destino de origen
-                'modal' => '',
-                'button'=> '#registerSubmit'
-            ]
+            $this->dispatch(
+                'receiveErrors',
+                [
+                    'errors' => array_filter([
+                        'country' => $exception->validator->errors()->get('country'),
+                        'state' => $exception->validator->errors()->get('state'),
+                        'city' => $exception->validator->errors()->get('city'),
+                        'phone' => $exception->validator->errors()->get('phone'),
+                    ]),
+                    // Añadimos destino de origen
+                    'modal' => '',
+                    'button' => '#registerSubmit'
+                ]
 
-        );
+            );
 
             throw $exception;
         }
     }
-    
+
     //***************************************************** */
     public function render()
     {
