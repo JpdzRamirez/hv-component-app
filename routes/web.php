@@ -11,10 +11,10 @@ Route::middleware(['CaptureSessionData'])
         Route::get('/', [PresentationController::class, 'welcome'])->name('home');
         Route::get('/dashboard', HomePage::class)->name('dashboard');
         Route::get('/register', function () {
-            return view('components.layouts.base');
+            return view('layouts.base');
         })->name('profile.create');
         Route::get('/presentation/{presentationID?}', function ($presentationID) {
-            return view('components.layouts.base',compact('presentationID'));
+            return view('layouts.base',compact('presentationID'));
         })->name('profile.update');
         Route::get('/not-found', [PresentationController::class, 'notFound'])->name('not.found');
         Route::get('/contact', [PresentationController::class, 'contact'])->name('contact');
