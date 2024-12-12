@@ -32,6 +32,7 @@
                 <div class="containerPreloader__d"></div>
             </div>
         </div>
+        
         <div class="video-bg">
             <img src="{{asset('assets/img/bg-1.jpg')}}" loading="lazy" alt="Wallpaper">
         </div>
