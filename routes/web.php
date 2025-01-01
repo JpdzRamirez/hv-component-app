@@ -9,7 +9,9 @@ use App\Livewire\Pages\Register;
 Route::middleware(['CaptureSessionData'])
     ->group(function () {
         Route::get('/', [PresentationController::class, 'welcome'])->name('home');
-        Route::get('/dashboard', HomePage::class)->name('dashboard');
+        Route::get('/dashboard', function () {
+            return view('layouts.base');
+        })->name('dashboard');
         Route::get('/register', function () {
             return view('layouts.base');
         })->name('profile.create');

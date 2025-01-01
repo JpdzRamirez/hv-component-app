@@ -41,11 +41,14 @@
         </div>
     </section>
     {{--END TOOLS SECTION--}}
-    {{--DINAMIC SECTION--}}
-    @if (isset($presentationID))
-        @livewire('pages.register', ['presentationID' => $presentationID])
-    @else
+    @if (request()->routeIs('dashboard'))
+        @livewire('pages.HomePage')
+    @elseif (request()->routeIs('profile.create'))
         @livewire('pages.register')
+    @elseif (request()->routeIs('profile.update'))
+        @if (isset($presentationID))
+            @livewire('pages.register', ['presentationID' => $presentationID])
+        @endif
     @endif
     {{--END DINAMIC SECTION--}}
     <footer>

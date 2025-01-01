@@ -1,4 +1,3 @@
-<x-layouts.base>
 <div>
     <div id="app" class="app">
         <header>
@@ -9,11 +8,11 @@
                     <livewire:components.navbar />
                     <div class="main-container">
                         <div class="main-header">
-                            <a class="menu-link-main" href="#">All Apps</a>
+                            <a class="menu-link-main" href="#">{{__('dashboard.All-Apps')}}</a>
                             <div class="header-menu">
-                                <a class="main-header-link is-active" href="#">Desktop</a>
-                                <a class="main-header-link" href="#">Mobile</a>
-                                <a class="main-header-link" href="#">Web</a>
+                                <a class="main-header-link is-active" href="#">{{__('dashboard.WEB')}}</a>
+                                <a class="main-header-link" href="#">{{__('dashboard.Desktop')}}</a>
+                                <a class="main-header-link" href="#">{{__('dashboard.Mobile')}}</a>
                             </div>
                         </div>
                         <div class="content-wrapper">
@@ -243,4 +242,3 @@
                 <div class="overlay-app"></div>
             </div>
 </div>
-</x-layouts.base>

@@ -22,6 +22,8 @@ use App\Repositories\SkillRepository;
 use App\Repositories\SocialMediaRepository;
 use App\Repositories\ExperienceRepository;
 
+use Illuminate\Support\Facades\URL;
+
 use App\Services\GeoLocationHandler;
 
 class AppServiceProvider extends ServiceProvider
@@ -57,6 +59,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        if (env('APP_ENV') === 'production') {
+            URL::forceScheme('https');
+        }
     }
 }

@@ -2,16 +2,13 @@ import { defineConfig } from 'vite';
 import laravel from 'laravel-vite-plugin';
 
 export default defineConfig({
-  server: {
-    https: false,  // Habilita HTTPS en el servidor de desarrollo
-  },
   plugins: [
     laravel({
-      input: ['resources/css/app.css', 'resources/js/app.js'],
-      refresh: true,
+      input: ['resources/css/app.css', 'resources/js/app.js'], // Especifica los archivos de entrada
+      refresh: true,  // Habilita la recarga automática
     }),
   ],
   build: {
-    minify: 'esbuild', // Habilitar minificación
+    minify: 'esbuild',  // Habilita la minificación para producción
   },
 });
