@@ -1,0 +1,127 @@
+@use "../../utils" as *;
+
+.header-menu.tabs {
+    text-align: left;
+    position: relative;
+    overflow: unset !important;
+    gap:2em;
+    top: 0.5em;
+
+    input {
+        position: absolute;
+        opacity: 0;
+        margin: 0;
+        padding: 0;
+      }
+      input + label:hover {
+        color: #777;
+      }
+
+      .tabsShadow {
+        width: 100%;
+        padding: 10px;
+        box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.04);
+        box-sizing: border-box;
+        position: absolute;
+        height: 35px;
+        z-index: 0;
+        top: 0;
+        pointer-events: none;
+      }
+      input + label {
+        margin: 12px -8px;
+        width: auto;
+        transition: all 0.3s;
+        text-align: center;
+        border: none;        
+        color: var(--theme-color);
+        display: inline-flex;
+        -webkit-box-pack: center;
+        padding: 5pt 10pt;
+        vertical-align: top;
+        justify-content: flex-start;
+        background: #333;        
+        text-transform: uppercase;
+        font-weight: 300;
+        font-size: 8pt;
+        background: #26292c;
+        margin-bottom: 0.5px;                
+        letter-spacing: 0.1666666667em !important;
+        background: var(--theme-bg-color);
+        cursor: pointer;
+      }
+  }
+  
+  #tab-1:checked ~ .glider {
+    left: -2.4%;
+    width: 41.5%;
+  }
+  #tab-1:checked + label {
+    color: deepskyblue;
+  }
+  #tab-2:checked + label {
+    color: #51a14c;
+  }
+  #tab-2:checked ~ .glider {
+    background: linear-gradient(90deg, #51a14c 0%, #10c33e 100%);
+    box-shadow: 0px 0px 8px 0px rgba(47, 187, 12, 0.62);
+  }
+  #tab-2:checked ~ .glider {
+    left: 43.2%;
+    width: 30%;
+  }
+  
+  #tab-3:checked + label {
+    color: #525252;
+  }
+  
+
+  #tab-3:checked + label {
+    color: #ffadfa;
+    color: #ffaa75;
+  }
+  #tab-3:checked ~ .glider {
+    background: linear-gradient(
+      90deg,
+      #faffcc 0%,
+      #f5eea3 10%,
+      #ffe48a 40%,
+      #ffb54d 65%,
+      #ff974d 85%,
+      #ff8052 100%
+    );
+    left: 77.4%;
+    width: 25%;
+    box-shadow: 0px 0px 8px 0px hsl(17.72deg 100% 70% / 70%);
+  }
+
+  .glider {
+    width: 35%;
+    padding: 0px 13px;
+    height: 4.5px;
+    border-radius: 2px 2px 0px 0px;
+    position: absolute;
+    box-shadow: 0px 0px 8px 0px hsl(262deg 100% 70% / 70%);
+    background: linear-gradient(
+      113deg,
+      hsl(260deg 100% 64%) 0%,
+      hsl(190deg 100% 55%) 100%
+    );
+    transition: all 0.3s;
+    top: 5px;
+    z-index: 2;
+    left: 1%;
+  }
+  .main-container .item{
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease-in-out;
+    .content-wrapper{
+        position: absolute;
+        width: -webkit-fill-available;
+        height: -webkit-fill-available !important;
+    }
+  }
+  .main-container .item[style*="opacity: 1"] {
+    visibility: visible;
+}
