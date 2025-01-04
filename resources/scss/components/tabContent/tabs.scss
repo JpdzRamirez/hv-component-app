@@ -53,8 +53,8 @@
   }
   
   #tab-1:checked ~ .glider {
-    left: -2.4%;
-    width: 41.5%;
+    left: -1.8%;
+    width: 29.5%;
   }
   #tab-1:checked + label {
     color: deepskyblue;
@@ -67,8 +67,8 @@
     box-shadow: 0px 0px 8px 0px rgba(47, 187, 12, 0.62);
   }
   #tab-2:checked ~ .glider {
-    left: 43.2%;
-    width: 30%;
+    left: 30.3%;
+    width: 28%;
   }
   
   #tab-3:checked + label {
@@ -90,10 +90,21 @@
       #ff974d 85%,
       #ff8052 100%
     );
-    left: 77.4%;
-    width: 25%;
+    left: 61.2%;
+    width: 20.6%;
     box-shadow: 0px 0px 8px 0px hsl(17.72deg 100% 70% / 70%);
   }
+
+  #tab-4:checked + label {
+    color: #ffadfa;
+  }
+  #tab-4:checked ~ .glider {
+    background: linear-gradient(90deg, #b9326f 0%, #ff5ddc 100%);
+    box-shadow: 0px 0px 8px 0px rgba(231, 13, 93, 0.57);
+    left: 84.3% !important;
+    width: 17.3%;
+  }
+
 
   .glider {
     width: 35%;

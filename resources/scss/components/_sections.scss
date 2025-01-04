@@ -61,7 +61,7 @@
             padding: 20px 40px;
 
             .content-wrapper-context {
-                max-width: 350px;
+                
 
                 .content-text {
                     font-weight: 400;
@@ -73,6 +73,19 @@
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
+                    .section-title{
+                        display: flex;
+                        align-items: center;
+                    }
+                    .single-service{
+                        display: flex;
+                        flex-direction: row;
+                        flex-wrap: wrap;
+                        align-items: center;
+                        gap:1em;
+                        a{text-decoration: none;}
+
+                    }
                 }
 
                 .img-content {
