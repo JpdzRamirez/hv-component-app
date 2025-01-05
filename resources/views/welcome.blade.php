@@ -15,7 +15,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
+        @vite(['resources/css/app.min.css', 'resources/js/app.js'])
         {{-- <link href="{{ asset('build/assets/app-VkI9_RQ0.css') }}" rel="stylesheet">
         <link href="{{ asset('build/assets/app-BqUA3rj6.css') }}" rel="stylesheet"> --}}
 
@@ -59,6 +59,7 @@
                              </div>
                             {{-- <p class="slogan-text" content="Software">Software</p> --}}
                         </div>
+                        <a href="{{route('dashboard')}}">Main Dashboard</a>
                         <a href="{{route('profile.create')}}">Register Form</a>
         </div>
         

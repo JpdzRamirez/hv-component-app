@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PresentationController;
-use App\Livewire\Pages\HomePage;
-use App\Livewire\Pages\Register;
 
 
 Route::middleware(['CaptureSessionData'])

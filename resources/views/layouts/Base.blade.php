@@ -42,7 +42,7 @@
     </section>
     {{--END TOOLS SECTION--}}
     @if (request()->routeIs('dashboard'))
-        @livewire('pages.HomePage')
+        @livewire('pages.DashboardPage')
     @elseif (request()->routeIs('profile.create'))
         @livewire('pages.register')
     @elseif (request()->routeIs('profile.update'))
