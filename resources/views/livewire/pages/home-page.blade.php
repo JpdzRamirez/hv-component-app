@@ -28,19 +28,28 @@
                 <section class="item" style="overflow:auto;" id="content-main">
                     <div class="content-wrapper">
                         <div class="test">
-                            <div class="content-wrapper-header">
+                            <div id="header-img" class="content-wrapper-header">
                                 <div class="content-wrapper-context">
                                     <div class="content-text">
                                         <div class="row mb-4">
                                             <div class="col-lg-12">
                                                 <div class="section-title">
-                                                    <h2>We Offer Different Services To Improve Your Health</h2>
-                                                    <div class="container d-flex flex-column align-items-center">
-                                                        <lottie-player src="{{asset('assets/lottie/softwareDevelop.json')}}" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop nocontrols autoplay></lottie-player>
-                                                        <p>Lorem ipsum dolor sit amet consectetur adipiscing elit
-                                                            praesent aliquet. pretiumts</p>
+                                                    <div class="container-sm">
+                                                        <img src="{{asset('assets/img/JpdzSoftwareLogo-1.png')}}" id="JPDZSoftware-logo-1" alt="JPDZSoftware-1">
+                                                        <img class="hidden" src="{{asset('assets/img/JpdzSoftwareLogo-2.png')}}" id="JPDZSoftware-logo-2" alt="JPDZSoftware-2">
+                                                        <div class="blockquote-wrapper">
+                                                            <div class="blockquote">
+                                                              <h2>
+                                                                De la Capa Física al Desarrollo de Software
+                                                               </h2>
+                                                            </div>
+                                                          </div>
                                                     </div>
-
+                                                    <div class="container d-flex flex-column align-items-center">
+                                                        <lottie-player style="filter:drop-shadow(2px 4px 6px black)" id="lottie-crm-1" src="{{asset('assets/lottie/softwareDevelop-1.json')}}" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop nocontrols autoplay></lottie-player>
+                                                        <lottie-player class="hidden" style="filter:drop-shadow(2px 4px 6px black)" id="lottie-crm-2" src="{{asset('assets/lottie/softwareDevelop-2.json')}}" background="transparent"  speed="1"  style="width: 300px; height: 300px;" loop nocontrols autoplay></lottie-player>
+                                                        <i>&mdash;Soluciones integrales para todas tus necesidades tecnológicas</i>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -49,65 +58,126 @@
                                                 <!-- Start Single Service -->
                                                 <div class="single-service">
                                                     <i class="fa-sharp fa-solid fa-server"></i>
-                                                    <h4><a href="service-details.html">General Treatment</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                        luctus dictum eros ut imperdiet. </p>
+                                                <div><a href="service-details.html">Administración de Servidores
+                                                    </a>
+                                                    <span class="info">
+                                                        <i class="fa-solid fa-circle-info tooltip-info"></i>
+                                                    </span>
+                                                    <div class="hint-content do--split-children">
+                                                        <ul>
+                                                            <li>Hosting, Servidores y Office 365 Tenant: Configuración y gestión de servidores web, bases de datos y hosting (CPanel, WordPress, IIS).</li>
+                                                            <li>Administración de Office 365 Tenant: Teams, OneDrive, Outlook y Excel.</li>
+                                                            <li>Supervisión y mantenimiento de servidores en plataformas Windows Server, CentOS, Debian, Ubuntu Server y Zentyal.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                                    <p>Hosting, CPanel, Servidores y Tenant Office 365</p>
                                                 </div>
                                                 <!-- End Single Service -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-12">
                                                 <!-- Start Single Service -->
                                                 <div class="single-service">
-                                                    <i class="icofont icofont-tooth"></i>
-                                                    <h4><a href="service-details.html">Teeth Whitening</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                        luctus dictum eros ut imperdiet. </p>
+                                                    <i class="fa-sharp-duotone fa-regular fa-network-wired"></i>
+                                                    <div><a href="service-details.html">Networking</a>
+                                                        <span class="info">
+                                                            <i class="fa-solid fa-circle-info"></i>
+                                                        </span>
+                                                        <div class="hint-content do--split-children">
+                                                            <ul>
+                                                                <li>Configuración de VLAN, VPN, DNS, NAT, subnetting, proxy, firewall, DHCP y WLAN.</li>
+                                                                <li>Instalación y mantenimiento de infraestructura de red: switches, enrutadores y servidores.</li>
+                                                                <li>Diseño y optimización de redes corporativas.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>Administración y configuración de redes empresariales</p>
                                                 </div>
                                                 <!-- End Single Service -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-12">
                                                 <!-- Start Single Service -->
                                                 <div class="single-service">
-                                                    <i class="icofont icofont-heart-alt"></i>
-                                                    <h4><a href="service-details.html">Heart Surgery</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                        luctus dictum eros ut imperdiet. </p>
+                                                    <i class="fa-brands fa-cloudversify"></i>
+                                                    <div><a href="service-details.html">Cloud Administration</a>
+                                                        <span class="info">
+                                                            <i class="fa-solid fa-circle-info"></i>
+                                                        </span>
+                                                        <div class="hint-content do--split-children">
+                                                            <ul>
+                                                                <li>Configuración y mantenimiento de servicios en la nube:</li>
+                                                                <li>Implementación de servicios de almacenamiento en la nube: VM, redes, bases de datos SQL, Kubernetes, buckets y firewalls.</li>
+                                                                <li>Administración de entornos virtuales: Hyper-V, VMware y NGINX.</li>
+                                                                <li>Administración de servicios de correo electrónico en la nube: G Suite, Outlook y Zoho Mail.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>Google Cloud Platform, Amazon Web Services y Microsoft Azure.</p>
                                                 </div>
                                                 <!-- End Single Service -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-12">
                                                 <!-- Start Single Service -->
                                                 <div class="single-service">
-                                                    <i class="icofont icofont-listening"></i>
-                                                    <h4><a href="service-details.html">Ear Treatment</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                        luctus dictum eros ut imperdiet. </p>
+                                                    <i class="fa-sharp fa-regular fa-code"></i>
+                                                    <div><a href="service-details.html">Desarrollo de Software</a>
+                                                        <span class="info">
+                                                            <i class="fa-solid fa-circle-info"></i>
+                                                        </span>
+                                                        <div class="hint-content do--split-children">
+                                                            <p>Diseño moderno de interfaces para aplicaciones web con HTML, JavaScript, CSS-SCSS y frameworks modernos.
+                                                                Optimización de procesos técnicos y automatización de tareas administrativas y contables.
+                                                                Desarrollo de servicios web API RESTful con documentación herramientas como Postman y Swagger
+                                                                Aplicación de principios SOLID y CLEAN Code en proyectos escalables y eficientes</p>
+                                                          </div>
+                                                    </div>
+                                                    <p>Desarrollo web Full Stack con tecnologías como PHP, Laravel & Livewire</p>
                                                 </div>
                                                 <!-- End Single Service -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-12">
                                                 <!-- Start Single Service -->
                                                 <div class="single-service">
-                                                    <i class="icofont icofont-eye-alt"></i>
-                                                    <h4><a href="service-details.html">Vision Problems</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                        luctus dictum eros ut imperdiet. </p>
+                                                    <i class="fa-sharp fa-solid fa-ticket"></i>
+                                                    <div><a href="service-details.html">Servicios TI e ITIL</a>
+                                                        <span class="info">
+                                                            <i class="fa-solid fa-circle-info"></i>
+                                                        </span>
+                                                        <div class="hint-content do--split-children">
+                                                            <ul>
+                                                                <li>Gestión de usuarios, de incidentes y solicitudes mediante ITIL Fundamentals.</li>
+                                                                <li>Mejora constante de la calidad de servicio de Servicios (CSI).</li>
+                                                                <li>Gestión de Proveedores y cumplimiento de acuerdos de nivel de servicio (SLA).</li>
+                                                                <li>Control detallado de los activos tecnológicos de la organización.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>Administración de Inventario y Mesa de Ayuda</p>
                                                 </div>
                                                 <!-- End Single Service -->
                                             </div>
                                             <div class="col-lg-4 col-md-6 col-12">
                                                 <!-- Start Single Service -->
                                                 <div class="single-service">
-                                                    <i class="icofont icofont-blood"></i>
-                                                    <h4><a href="service-details.html">Blood Transfusion</a></h4>
-                                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec
-                                                        luctus dictum eros ut imperdiet. </p>
+                                                    <i class="fa-sharp fa-solid fa-computer-speaker"></i>
+                                                    <div><a href="service-details.html">Mantenimiento y Reparación de Hardware</a>
+                                                        <span class="info">
+                                                            <i class="fa-solid fa-circle-info"></i>
+                                                        </span>
+                                                        <div class="hint-content do--split-children">
+                                                            <ul>
+                                                                <li>Diagnóstico, reparación y mantenimiento de computadores y sistemas CCTV.</li>
+                                                                <li>Configuración y actualización de hardware especializado.</li>
+                                                                <li>Experiencia en impresoras multifuncionales y de consumo.</li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                    <p>Mantenimiento de Hardware Empresarial</p>
                                                 </div>
                                                 <!-- End Single Service -->
                                             </div>
                                         </div>
                                     </div>
-                                    <button class="content-button">Start free trial</button>
                                 </div>
                             </div>
                             <div class="content-section">

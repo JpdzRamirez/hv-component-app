@@ -133,9 +133,19 @@ toggleButton.on("click", function() {
   if ($('body').hasClass('light-mode')) {
     $("#dark-light-icon").removeClass("fa-solid fa-sun");
     $("#dark-light-icon").addClass("fa-solid fa-moon-cloud");
+    $("#header-img").css("background-image", "url('/assets/img/background-singleservices-2.jpg')");
+    $("#JPDZSoftware-logo-1").addClass("hidden");
+    $("#JPDZSoftware-logo-2").removeClass("hidden");
+    $("#lottie-crm-1").addClass("hidden");
+    $("#lottie-crm-2").removeClass("hidden");
   } else {
     $("#dark-light-icon").removeClass("fa-solid fa-moon-cloud");
     $("#dark-light-icon").addClass("fa-solid fa-sun");
+    $("#header-img").css("background-image", "url('/assets/img/background-singleservices-1.jpg')");
+    $("#JPDZSoftware-logo-1").removeClass("hidden");
+    $("#JPDZSoftware-logo-2").addClass("hidden");
+    $("#lottie-crm-1").removeClass("hidden");
+    $("#lottie-crm-2").addClass("hidden");
   }
 });
 

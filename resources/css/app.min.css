@@ -28640,16 +28640,16 @@ code {
 }
 
 #tab-1:checked + label {
-  color: deepskyblue;
+  color: #5CE0E6;
 }
 
 #tab-2:checked + label {
-  color: #51a14c;
+  color: #35cd3a;
 }
 
 #tab-2:checked ~ .glider {
-  background: linear-gradient(90deg, #51a14c 0%, #10c33e 100%);
-  box-shadow: 0px 0px 8px 0px rgba(47, 187, 12, 0.62);
+  background: linear-gradient(90deg, rgb(11, 45, 12) 0%, rgb(35, 136, 38) 35%, rgb(53, 205, 58) 100%);
+  box-shadow: 0px 0px 8px 0px rgb(11, 45, 12);
 }
 
 #tab-2:checked ~ .glider {
@@ -28662,12 +28662,11 @@ code {
 }
 
 #tab-3:checked + label {
-  color: #ffadfa;
-  color: #ffaa75;
+  color: #ffb54d;
 }
 
 #tab-3:checked ~ .glider {
-  background: linear-gradient(90deg, #faffcc 0%, #f5eea3 10%, #ffe48a 40%, #ffb54d 65%, #ff974d 85%, #ff8052 100%);
+  background: linear-gradient(90deg, rgb(56, 36, 11) 0%, rgb(170, 110, 34) 35%, rgb(255, 165, 52) 100%);
   left: 61.2%;
   width: 20.6%;
   box-shadow: 0px 0px 8px 0px hsla(17.72, 100%, 70%, 0.7);
@@ -28678,7 +28677,7 @@ code {
 }
 
 #tab-4:checked ~ .glider {
-  background: linear-gradient(90deg, #b9326f 0%, #ff5ddc 100%);
+  background: linear-gradient(90deg, rgb(56, 20, 48) 0%, rgb(170, 62, 146) 35%, rgb(255, 93, 220) 100%);
   box-shadow: 0px 0px 8px 0px rgba(231, 13, 93, 0.57);
   left: 84.3% !important;
   width: 17.3%;
@@ -28690,8 +28689,8 @@ code {
   height: 4.5px;
   border-radius: 2px 2px 0px 0px;
   position: absolute;
-  box-shadow: 0px 0px 8px 0px hsla(262, 100%, 70%, 0.7);
-  background: linear-gradient(113deg, hsl(260, 100%, 64%) 0%, hsl(190, 100%, 55%) 100%);
+  box-shadow: 0px 0px 8px 0px rgb(30, 74, 76);
+  background: linear-gradient(90deg, rgb(30, 74, 76) 0%, rgb(61, 149, 153) 35%, rgb(92, 224, 230) 100%);
   transition: all 0.3s;
   top: 5px;
   z-index: 2;
@@ -29807,7 +29806,8 @@ div.submitButton .circle .click {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right top, #cf4af3, #e73bd7, #f631bc, #fd31a2, #ff3a8b, #ff4b78, #ff5e68, #ff705c, #ff8c51, #ffaa49, #ffc848, #ffe652);
+  background-image: url("/public/assets/img/background-singleservices-1.jpg");
+  background-size: cover;
   border-radius: 14px;
   padding: 20px 40px;
 }
@@ -29821,20 +29821,147 @@ div.submitButton .circle .click {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  filter: drop-shadow(2px 4px 6px black);
 }
 .main-container .content-wrapper-header .content-wrapper-context .content-text .section-title {
   display: flex;
   align-items: center;
+  /* Blockquote main style */
+  /* Blockquote header */
+  /* Blockquote right double quotes */
+  /* increase header size after 600px */
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .section-title .hidden {
+  display: none !important;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .section-title .blockquote-wrapper {
+  display: flex;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .section-title .blockquote {
+  position: relative;
+  font-weight: 800;
+  color: #ffffff;
+  width: 100%;
+  max-width: 500px;
+  z-index: 1;
+  margin: 15px auto;
+  align-self: center;
+  border-top: solid 1px;
+  border-bottom: solid 1px;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .section-title .blockquote h2 {
+  position: relative;
+  font-size: 40px;
+  color: #ffffff;
+  font-weight: 800;
+  line-height: 1;
+  margin: 0;
+  padding: 25px;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .section-title .blockquote:after {
+  position: absolute;
+  content: "”";
+  color: #ffffff;
+  font-size: 7rem;
+  line-height: 0;
+  bottom: -34px;
+  right: 30px;
+}
+@media all and (min-width: 600px) {
+  .main-container .content-wrapper-header .content-wrapper-context .content-text .section-title .blockquote h1 {
+    font-size: 60px;
+  }
 }
 .main-container .content-wrapper-header .content-wrapper-context .content-text .single-service {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 1em;
+  margin: 30px 0;
+  position: relative;
+  padding-left: 70px;
+  /* Mostrar el tooltip al hacer hover en .info */
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service i {
+  font-size: 45px;
+  position: absolute;
+  left: 0;
+  transition: all 0.4s ease;
 }
 .main-container .content-wrapper-header .content-wrapper-context .content-text .single-service a {
+  cursor: unset;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
   text-decoration: none;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service p {
+  margin: 0;
+  font-weight: 400;
+  line-height: 24px;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .info {
+  cursor: pointer;
+  position: relative;
+  margin-left: 0.5em;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .info i {
+  font-size: 20px;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .info:hover ~ .hint-content {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .info:hover ~ .hint-content::before {
+  width: 300px;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .info:hover ~ .hint-content::after {
+  opacity: 1;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .hint-content:hover .hint-content::after {
+  opacity: 1;
+  visibility: visible;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .hint-content:hover {
+  opacity: 1;
+  visibility: visible;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .hint-content {
+  color: #fff;
+  width: 300px;
+  position: absolute;
+  z-index: 5;
+  padding: 12px 10px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: 8px;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .hint-content::before {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Ajustar para que apunte correctamente al ícono */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 2px;
+  background: #fff;
+  transition: width 0.4s ease;
+}
+.main-container .content-wrapper-header .content-wrapper-context .content-text .single-service .hint-content::after {
+  content: "";
+  position: absolute;
+  bottom: -18px; /* Ajustar la posición de la flecha */
+  left: 50%;
+  transform: translateX(-50%) rotate(-45deg);
+  width: 8px;
+  height: 8px;
+  background: #fff;
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
 .main-container .content-wrapper-header .content-wrapper-context .img-content {
   font-weight: 500;

@@ -24,7 +24,6 @@
             text-decoration: none;
             color: var(--theme-color);
             padding: 0 30px;
-
         }
     }
 
@@ -34,6 +33,7 @@
         color: var(--theme-color);
         padding: 20px 40px;
         height: 100%;
+
         overflow-y: auto;
         overflow-x: hidden;
         background-color: var(--theme-bg-color);
@@ -43,26 +43,12 @@
             align-items: center;
             width: 100%;
             justify-content: space-between;
-            background-image: url("https://www.transparenttextures.com/patterns/cubes.png"),
-                linear-gradient(to right top,
-                    #cf4af3,
-                    #e73bd7,
-                    #f631bc,
-                    #fd31a2,
-                    #ff3a8b,
-                    #ff4b78,
-                    #ff5e68,
-                    #ff705c,
-                    #ff8c51,
-                    #ffaa49,
-                    #ffc848,
-                    #ffe652);
+            background-image: url("/public/assets/img/background-singleservices-1.jpg");
+            background-size: cover;
             border-radius: 14px;
             padding: 20px 40px;
 
             .content-wrapper-context {
-                
-
                 .content-text {
                     font-weight: 400;
                     font-size: 14px;
@@ -73,18 +59,160 @@
                     -webkit-box-orient: vertical;
                     overflow: hidden;
                     text-overflow: ellipsis;
-                    .section-title{
+                    filter: drop-shadow(2px 4px 6px black);
+                    .section-title {
                         display: flex;
                         align-items: center;
-                    }
-                    .single-service{
-                        display: flex;
-                        flex-direction: row;
-                        flex-wrap: wrap;
-                        align-items: center;
-                        gap:1em;
-                        a{text-decoration: none;}
+                        .hidden {
+                            display: none !important;
+                        }
+                        .blockquote-wrapper {
+                            display: flex;
+                        }
 
+                        /* Blockquote main style */
+                        .blockquote {
+                            position: relative;
+                            font-weight: 800;
+                            color: $white-color;
+                            width: 100%;
+                            max-width: 500px;
+                            z-index: 1;
+                            margin: 15px auto;
+                            align-self: center;
+                            border-top: solid 1px;
+                            border-bottom: solid 1px;
+                        }
+
+                        /* Blockquote header */
+                        .blockquote h2 {
+                            position: relative;
+                            font-size: 40px;
+                            color: $white-color;
+                            font-weight: 800;
+                            line-height: 1;
+                            margin: 0;
+                            padding: 25px;
+                        }
+
+                        /* Blockquote right double quotes */
+                        .blockquote:after {
+                            position: absolute;
+                            content: "”";
+                            color: $white-color;
+                            font-size: 7rem;
+                            line-height: 0;
+                            bottom: -34px;
+                            right: 30px;
+                        }
+
+                        /* increase header size after 600px */
+                        @media all and (min-width: 600px) {
+                            .blockquote h1 {
+                                font-size: 60px;
+                            }
+                        }
+                    }
+                    .single-service {
+                        margin: 30px 0;
+                        position: relative;
+                        padding-left: 70px;
+
+                        i {
+                            font-size: 45px;
+                            position: absolute;
+                            left: 0;
+                            transition: all 0.4s ease;
+                        }
+
+                        a {
+                            cursor: unset;
+                            color: #fff;
+                            font-size: 20px;
+                            font-weight: 600;
+                            text-decoration: none;
+                        }
+
+                        p {
+                            margin: 0;
+                            font-weight: 400;
+                            line-height: 24px;
+                        }
+
+                        .info {
+                            cursor: pointer;
+                            position: relative;
+                            margin-left: 0.5em;
+
+                            i {
+                                font-size: 20px;
+                            }
+                        }
+                        /* Mostrar el tooltip al hacer hover en .info */
+                        .info:hover ~ .hint-content {
+                            opacity: 1;
+                            visibility: visible;
+                            pointer-events: auto;
+
+                            &::before {
+                                width: 300px;
+                            }
+
+                            &::after {
+                                opacity: 1;
+                            }
+                        }
+                        .hint-content:hover .hint-content::after {
+                            opacity: 1;
+                            visibility: visible;
+                          }
+                          .hint-content:hover {
+                            opacity: 1;
+                            visibility: visible;
+                          }
+
+                        .hint-content {
+                            color: #fff;
+                            width: 300px;
+                            position: absolute;
+                            z-index: 5;
+                            padding: 12px 10px;
+                            background: rgba(0, 0, 0, 0.8);
+                            border-radius: 4px;
+                            opacity: 0;
+                            visibility: hidden;
+                            pointer-events: none;
+                            transition: opacity 0.4s ease, visibility 0.4s ease;
+                            top: 0;
+                            left: 50%;
+                            transform: translateX(-50%);
+                            margin-top: 8px;
+                    
+                            &::before {
+                                content: "";
+                                position: absolute;
+                                bottom: -10px; /* Ajustar para que apunte correctamente al ícono */
+                                left: 50%;
+                                transform: translateX(-50%);
+                                width: 0;
+                                height: 2px;
+                                background: #fff;
+                                transition: width 0.4s ease;
+                            }
+                    
+                            &::after {
+                                content: "";
+                                position: absolute;
+                                bottom: -18px; /* Ajustar la posición de la flecha */
+                                left: 50%;
+                                transform: translateX(-50%) rotate(-45deg);
+                                width: 8px;
+                                height: 8px;
+                                background: #fff;
+                                opacity: 0;
+                                transition: opacity 0.4s ease;
+                            }
+                        }
                     }
                 }
 

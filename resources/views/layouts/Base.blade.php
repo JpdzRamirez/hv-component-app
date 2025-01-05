@@ -34,7 +34,7 @@
         </div>
         
         <div class="video-bg">
-            <img src="{{asset('assets/img/bg-1.jpg')}}" loading="lazy" alt="Wallpaper">
+            <img src="https://w.wallhaven.cc/full/3l/wallhaven-3lm5jd.jpg" loading="lazy" alt="Wallpaper">
         </div>
         <div class="dark-light">
             <i id="dark-light-icon" class="fa-solid fa-sun"></i>
