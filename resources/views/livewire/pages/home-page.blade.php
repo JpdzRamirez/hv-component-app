@@ -70,6 +70,7 @@
                                                             <li>Supervisión y mantenimiento de servidores en plataformas Windows Server, CentOS, Debian, Ubuntu Server y Zentyal.</li>
                                                         </ul>
                                                     </div>
+                                                    <span class="hint-line"></span>
                                                 </div>
                                                     <p>Hosting, CPanel, Servidores y Tenant Office 365</p>
                                                 </div>
@@ -90,6 +91,7 @@
                                                                 <li>Diseño y optimización de redes corporativas.</li>
                                                             </ul>
                                                         </div>
+                                                        <span class="hint-line"></span>
                                                     </div>
                                                     <p>Administración y configuración de redes empresariales</p>
                                                 </div>
@@ -111,6 +113,7 @@
                                                                 <li>Administración de servicios de correo electrónico en la nube: G Suite, Outlook y Zoho Mail.</li>
                                                             </ul>
                                                         </div>
+                                                        <span class="hint-line"></span>
                                                     </div>
                                                     <p>Google Cloud Platform, Amazon Web Services y Microsoft Azure.</p>
                                                 </div>
@@ -130,6 +133,7 @@
                                                                 Desarrollo de servicios web API RESTful con documentación herramientas como Postman y Swagger
                                                                 Aplicación de principios SOLID y CLEAN Code en proyectos escalables y eficientes</p>
                                                           </div>
+                                                          <span class="hint-line"></span>
                                                     </div>
                                                     <p>Desarrollo web Full Stack con tecnologías como PHP, Laravel & Livewire</p>
                                                 </div>
@@ -151,6 +155,7 @@
                                                                 <li>Control detallado de los activos tecnológicos de la organización.</li>
                                                             </ul>
                                                         </div>
+                                                        <span class="hint-line"></span>
                                                     </div>
                                                     <p>Administración de Inventario y Mesa de Ayuda</p>
                                                 </div>
@@ -171,6 +176,7 @@
                                                                 <li>Experiencia en impresoras multifuncionales y de consumo.</li>
                                                             </ul>
                                                         </div>
+                                                        <span class="hint-line"></span>
                                                     </div>
                                                     <p>Mantenimiento de Hardware Empresarial</p>
                                                 </div>
