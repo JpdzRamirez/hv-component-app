@@ -40,7 +40,7 @@ $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
     --scrollbar-bg: rgb(1 2 3 / 40%);
     --text-default-color: #ffffff;
     --bg-default-color: #515151;
-    --bg-default-colorTransparent: #343a40e8;
+    --bg-default-colorTransparent: rgba(0, 0, 0, 0.9);;
     --code-default-color: #ffa534;
 }
 
@@ -61,5 +61,5 @@ $elements-style-color:linear-gradient(135deg, #ff5b84, #eb3461);
     --code-default-color: #f3545d;
     --text-default-color: #333333;
     --bg-default-color: #ffff;
-    --bg-default-colorTransparent: #f8f9fa;
+    --bg-default-colorTransparent: rgb(255 255 255 / 90%);
 }

@@ -43,12 +43,13 @@
             }, selectedPhoneIndicator, selectorPhone, spanLang);
         }
         //Consumo de API para listar telefono internacional
-        document.addEventListener('livewire:initialized', () => {
+        document.addEventListener('initialicePhone', () => {
             setTimeout(() => {
                 // Volver a inicializar el select con los datos
                 initializePhoneSelect(selectedPhoneIndicator, 'selectedPhone', countriesData, spanLanguage);
             }, 500);            
         });
+
         let isPhoneUpdating = false;
         // También escucha el evento livewire:updated
         Livewire.hook('morph.updated', ({

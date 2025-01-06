@@ -5,6 +5,7 @@ return [
     'home' => 'Inicio',
     'owner' => 'JPDZSoftware',
     'header-menu.home'=>'Home',
+    'header-menu.dashboard'=>'Dashboard',
     'header-menu.apps'=>'Aplicaciones',
     'header-menu.register'=>'Perfil',
     'header-menu.work'=>'Experiencia Laboral',
@@ -13,7 +14,7 @@ return [
     'search-bar'=>'Buscar',
     'battery-toast'=>'Fuente de alimentación: Adaptador de corriente',
     'toast-message.title'=>'Notificación',
-    'spinner-message'=>'Cargando...',
+    'spinner-message'=>'Cargando',
     'button-accept'=>'Aceptar',
 
     'contact-title'=>'Contactame',

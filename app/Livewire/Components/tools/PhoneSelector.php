@@ -16,6 +16,7 @@ class PhoneSelector extends Component
     public function mount($customPhoneId = "phoneComponent")
     {
         $this->customPhoneId = $customPhoneId;
+        $this->dispatch('initialiceLocation');
     }
 
     public function selectorPhoneRootCharger(string $optionSelected)

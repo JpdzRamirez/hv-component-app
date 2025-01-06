@@ -1,6 +1,7 @@
 @forward 'datepicker/index';
-@forward 'pages/index';
-@forward 'startRankting/index';
+@forward 'pages';
+@forward 'sections';
+@forward 'startRankting';
 @forward 'tabContent';
 @forward 'buttons';
 @forward 'forms';
@@ -10,7 +11,6 @@
 @forward 'content-section';
 @forward 'scrollBar';
 @forward 'responsive';
-@forward 'sections';
 @forward 'selector';
 @forward 'settings';
 @forward 'spinner';

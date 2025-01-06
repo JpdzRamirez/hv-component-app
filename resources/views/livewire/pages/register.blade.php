@@ -469,10 +469,8 @@
 @endpush
 @push('templateScripts')
     <script>
-        document.addEventListener('openNewTab', function(event){
-            console.log("abierto resultado")            
-            const URL=event.detail[0].url;
-            console.log(URL);
+        document.addEventListener('openNewTab', function(event){            
+            const URL=event.detail[0].url;            
             let win = window.open(URL, "_blank");
         });
         document.addEventListener('formSubmittSuccess', function(event) {

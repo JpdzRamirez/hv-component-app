@@ -9,50 +9,41 @@
         </div>
         <div class="container navbar-header">
             @if (!isset($exception))
-            <div class="header-menu" x-data="{ section: @entangle('section') }" 
-            x-init="$watch('section', value => {
-                // Emitir el evento con el nuevo valor de 'section'
-                $dispatch('sectionChanged', { section: value }) 
-            })">
-            <a 
-                class="menu-link notify"
-                href="{{ route('home') }}">
-                {{ __('general.header-menu.home') }}
-            </a>
-           @if (Request::is('/'))
-               <a 
-                  class="menu-link"
-                  :class="{ 'is-active': section === 1 }"
-                  x-on:click.prevent="section = 1">
-                  {{ __('general.header-menu.apps') }}
-               </a>
-               <a 
-                  class="menu-link notify"
-                  :class="{ 'is-active': section === 2 }"
-                  x-on:click.prevent="section = 2">
-                  {{ __('general.header-menu.work') }}
-               </a>
-               <a 
-                  class="menu-link"
-                  :class="{ 'is-active': section === 3 }"
-                  x-on:click.prevent="section = 3">
-                  {{ __('general.header-menu.studys') }}
-               </a>
-           @elseif (Request::is('register'))
-               <a 
-                  class="menu-link"
-                  :class="{ 'is-active': section === 1 }"
-                  x-on:click.prevent="section = 1;">
-                  {{ __('general.header-menu.register') }}
-               </a>
-           @endif
-           <a 
-              class="menu-link notify"
-              :class="{ 'is-active': section === 4 }"
-              x-on:click.prevent="section = 4">
-              {{ __('general.header-menu.contact') }}
-           </a>
-       </div>       
+                <div class="header-menu" x-data="{ section: @entangle('section') }" x-init="$watch('section', value => {
+                    // Emitir el evento con el nuevo valor de 'section'
+                    $dispatch('sectionChanged', { section: value })
+                })">
+                    <a class="menu-link notify" href="{{ route('home') }}">
+                        {{ __('general.header-menu.home') }}
+                    </a>
+                    @if (Route::currentRouteName() === 'home')
+                        <a class="menu-link" :class="{ 'is-active': section === 1 }" x-on:click.prevent="section = 1">
+                            {{ __('general.header-menu.apps') }}
+                        </a>
+                        <a class="menu-link notify" :class="{ 'is-active': section === 2 }"
+                            x-on:click.prevent="section = 2">
+                            {{ __('general.header-menu.work') }}
+                        </a>
+                        <a class="menu-link" :class="{ 'is-active': section === 3 }" x-on:click.prevent="section = 3">
+                            {{ __('general.header-menu.studys') }}
+                        </a>
+                    @elseif (Route::currentRouteName() === 'dashboard')
+                        <a class="menu-link" :class="{ 'is-active': section === 1 }" x-on:click.prevent="section = 1;">
+                            {{ __('general.header-menu.dashboard') }}
+                        </a>
+                    @elseif (Route::currentRouteName() === 'profile.create' || Route::currentRouteName() === 'profile.update')
+                        <a class="menu-link notify" href="{{ route('dashboard') }}">
+                            {{ __('general.header-menu.dashboard') }}
+                        </a>
+                        <a class="menu-link" :class="{ 'is-active': section === 1 }" x-on:click.prevent="section = 1;">
+                            {{ __('general.header-menu.register') }}
+                        </a>
+                    @endif
+                    <a class="menu-link notify" :class="{ 'is-active': section === 4 }"
+                        x-on:click.prevent="section = 4">
+                        {{ __('general.header-menu.contact') }}
+                    </a>
+                </div>
                 <div class="d-flex flex-row">
                     <div class="search-bar">
                         <input type="text" placeholder="{{ __('general.search-bar') }}">

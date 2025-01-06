@@ -31,7 +31,9 @@ class LocationSelector extends Component
     protected CityServiceInterface $cityService;
     protected GeoLocationHandler $geoLocationHandler;
 
-    protected $listeners = ['selectorCharger','syncLocation']; 
+    protected $listeners = [
+        'selectorCharger','syncLocation','fetchCountries'
+    ]; 
 
     public function mount(CountryServiceInterface $countryService, $customLocationId = "locationComponent")
     {
@@ -44,6 +46,7 @@ class LocationSelector extends Component
         if($this->initCity){
             $this->fetchCities($this->initState);
         }
+        $this->dispatch('initialicePhone');
     }
 
     public function fetchCountries()

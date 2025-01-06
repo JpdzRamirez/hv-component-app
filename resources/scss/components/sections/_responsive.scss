@@ -1,0 +1,28 @@
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+    .single-service a {
+        margin-bottom: 12px;
+    }
+    .single-service {
+        margin: 15px 0;
+    }
+}
+@media only screen and (max-width: 767px) {
+    .section-title{
+        flex-direction: column;
+    }
+    .single-service {
+        margin: 20px 0;
+    }
+    .single-service a {
+        margin-bottom: 10px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .single-service {
+        margin: 20px 0;
+    }
+     .single-service span {
+        margin-bottom: 15px;
+    }
+}

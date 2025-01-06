@@ -19,8 +19,8 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        $redirected=false;
-        $exceptions->render(function (\Throwable $exception) { // Asegúrate de usar \Throwable            
+        
+        $exceptions->render(function (Throwable $exception) { // Asegúrate de usar \Throwable            
             // Verificar si hay una ModelNotFoundException anterior
             if ($exception->getPrevious() instanceof ModelNotFoundException) {
                 return response()->view('pages.errors.404', [
