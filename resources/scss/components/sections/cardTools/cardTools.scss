@@ -1,0 +1,134 @@
+@use "../../../utils" as *;
+
+.cardTools {
+    --color: rgba(30, 30, 30);
+    --bgColor: rgba(245, 245, 245);
+    h1 {
+        text-align: center;
+    }
+
+    ul.listTools{
+        margin-inline: auto;
+        display: grid !important;
+        grid-template-columns: repeat(auto-fit, minmax(6rem, 0.5fr));
+        justify-content: center;
+        list-style: none;
+        padding: 1em;
+        background-color: var(--content-bg);
+        border: 1px solid var(--theme-bg-color);
+        border-radius: 14px;
+        li.itemTool {
+            max-width: 12rem;
+            justify-self: center;
+            display: grid !important;
+            grid-template: "icon" 1fr;
+            justify-items: center;
+            align-items: flex-start;
+            text-align: center;
+            position: relative;
+            border-top: 0 !important;
+            padding: 10px 18px;
+            .icon {
+                grid-area: icon;
+                width: 4rem;
+                aspect-ratio: 1;
+                display: grid;
+                position: relative;
+                place-items: center;
+                color: white;
+                font-size: 2.5rem;
+                border: 0.2rem solid var(--bgColor);
+                border-radius: 50%;
+                background: var(--accent-color);
+                box-shadow: -0.5rem 0.5rem 1rem rgba(0, 0, 0, 0.45),
+                    inset -0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.45);
+                z-index: 0;
+                img{
+                    width: 44px !important;
+                    margin: 0 !important;
+                    filter: drop-shadow(2px 4px 6px black);
+                }
+                i{
+                    filter: drop-shadow(2px 4px 6px black);
+                }
+            }
+            .icon::before {
+                position: absolute;
+                content: "";
+                height: 2rem;
+                border-right: 2px dotted currentColor;
+            }
+            .icon::after {
+                position: absolute;
+                content: "";
+                width: 1rem;
+                aspect-ratio: 1;
+                border-radius: 50%;
+                background: var(--accent-color);
+            }
+            .icon::before,
+            .icon::after {
+                opacity: 0;
+                z-index: -1;
+                transition: all 0.4s ease-in-out; /* Transición suave para la propiedad top */
+            }
+            .icon:not(:hover)::before,
+            .icon:not(:hover)::after {
+                transition-duration: 0.2s; /* Desaparecen más rápido */
+            }
+
+            .icon::after {
+                transition-delay: 0.2s; /* Retraso en la transición del ::after */
+            }
+
+            .icon:hover::before {
+                opacity: 1;
+                transform: translateY(calc(-50% - 2.2rem));
+            }
+
+            .icon:hover::after {
+                opacity: 1;
+                transform: translateY(calc(-100% - 3.8rem));
+            }
+        }
+        .icon:hover .contentIcon {
+            visibility: visible;
+            opacity: 1;
+            transform: translate(0, -100%);
+        }
+        .icon:not(:hover) .contentIcon {
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-40%);
+            transition-duration: 0.2s; /* Más rápida la salida */
+        }
+        .contentIcon {
+            position: absolute;
+            visibility: hidden;
+            border-radius: 4px;
+            top: -120%;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 12px 10px;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out,
+                transform 0.3s ease-in-out;
+            overflow-y: auto;
+            overflow-x: hidden;
+            max-height: 200px;
+            width: 200px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            .title {
+                grid-area: title;
+                margin-block: 0.5rem;
+                font-size: 1.3rem;
+                font-weight: 600;
+                text-align: center;
+                text-transform: uppercase;
+            }
+            .descr {
+                text-wrap: wrap;
+                text-anchor: unset;
+                font-size: small;
+            }
+        }
+    }
+}

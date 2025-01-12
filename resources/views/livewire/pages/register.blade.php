@@ -311,7 +311,7 @@
                                     {{-- Social Media Form --}}
                                     <div class="content-section">
                                         <div class="content-section-title">{{ __('forms.profile.social-media') }}</div>
-                                        <ul>
+                                        <ul class="listApplet">
                                             @foreach ($socials as $social)
                                                 <li class="social-media">
                                                     <div class="products">

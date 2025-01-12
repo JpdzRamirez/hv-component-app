@@ -196,187 +196,472 @@
                     </div>
                 </div>
                 <div class="content-section">
-                    <div class="content-section-title">Installed</div>
-                    <ul>
-                        <li class="adobe-product">
-                            <div class="products">
-                                <svg viewBox="0 0 52 52" style="border:1px solid #3291b8">
-                                    <g xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
-                                            fill="#061e26" data-original="#393687" />
-                                        <path
-                                            d="M12.16 39H9.28V11h9.64c2.613 0 4.553.813 5.82 2.44 1.266 1.626 1.9 3.76 1.9 6.399 0 .934-.027 1.74-.08 2.42-.054.681-.22 1.534-.5 2.561-.28 1.026-.66 1.866-1.14 2.52-.48.654-1.213 1.227-2.2 1.72-.987.494-2.16.74-3.52.74h-7.04V39zm0-12h6.68c.96 0 1.773-.187 2.44-.56.666-.374 1.153-.773 1.46-1.2.306-.427.546-1.04.72-1.84.173-.801.267-1.4.28-1.801.013-.399.02-.973.02-1.72 0-4.053-1.694-6.08-5.08-6.08h-6.52V27zM29.48 33.92l2.8-.12c.106.987.6 1.754 1.48 2.3.88.547 1.893.82 3.04.82s2.14-.26 2.98-.78c.84-.52 1.26-1.266 1.26-2.239s-.36-1.747-1.08-2.32c-.72-.573-1.6-1.026-2.64-1.36-1.04-.333-2.086-.686-3.14-1.06a7.36 7.36 0 01-2.78-1.76c-.987-.934-1.48-2.073-1.48-3.42s.54-2.601 1.62-3.761 2.833-1.739 5.26-1.739c.854 0 1.653.1 2.4.3.746.2 1.28.394 1.6.58l.48.279-.92 2.521c-.854-.666-1.974-1-3.36-1-1.387 0-2.42.26-3.1.78-.68.52-1.02 1.18-1.02 1.979 0 .88.426 1.574 1.28 2.08.853.507 1.813.934 2.88 1.28 1.066.347 2.126.733 3.18 1.16 1.053.427 1.946 1.094 2.68 2s1.1 2.106 1.1 3.6c0 1.494-.6 2.794-1.8 3.9-1.2 1.106-2.954 1.66-5.26 1.66-2.307 0-4.114-.547-5.42-1.64-1.307-1.093-1.987-2.44-2.04-4.04z"
-                                            fill="#c1dbe6" data-original="#89d3ff" />
-                                    </g>
-                                </svg>
-                                Photoshop
-                            </div>
-                            <span class="status">
-                                <span class="status-circle green"></span>
-                                Updated</span>
-                            <div class="button-wrapper">
-                                <button class="content-button status-button open">Open</button>
-                                <div class="menu">
-                                    <button class="dropdown">
-                                        <ul>
-                                            <li><a href="#">Go to Discover</a></li>
-                                            <li><a href="#">Learn more</a></li>
-                                            <li><a href="#">Uninstall</a></li>
-                                        </ul>
-                                    </button>
+                    <div class="cardTools">
+                        <h1>Herramientas de trabajo💪</h1>
+                        <ul class="listTools">
+                            <li class="itemTool" style="--accent-color:#172C73">
+                                <div class="icon">
+                                    <i class="fa-brands fa-php"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">PHP</div>
+                                        <div class="descr">
+                                         <p class="text-wrap text-justify">Desarrollo dinámico desde v7 al v8.4 ampliamente soportado, ideal para todo tipo de aplicaciones web.</p>   
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="adobe-product">
-                            <div class="products">
-                                <svg viewBox="0 0 52 52" style="border:1px solid #b65a0b">
-                                    <g xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
-                                            fill="#261400" data-original="#6d4c13" />
-                                        <path
-                                            d="M30.68 39h-3.24l-2.76-9.04h-8.32L13.72 39H10.6l8.24-28h3.32l8.52 28zm-6.72-12l-3.48-11.36L17.12 27h6.84zM37.479 12.24c0 .453-.16.84-.48 1.16-.32.319-.7.479-1.14.479-.44 0-.827-.166-1.16-.5-.334-.333-.5-.713-.5-1.14s.166-.807.5-1.141c.333-.333.72-.5 1.16-.5.44 0 .82.16 1.14.48.321.322.48.709.48 1.162zM37.24 39h-2.88V18.96h2.88V39z"
-                                            fill="#e6d2c0" data-original="#ffbd2e" />
-                                    </g>
-                                </svg>
-                                Illustrator
-                            </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#E56A9D">
+                                <div class="icon">
+                                    <img style="filter:invert(1);" src="{{asset('assets/img/PNG/livewire.png')}}" alt="Livewire">
+                                    <div class="contentIcon">
+                                        <div class="title">Livewire</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Implementación de reactividad con componentes para PHP, simplicidad, interacción directa con backend desde vistas.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#FF363C">
+                                <div class="icon">
+                                    <i class="fa-brands fa-laravel"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">Laravel</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Rápido desarrollo de aplicaciones web y servicios API RESTFUL, Eloquent ORM, rutas, y seguridad.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#7A3398">
+                                <div class="icon">
+                                    <img  src="{{asset('assets/img/PNG/c.png')}}" alt="C#">
+                                    <div class="contentIcon">
+                                        <div class="title">C#</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo versátil de aplicaciones .NET con rendimiento robusto
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#3A9BDC">
+                                <div class="icon">
+                                    <img  src="{{asset('assets/img/PNG/xamarin.png')}}" alt="C#">
+                                    <div class="contentIcon">
+                                        <div class="title">Xamarin</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo de aplicaciones moviles multiplataforma, principalmente bajo Android.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#0009C8">
+                                <div class="icon">
+                                    <img  src="{{asset('assets/img/PNG/maui.png')}}" alt=".NETMaui">
+                                    <div class="contentIcon">
+                                        <div class="title">.NET MAUI</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo de aplicaciones moviles modernas con UI nativo, sucesor de Xamarin.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#FF7816">
+                                <div class="icon">
+                                    <i class="fa-brands fa-html5"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">HTML</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Maquetación de páginas WEB junto uso de frameworks como Tailwind y Bootstrap.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#f20071">
+                                <div class="icon">
+                                    <i class="fa-brands fa-sass"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">SCSS & CSS3</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Personalización avanzada de experiencia de usuario, estilos responsivos y uso modular mediante preprocesadores de estilos.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#FBD709">
+                                <div class="icon">
+                                    <i class="fa-brands fa-js"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">Javascript</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo dinámico de scripting, interactividad de frontend cliente-servidor.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#196BAC">
+                                <div class="icon">
+                                    <img  src="{{asset('assets/img/PNG/jquery.png')}}" alt=".JQuery">
+                                    <div class="contentIcon">
+                                        <div class="title">JQuery</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Aplicación de libreria para el desarrollo de Selectores eficientes, animaciones y manipulacion del DOOM.
+                                            </p>
+                                        </div>
 
-                            <span class="status">
-                                <span class="status-circle"></span>
-                                Update Available</span>
-                            <div class="button-wrapper">
-                                <button class="content-button status-button">Update this app</button>
-                                <div class="pop-up">
-                                    <div class="pop-up__title">Update This App
-                                        <svg class="close" width="24" height="24" fill="none"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" class="feather feather-x-circle">
-                                            <circle cx="12" cy="12" r="10" />
-                                            <path d="M15 9l-6 6M9 9l6 6" />
-                                        </svg>
-                                    </div>
-                                    <div class="pop-up__subtitle">Adjust your selections for advanced
-                                        options
-                                        as desired before continuing. <a href="#">Learn more</a>
-                                    </div>
-                                    <div class="checkbox-wrapper">
-                                        <input type="checkbox" id="check1" class="checkbox">
-                                        <label for="check1">Import previous settings and
-                                            preferences</label>
-                                    </div>
-                                    <div class="checkbox-wrapper">
-                                        <input type="checkbox" id="check2" class="checkbox">
-                                        <label for="check2">Remove old versions</label>
-                                    </div>
-                                    <div class="content-button-wrapper">
-                                        <button class="content-button status-button open close">Cancel</button>
-                                        <button class="content-button status-button">Continue</button>
                                     </div>
                                 </div>
-                                <div class="menu">
-                                    <button class="dropdown">
-                                        <ul>
-                                            <li><a href="#">Go to Discover</a></li>
-                                            <li><a href="#">Learn more</a></li>
-                                            <li><a href="#">Uninstall</a></li>
-                                        </ul>
-                                    </button>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#F0563A;">
+                                <div class="icon">
+                                    <img  src="{{asset('assets/img/PNG/git.png')}}" alt=".JQuery">
+                                    <div class="contentIcon">
+                                        <div class="title">Git</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Uso de sistema de control de versiones, uso de ramas para el desarrollo paralelo y en colaboración bajo metodologías de trabajo ágiles o tradicionales
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="adobe-product">
-                            <div class="products">
-                                <svg viewBox="0 0 52 52" style="border: 1px solid #C75DEB">
-                                    <g xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
-                                            fill="#3a3375" data-original="#3a3375" />
-                                        <path
-                                            d="M27.44 39H24.2l-2.76-9.04h-8.32L10.48 39H7.36l8.24-28h3.32l8.52 28zm-6.72-12l-3.48-11.36L13.88 27h6.84zM31.48 33.48c0 2.267 1.333 3.399 4 3.399 1.653 0 3.466-.546 5.44-1.64L42 37.6c-2.054 1.254-4.2 1.881-6.44 1.881-4.64 0-6.96-1.946-6.96-5.841v-8.2c0-2.16.673-3.841 2.02-5.04 1.346-1.2 3.126-1.801 5.34-1.801s3.94.594 5.18 1.78c1.24 1.187 1.86 2.834 1.86 4.94V30.8l-11.52.6v2.08zm8.6-5.24v-3.08c0-1.413-.44-2.42-1.32-3.021-.88-.6-1.907-.899-3.08-.899-1.174 0-2.167.359-2.98 1.08-.814.72-1.22 1.773-1.22 3.16v3.199l8.6-.439z"
-                                            fill="#e4d1eb" data-original="#e7adfb" />
-                                    </g>
-                                </svg>
-                                After Effects
-                            </div>
-                            <span class="status">
-                                <span class="status-circle green"></span>
-                                Updated</span>
-                            <div class="button-wrapper">
-                                <button class="content-button status-button open">Open</button>
-                                <div class="menu">
-                                    <button class="dropdown">
-                                        <ul>
-                                            <li><a href="#">Go to Discover</a></li>
-                                            <li><a href="#">Learn more</a></li>
-                                            <li><a href="#">Uninstall</a></li>
-                                        </ul>
-                                    </button>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#994D7F">
+                                <div class="icon">
+                                    <i class="fa-brands fa-github"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">Github & GitLab</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Manejo y uso de repositorios, integraciones CI/CD y trabajo colaborativo del código compartido.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="adobe-product">
-                            <div class="products">
-                                <svg viewBox="0 0 52 52" style="border: 1px solid #C75DEB">
-                                    <g xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
-                                            fill="#3a3375" data-original="#3a3375" />
-                                        <path
-                                            d="M27.44 39H24.2l-2.76-9.04h-8.32L10.48 39H7.36l8.24-28h3.32l8.52 28zm-6.72-12l-3.48-11.36L13.88 27h6.84zM31.48 33.48c0 2.267 1.333 3.399 4 3.399 1.653 0 3.466-.546 5.44-1.64L42 37.6c-2.054 1.254-4.2 1.881-6.44 1.881-4.64 0-6.96-1.946-6.96-5.841v-8.2c0-2.16.673-3.841 2.02-5.04 1.346-1.2 3.126-1.801 5.34-1.801s3.94.594 5.18 1.78c1.24 1.187 1.86 2.834 1.86 4.94V30.8l-11.52.6v2.08zm8.6-5.24v-3.08c0-1.413-.44-2.42-1.32-3.021-.88-.6-1.907-.899-3.08-.899-1.174 0-2.167.359-2.98 1.08-.814.72-1.22 1.773-1.22 3.16v3.199l8.6-.439z"
-                                            fill="#e4d1eb" data-original="#e7adfb" />
-                                    </g>
-                                </svg>
-                                After Effects
-                            </div>
-                            <span class="status">
-                                <span class="status-circle green"></span>
-                                Updated</span>
-                            <div class="button-wrapper">
-                                <button class="content-button status-button open">Open</button>
-                                <div class="menu">
-                                    <button class="dropdown">
-                                        <ul>
-                                            <li><a href="#">Go to Discover</a></li>
-                                            <li><a href="#">Learn more</a></li>
-                                            <li><a href="#">Uninstall</a></li>
-                                        </ul>
-                                    </button>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#259FBF">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/mysqlcon.png')}}" alt="MYSQL">
+                                    <div class="contentIcon">
+                                        <div class="title">MYSQL</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo escalable de consultas, vistas y procedimientos en base de datos relacionales, manejo de grandes volumenes de información y uso de herramientas como DBeaver, Heidy y phpmyadmin
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                        <li class="adobe-product">
-                            <div class="products">
-                                <svg viewBox="0 0 52 52" style="border: 1px solid #C75DEB">
-                                    <g xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M40.824 52H11.176C5.003 52 0 46.997 0 40.824V11.176C0 5.003 5.003 0 11.176 0h29.649C46.997 0 52 5.003 52 11.176v29.649C52 46.997 46.997 52 40.824 52z"
-                                            fill="#3a3375" data-original="#3a3375" />
-                                        <path
-                                            d="M27.44 39H24.2l-2.76-9.04h-8.32L10.48 39H7.36l8.24-28h3.32l8.52 28zm-6.72-12l-3.48-11.36L13.88 27h6.84zM31.48 33.48c0 2.267 1.333 3.399 4 3.399 1.653 0 3.466-.546 5.44-1.64L42 37.6c-2.054 1.254-4.2 1.881-6.44 1.881-4.64 0-6.96-1.946-6.96-5.841v-8.2c0-2.16.673-3.841 2.02-5.04 1.346-1.2 3.126-1.801 5.34-1.801s3.94.594 5.18 1.78c1.24 1.187 1.86 2.834 1.86 4.94V30.8l-11.52.6v2.08zm8.6-5.24v-3.08c0-1.413-.44-2.42-1.32-3.021-.88-.6-1.907-.899-3.08-.899-1.174 0-2.167.359-2.98 1.08-.814.72-1.22 1.773-1.22 3.16v3.199l8.6-.439z"
-                                            height: 100%; width: 100%; fill="#e4d1eb" data-original="#e7adfb" />
-                                    </g>
-                                </svg>
-                                After Effects
-                            </div>
-                            <span class="status">
-                                <span class="status-circle green"></span>
-                                Updated</span>
-                            <div class="button-wrapper">
-                                <button class="content-button status-button open">Open</button>
-                                <div class="menu">
-                                    <button class="dropdown">
-                                        <ul>
-                                            <li><a href="#">Go to Discover</a></li>
-                                            <li><a href="#">Learn more</a></li>
-                                            <li><a href="#">Uninstall</a></li>
-                                        </ul>
-                                    </button>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#FFBB0A">
+                                <div class="icon">
+                                    <i class="fa-solid fa-database"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">SQL</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo escalable de consultas, vistas y procedimientos en base de datos relacionales, manejo de grandes volumenes de información y uso de SMSS.
+                                            </p>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
-                        </li>
-                    </ul>
+                            </li>
+                            <li class="itemTool" style="--accent-color:linear-gradient(145deg, rgba(251,215,9,1) 30%, rgba(25,107,172,1) 60%);">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/python.png')}}" alt="Python">
+                                    <div class="contentIcon">
+                                        <div class="title">Python</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Desarrollo de algoritmos para análisis de datos por medio de librerías extensas para uso de IA
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#293036">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/terminal.png')}}" alt="Terminal & BASH">
+                                    <div class="contentIcon">
+                                        <div class="title">BASH & Terminal</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Scripts rápidos para manejo de servidores data, control de accesos, seguridad informatica y configuración de servidores.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#293036">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/windowsserver.png')}}" alt="Windos Server">
+                                    <div class="contentIcon">
+                                        <div class="title">Windows Server</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Configuración y despliege de servicios empresariales. Incluye el uso de herramientas como:
+                                            </p>
+                                            <ul style="sublist-tools">
+                                                <li>Configuración de Active Directory (AD), GPO y ACL</li>
+                                                <li>Administración de usuarios</li>
+                                                <li>Configuración de servicios DNS & DCHP</li>
+                                                <li>Configuración de servicios de red IIS</li>                                            
+                                            </ul>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#293036">
+                                <div class="icon">
+                                    <i class="fa-brands fa-linux"></i>
+                                    <div class="contentIcon">
+                                        <div class="title">Linux</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                            Configuración y manejo de distribuciones linux como:
+                                            </p>
+                                            <ul>
+                                                <li>Ubuntu</li>
+                                                <li>CentOS</li>
+                                                <li>Debian</li>
+                                                <li>RedHat</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:linear-gradient(90deg, rgba(240,86,58,1) 30%, rgba(145,212,100,1) 60%);">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/zentyal.png')}}" alt="Zentyal">
+                                    <div class="contentIcon">
+                                        <div class="title">Zentyal Servers</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuraciómn y administracion de Servidor todo en uno zentyal, incluye funciones como:
+                                            </p>
+                                            <ul>
+                                                <li>Domain Controller and File Sharing</li>
+                                                <li>LDAP Directory</li>
+                                                <li>DNS Server</li>
+                                                <li>DHCP Server</li>
+                                                <li>Certification Authority (CA)</li>
+                                                <li>VPN Server</li>
+                                                <li>Firewall</li>
+                                                <li>HTTP Proxy</li>
+                                                <li>Mail Server</li>
+                                                <li>Mail Filter</li>
+                                                <li>PortFowarding</li>
+                                                <li>IDS / IPS</li>
+                                                <li>Network Configuration</li>
+                                                <li>Backup</li>
+                                              </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#08983F">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/nginx.png')}}" alt="Nginx">
+                                    <div class="contentIcon">
+                                        <div class="title">Nginx</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y despliege de servicios web, balanceo de carga y proxy inverso.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:linear-gradient(90deg, rgba(205,35,53,1) 30%, rgba(233,120,38,1) 60%);">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/apache.png')}}" alt="Apache Tomcat">
+                                    <div class="contentIcon">
+                                        <div class="title">Apache Tomcat</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y despliege de servicios web, balanceo de carga y vhost.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#08A3F1">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/glpi.png')}}" alt="Glpi Helpdesk">
+                                    <div class="contentIcon">
+                                        <div class="title">GLPI HelpDesk</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y administración de servicios de mesa de ayuda, inventario y gestión de activos incluye paraetrizacion de:
+                                            </p>
+                                            <ul>
+                                                <li>Parametrización ITIL</li>
+                                                <li>Acuerdos de Servicios (SLA)</li>
+                                                <li>Reglas de escalamiento (OLA)</li>
+                                                <li>Configuración de Agente de Inventario</li>
+                                                <li>Personalización del Front-End Empresarial</li>
+                                                <li>Plantillas de Tareas</li>
+                                                <li>Plantillas de Notificaciones</li>
+                                                <li>Configuracion de IMAP, OAUTH2 AZURE, SMTP para receptor de correos y notificaciones</li>
+                                                <li>Configuración de Roles y Accesos</li>
+                                                <li>Configuración de Entidades</li>
+                                                <li>Configuración de Categorías ITIL</li>
+                                                <li>Desarrollo de APIRESTFUL para despliege de aplicaciones MICRO</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#fff">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/office365.png')}}" alt="Nginx">
+                                    <div class="contentIcon">
+                                        <div class="title">Microsoft OFICE 365 Tenant</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y administración de servicios de Office 365 en la nube, incluye:
+                                            </p>
+                                            <ul>
+                                                <li>Teams</li>
+                                                <li>Sharepoint</li>
+                                                <li>OneDrive</li>
+                                                <li>Exchange Online</li>
+                                                <li>Office Word, Excel, PowerPoint</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#fff">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/azure.png')}}" alt="Microsoft Azure">
+                                    <div class="contentIcon">
+                                        <div class="title">Microsoft Azure</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y administración de servicios IaaS en la nube de Microsoft ofreciendo soluciones integrales para infraestructura, desarrollo y administración de aplicaciones. 
+                                                <br>
+                                                Servicios destacados:
+                                            </p>
+                                            <ul>
+                                                <li>Máquinas virtuales (VMware y Hyper-V)</li>
+                                                <li>Firewall avanzado para seguridad de red</li>
+                                                <li>Grupos de recursos compartidos</li>
+                                                <li>Almacenamiento en la nube (Blob Storage, Disk Storage)</li>
+                                                <li>Redes virtuales (VPN y ExpressRoute)</li>
+                                                <li>Azure Active Directory</li>
+                                                <li>Balanceadores de carga</li>
+                                                <li>Base de datos administrada (SQL Database)</li>
+                                                <li>Monitorización y análisis con Azure Monitor</li>
+                                                <li>Automatización de tareas y gestión de identidades</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#fff">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/google_cloud.png')}}" alt="Google Cloud Platform">
+                                    <div class="contentIcon">
+                                        <div class="title">Google Cloud Platform</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y administración de servicios IaaS en la nube de Google para infraestructura, análisis de datos, desarrollo y más.
+                                                <br>
+                                                Servicios destacados:
+                                            </p>
+                                            <ul>
+                                                <li>Máquinas virtuales con Compute Engine</li>
+                                                <li>Almacenamiento escalable con Cloud Storage</li>
+                                                <li>Kubernetes Engine para orquestación de contenedores</li>                                                                                               
+                                                <li>VPC y Cloud VPN para redes virtuales seguras</li>
+                                                <li>Gestión de identidades con IAM</li>                                                
+                                                <li>Base de datos administrada (Cloud SQL, Firestore, Spanner)</li>
+                                                <li>Monitorización y alertas con Cloud Monitoring</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#fff">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/aws.png')}}" alt="Amazon Web Services">
+                                    <div class="contentIcon">
+                                        <div class="title">Amazon Web Services</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Configuración y administración de servicios IaaS en la nube con soluciones robustas para empresas de cualquier tamaño. 
+                                                <br>
+                                                Servicios destacados:
+                                            </p>
+                                            <ul>
+                                                <li>EC2 para máquinas virtuales escalables</li>
+                                                <li>S3 para almacenamiento en la nube altamente duradero</li>
+                                                <li>RDS y DynamoDB para bases de datos administradas</li>
+                                                <li>Elastic Load Balancer para balanceo de carga</li>
+                                                <li>CloudFront para entrega de contenido global</li>
+                                                <li>VPC para redes privadas virtuales</li>
+                                                <li>Lambda para computación sin servidor</li>                                                                                                                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#fff">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/cpanel.png')}}" alt="cPanel">
+                                    <div class="contentIcon">
+                                        <div class="title">cPanel</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Administración web de hosting y servidores haciendo labores como:
+                                            </p>
+                                            <ul>
+                                                <li>Gestión de dominios y subdominios</li>
+                                                <li>Configuración de cuentas de correo electrónico</li>
+                                                <li>Gestión de bases de datos (MySQL)</li>
+                                                <li>Administrador de archivos con acceso FTP</li>
+                                                <li>Instalación rápida de aplicaciones con Softaculous</li>
+                                                <li>Monitorización del uso de recursos (CPU, RAM, almacenamiento)</li>
+                                                <li>Configuración de certificados SSL/TLS</li>
+                                                <li>Gestión de DNS y zonas avanzadas</li>                                                
+                                                <li>Backups automáticos y restauración</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="itemTool" style="--accent-color:#fff">
+                                <div class="icon">
+                                    <img src="{{asset('assets/img/PNG/postman.png')}}" alt="Postman">
+                                    <div class="contentIcon">
+                                        <div class="title">Postman</div>
+                                        <div class="descr">
+                                            <p class="text-wrap text-justify">
+                                                Manejo de herramienta para probar y documentar APIs de manera eficiente.
+                                            </p>
+                                            <ul>
+                                                <li>Diseño y prueba de solicitudes HTTP (GET, POST, PUT, DELETE, etc.)</li>                                                
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="content-section">
                     <div class="content-section-title">Apps in your plan</div>
